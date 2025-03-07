@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Account Activation - Horizon Impact Fund Managers</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f8f8f8;
+      margin: 0;
+      padding: 20px;
+      color: #545454;
+      line-height: 1.6;
+    }
+    .email-container {
+      max-width: 650px;
+      margin: 0 auto;
+      background-color: #ffffff;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+    }
+    .header {
+      background: #e9844c;
+      color: #ffffff;
+      text-align: center;
+      padding: 30px 20px;
+    }
+    .header h1 {
+      margin: 0;
+      font-size: 24px;
+    }
+    .content {
+      padding: 30px;
+    }
+    .greeting {
+      font-size: 20px;
+      font-weight: bold;
+      margin-bottom: 15px;
+    }
+    .activation-section {
+      background-color: #f9f9f9;
+      border-radius: 8px;
+      padding: 20px;
+      text-align: center;
+      border: 1px dashed #e0e0e0;
+    }
+    .activation-code {
+      display: inline-block;
+      padding: 12px 24px;
+      font-size: 22px;
+      font-weight: bold;
+      color: #ffffff;
+      background-color: #248bac;
+      border-radius: 8px;
+      text-decoration: none;
+    }
+    .expiration-notice {
+      font-size: 14px;
+      color: #e74c3c;
+      font-weight: bold;
+      margin-top: 10px;
+    }
+    .footer {
+      text-align: center;
+      padding: 20px;
+      font-size: 14px;
+      background-color: #f3f3f3;
+      border-top: 1px solid #e0e0e0;
+    }
+    @media screen and (max-width: 600px) {
+      .content {
+        padding: 20px;
+      }
+      .greeting {
+        font-size: 18px;
+      }
+      .activation-code {
+        font-size: 18px;
+        padding: 10px 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="email-container">
+    <div class="header">
+      <h1>Welcome to Horizon Impact Fund Managers</h1>
+    </div>
+    <div class="content">
+      <h2 class="greeting">Hi <%= user.name %>,</h2>
+      <p>Thank you for choosing <strong>Horizon Impact Fund Managers</strong>. Please activate your account using the verification code below.</p>
+      <div class="activation-section">
+        <h3>Your Activation Code</h3>
+        <div class="activation-code"><%= activationCode %></div>
+        <p class="expiration-notice">Code will expire in 5 minutes</p>
+      </div>
+    </div>
+    <div class="footer">
+      <p>&copy; <%= new Date().getFullYear() %> Horizon Impact Fund Managers</p>
+    </div>
+  </div>
+</body>
+</html>
