@@ -1,5 +1,5 @@
 import dotenv from "dotenv";
-import redisClient from './redis.js';
+import redisClient from '../utilis/redis.js';
 
 dotenv.config();
 
