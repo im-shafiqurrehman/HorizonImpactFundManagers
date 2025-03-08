@@ -1,4 +1,5 @@
 import "./Loader.css";
+
 type Props = {};
 
 const Loader = (props: Props) => {
