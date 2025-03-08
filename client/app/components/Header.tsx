@@ -17,6 +17,7 @@ import Signup from "../components/Auth/Signup";
 import Verification from "../components/Auth/Verification";
 import CustomModal from "../utlis/CustomModal";
 import NavItems from "../utlis/NavItems";
+import logo from "../../public/assets/logo1.png"
 
 type Props = {
   open: boolean;
@@ -85,7 +86,7 @@ const Header: FC<Props> = ({ activeItem, open, setOpen, route, setRoute }) => {
           <div className="w-full h-[80px] flex items-center justify-between p-3">
             <div>
               <Link href={"/"} className="text-[25px] font-Poppins font-[500] text-black">
-                ELearning
+               <Image src={logo} alt="Logo" width={130} height={20}/>
               </Link>
             </div>
             <div className="flex items-center">
@@ -119,7 +120,6 @@ const Header: FC<Props> = ({ activeItem, open, setOpen, route, setRoute }) => {
           </div>
         </div>
       </div>
-
       {route === "Login" && open && (
         <CustomModal
           open={open}
@@ -130,7 +130,6 @@ const Header: FC<Props> = ({ activeItem, open, setOpen, route, setRoute }) => {
           refetch={refetch}
         />
       )}
-
       {route === "Sign-Up" && open && (
         <CustomModal
           open={open}
@@ -140,7 +139,6 @@ const Header: FC<Props> = ({ activeItem, open, setOpen, route, setRoute }) => {
           component={Signup}
         />
       )}
-
       {route === "Verification" && open && (
         <CustomModal
           open={open}

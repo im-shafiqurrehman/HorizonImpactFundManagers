@@ -86,40 +86,51 @@ const Verification: FC<Props> = ({ setRoute }) => {
   };
 
   return (
-    <div>
-      <h1 className={`${styles.title} text-center`}>Verify your account</h1>
-      <div className="w-full flex items-center justify-center mt-6">
-        <div className="w-[80px] h-[80px] rounded-full bg-blue-600 flex items-center justify-center">
+    <div className="w-full p-6 bg-white rounded-lg shadow-md">
+      <h1 className={`${styles.title} text-center text-2xl font-bold text-[#e9844c] mb-6`}>
+        Verify your account
+      </h1>
+      <div className="w-full flex items-center justify-center mt-8">
+        <div className="w-[80px] h-[80px] rounded-full bg-gradient-to-r from-[#e9844c] to-[#e9844c] flex items-center justify-center shadow-lg shadow-[#e9844c]/20">
           <VscWorkspaceTrusted size={40} className="text-white" />
         </div>
       </div>
-      <div className="mt-10 flex items-center justify-around">
+      
+      <p className="text-center text-[#545454] mt-6 mb-8">
+        Please enter the 6-digit verification code sent to your email
+      </p>
+      
+      <div className="mt-8 flex items-center justify-center gap-3">
         {Object.keys(verifyNumber).map((key, index) => (
           <input
             type="number"
             key={key}
             ref={inputRefs[index]}
-            className={`w-16 h-16 bg-transparent border-[3px] rounded-[10px] text-center text-[18px] font-Poppins outline-none text-black dark:text-white ${
-              invalidError ? "shake border-red-500" : "border-gray-400"
-            }`}
+            className={`w-12 h-14 bg-transparent border-[3px] rounded-lg text-center text-xl font-bold outline-none text-[#545454] ${
+              invalidError 
+                ? "border-red-500 animate-shake" 
+                : "border-[#e9844c]/30 focus:border-[#e9844c]"
+            } transition-all duration-300`}
             value={verifyNumber[key as keyof VerifyNumber]}
             onChange={(e) => handleInputChange(index, e.target.value)}
             maxLength={1}
           />
         ))}
       </div>
+      
       <div className="w-full flex justify-center mt-10">
         <button
-          className={`${styles.button} hover:bg-blue-700`}
+          className={`${styles.button} w-full max-w-xs bg-gradient-to-r from-[#e9844c] to-[#e9844c] text-white font-medium py-3 rounded-lg transition-all duration-300 transform hover:scale-[1.02] active:scale-[0.98] shadow-md hover:shadow-lg`}
           onClick={verifyHandler}
         >
           Verify OTP
         </button>
       </div>
-      <h5 className="text-center mt-6 text-[14px] font-Poppins text-gray-600 dark:text-gray-300">
+      
+      <h5 className="text-center mt-8 text-sm font-medium text-[#545454]">
         Go back to Sign in?{" "}
         <span
-          className="text-blue-600 cursor-pointer underline"
+          className="text-[#e9844c] hover:text-[#e9844c]/80 cursor-pointer underline transition-colors"
           onClick={() => setRoute("Login")}
         >
           Sign in

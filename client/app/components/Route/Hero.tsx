@@ -14,7 +14,7 @@ const Header: FC<Props> = ({ isLoading }) => {
       {isLoading ? (
         <Loader />
       ) : (
-        <h2> there is a content for the header</h2>
+        <h2> there is a hero content  for the header</h2>
       )}
     </>
   );

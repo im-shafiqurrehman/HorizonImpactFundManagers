@@ -50,32 +50,6 @@ body {
   color: rgb(var(--foreground-rgb));
 }
 
-@keyframes changeBackgroundColor {
-  0%,
-  100% {
-    opacity: 1;
-  }
-
-  16.67% {
-    opacity: 0.9;
-  }
-
-  33.33% {
-    opacity: 0.8;
-  }
-
-  50% {
-    opacity: 0.6;
-  }
-
-  66.67% {
-    opacity: 0.5;
-  }
-
-  83.33% {
-    opacity: 0.4;
-  }
-}
 
 .shake {
   animation: shake 0.3s ease-in-out; /* Adjust timing as needed */
@@ -98,19 +72,3 @@ body {
   }
 }
 
-.text-gradient {
-  background: linear-gradient(90deg, #4d88c4 2.34%, #964be1 100.78%);
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent; /* Makes the text color transparent for gradient to show */
-  color: transparent; /* Ensures fallback for browsers without gradient text support */
-}
-
-.hero_animation {
-  background-image: linear-gradient(
-    147.92deg,
-    hsla(239, 76%, 53%, 0.456) 10.41%,
-    hsla(0, 0%, 100%, 0) 89.25%
-  );
-  animation: changeBackgroundColor 8s infinite alternate;
-}

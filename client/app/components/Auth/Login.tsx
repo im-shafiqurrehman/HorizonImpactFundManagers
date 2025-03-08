@@ -41,7 +41,7 @@ const Login: FC<Props> = ({ setRoute, setOpen, refetch }) => {
 
   useEffect(() => {
     if (isSuccess) {
-      toast.success("Welcome back to ELearning!");
+      toast.success("Welcome back to Horizon!");
       setOpen(false);
       refetch();
     }
@@ -56,11 +56,13 @@ const Login: FC<Props> = ({ setRoute, setOpen, refetch }) => {
   const { errors, touched, values, handleChange, handleSubmit } = formik;
 
   return (
-    <div className="w-full">
-      <h1 className={`${styles.title}`}>Login with ELearning</h1>
-      <form onSubmit={handleSubmit}>
-        <div className="w-full mt-5 relative mb-1">
-          <label className={`${styles.label}`} htmlFor="email">
+    <div className="w-full bg-white p-6 rounded-lg shadow-md">
+      <h1 className={`${styles.title} text-center text-2xl font-bold text-[#e9844c] mb-6`}>
+        Login with Horizon
+      </h1>
+      <form onSubmit={handleSubmit} className="space-y-5">
+        <div className="w-full relative mb-4">
+          <label className={`${styles.label} text-[#545454] font-medium`} htmlFor="email">
             Enter your email address
           </label>
           <input
@@ -70,72 +72,86 @@ const Login: FC<Props> = ({ setRoute, setOpen, refetch }) => {
             onChange={handleChange}
             id="email"
             placeholder="loginmail@gmail.com"
-            className={`${errors.email && touched.email && "border-red-500"} ${
+            className={`${errors.email && touched.email ? "border-red-500" : "border-[#e9844c]/30 focus:border-[#e9844c]"} ${
               styles.input
-            }
-        `}
+            } w-full p-3 rounded-lg border bg-white transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-[#e9844c]/30`}
           />
           {errors.email && touched.email && (
-            <span className="text-red-500 pt-2 block">{errors.email}</span>
+            <span className="text-red-500 text-sm pt-1 block">{errors.email}</span>
           )}
         </div>
 
-        <div className="w-full mt-5 relative mb-1">
-          <label className={`${styles.label}`} htmlFor="password">
+        <div className="w-full relative mb-4">
+          <label className={`${styles.label} text-[#545454] font-medium`} htmlFor="password">
             Enter your password
           </label>
-          <input
-            type={!show ? "password" : "text"}
-            name="password"
-            value={values.password}
-            onChange={handleChange}
-            id="password"
-            placeholder="password@#!&"
-            className={`${
-              errors.password && touched.password && "border-red-500"
-            } ${styles.input}
-        `}
-          />
-          {!show ? (
-            <AiOutlineEyeInvisible
-              className="absolute bottom-3 right-2 z-1 cursor-pointer"
-              size={20}
-              onClick={() => setShow(true)}
+          <div className="relative">
+            <input
+              type={!show ? "password" : "text"}
+              name="password"
+              value={values.password}
+              onChange={handleChange}
+              id="password"
+              placeholder="password@#!&"
+              className={`${
+                errors.password && touched.password ? "border-red-500" : "border-[#e9844c]/30 focus:border-[#e9844c]"
+              } ${styles.input} w-full p-3 rounded-lg border bg-white transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-[#e9844c]/30`}
             />
-          ) : (
-            <AiOutlineEye
-              className="absolute bottom-3 right-2 z-1 cursor-pointer"
-              size={20}
-              onClick={() => setShow(false)}
-            />
-          )}
+            {!show ? (
+              <AiOutlineEyeInvisible
+                className="absolute top-1/2 right-3 transform -translate-y-1/2 text-[#545454] hover:text-[#e9844c] cursor-pointer transition-colors"
+                size={22}
+                onClick={() => setShow(true)}
+              />
+            ) : (
+              <AiOutlineEye
+                className="absolute top-1/2 right-3 transform -translate-y-1/2 text-[#545454] hover:text-[#e9844c] cursor-pointer transition-colors"
+                size={22}
+                onClick={() => setShow(false)}
+              />
+            )}
+          </div>
           {errors.password && touched.password && (
-            <span className="text-red-500 pt-2 block">{errors.password}</span>
+            <span className="text-red-500 text-sm pt-1 block">{errors.password}</span>
           )}
         </div>
-        <div className="w-full mt-5">
-          <input type="submit" value="Login" className={`${styles.button}`} />
+        
+        <div className="w-full mt-6">
+          <input 
+            type="submit" 
+            value="Login" 
+            className={`${styles.button} w-full bg-[#e9844c] hover:bg-[#e9844c]/90 text-white font-medium py-3 rounded-lg transition-all duration-300 transform hover:scale-[1.02] active:scale-[0.98] cursor-pointer shadow-md hover:shadow-lg`} 
+          />
         </div>
-        <br />
-        <h5 className="text-center pt-4 font-Poppins text-[14px] text-black dark:text-white">
-          Or join with
-        </h5>
-        <div className="flex justify-center items-center my-3">
-          <FcGoogle
-            size={30}
-            className="cursor-pointer mr-2"
+        
+        <div className="relative my-6">
+          <div className="absolute inset-0 flex items-center">
+            <div className="w-full border-t border-[#545454]/20"></div>
+          </div>
+          <div className="relative flex justify-center text-sm">
+            <span className="px-2 bg-white text-[#545454]">Or join with</span>
+          </div>
+        </div>
+        
+        <div className="flex justify-center items-center gap-6">
+          <div 
+            className="flex items-center justify-center w-12 h-12 rounded-full bg-white border border-[#545454]/20 hover:border-[#e9844c]/50 hover:bg-[#e9844c]/5 cursor-pointer transition-all duration-300 shadow-sm hover:shadow"
             onClick={() => signIn("google")}
-          />
-          <AiFillGithub
-            size={30}
-            className="cursor-pointer ml-2"
+          >
+            <FcGoogle size={24} />
+          </div>
+          <div 
+            className="flex items-center justify-center w-12 h-12 rounded-full bg-white border border-[#545454]/20 hover:border-[#e9844c]/50 hover:bg-[#e9844c]/5 cursor-pointer transition-all duration-300 shadow-sm hover:shadow"
             onClick={() => signIn("github")}
-          />
+          >
+            <AiFillGithub size={24} className="text-[#545454]" />
+          </div>
         </div>
-        <h5 className="text-center pt-4 font-Poppins text-[14px] dark:text-white text-black">
+        
+        <h5 className="text-center pt-4 font-medium text-sm text-[#545454]">
           Not have any account?{" "}
           <span
-            className="dark:text-[#2190ff] pl-1 cursor-pointer underline text-blue-700"
+            className="text-[#e9844c] hover:text-[#e9844c]/80 pl-1 cursor-pointer underline transition-colors"
             onClick={() => setRoute("Sign-Up")}
           >
             Sign up
