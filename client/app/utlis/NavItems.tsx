@@ -3,23 +3,28 @@ import { FC } from "react";
 
 export const navItemsData = [
   {
-    name: "Home",
+    name: "HOME",
     url: "/",
   },
   {
-    name: "Courses",
-    url: "/courses",
-  },
-  {
-    name: "About",
+    name: "ABOUT",
     url: "/about",
   },
   {
-    name: "Policy",
+    name: "OUR APPROACH",
+    url: "/courses",
+  },
+
+  {
+    name: "OUR TEAM",
+    url: "/about",
+  },
+  {
+    name: "PORTFOLIO",
     url: "/policy",
   },
   {
-    name: "FAQ",
+    name: "Contact US",
     url: "/faq",
   },
 ];

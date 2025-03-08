@@ -3,9 +3,7 @@
 import { FC, useState } from "react";
 import Footer from "./components/Footer/Footer";
 import Header from "./components/Header";
-import Courses from "./components/Route/Courses";
 import Hero from "./components/Route/Hero";
-import Reviews from "./components/Route/Reviews";
 import Headings from "./utlis/Heading";
 
 interface Props {}
