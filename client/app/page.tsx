@@ -1,7 +1,6 @@
 "use client";
 
 import { FC, useState } from "react";
-import FAQ from "./components/FAQ/FAQ";
 import Footer from "./components/Footer/Footer";
 import Header from "./components/Header";
 import Courses from "./components/Route/Courses";
@@ -31,9 +30,6 @@ const Page: FC<Props> = (props) => {
         route={route}
       />
       <Hero />
-      <Courses />
-      <Reviews />
-      <FAQ />
       <Footer />
     </div>
   );
