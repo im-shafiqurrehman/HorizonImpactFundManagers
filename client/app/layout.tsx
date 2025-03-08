@@ -33,7 +33,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${poppins.variable} ${josefin.variable} ${cursive.variable} !bg-white bg-no-repeat duration-300`}>
+      <body className={`${poppins.variable} ${josefin.variable} ${cursive.variable}`}>
         <Providers>
           <SessionProvider>
             <Custom>{children}</Custom>

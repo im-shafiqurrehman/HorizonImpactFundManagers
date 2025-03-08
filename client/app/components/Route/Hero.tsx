@@ -1,21 +1,21 @@
 "use client";
-
 import Link from "next/link";
 import { FC } from "react";
 import Loader from "../Loader/Loader";
 
-const Header: FC = () => {
+type Props = {
+  isLoading: boolean; // Define isLoading as a required prop
+};
+
+const Header: FC<Props> = ({ isLoading }) => {
   return (
     <>
-      <Loader />
-      <nav>
-        <ul>
-          <li><Link href="/">Home</Link></li>
-          <li><Link href="/about">About</Link></li>
-          <li><Link href="/courses">Courses</Link></li>
-          <li><Link href="/contact">Contact</Link></li>
-        </ul>
-      </nav>
+      {/* Render loader while data is being fetched */}
+      {isLoading ? (
+        <Loader />
+      ) : (
+        <h2> there is a content for the header</h2>
+      )}
     </>
   );
 };

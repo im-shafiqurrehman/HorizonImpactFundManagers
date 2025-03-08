@@ -16,9 +16,9 @@ const Page: FC<Props> = (props) => {
   return (
     <div>
       <Headings
-        title="ELearning"
-        description="ELearning is a platform for students to learn and get help from teachers"
-        keywords="Programming, MERN, Typescript, Redux"
+        title="Horizon"
+        description="Our Investment Company provides strategic financial solutions and expert guidance to help you grow your wealth."
+        keywords=""
       />
       <Header
         open={open}
@@ -27,7 +27,7 @@ const Page: FC<Props> = (props) => {
         setRoute={setRoute}
         route={route}
       />
-      <Hero />
+     <Hero isLoading={true} />
       <Footer />
     </div>
   );

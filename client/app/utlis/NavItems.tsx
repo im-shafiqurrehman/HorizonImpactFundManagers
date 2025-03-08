@@ -1,31 +1,33 @@
 import Link from "next/link";
+import Image from "next/image"; 
 import { FC } from "react";
+import logo from "../../public/assets/logo.png"
 
 export const navItemsData = [
   {
-    name: "HOME",
+    name: "Home",
     url: "/",
   },
   {
-    name: "ABOUT",
+    name: "About",
     url: "/about",
   },
   {
-    name: "OUR APPROACH",
-    url: "/courses",
+    name: "Our-Approach",
+    url: "/our-approach",
   },
 
   {
-    name: "OUR TEAM",
-    url: "/about",
+    name: "Team",
+    url: "/team",
   },
   {
-    name: "PORTFOLIO",
-    url: "/policy",
+    name: "Portfolio",
+    url: "/portfolio",
   },
   {
-    name: "Contact US",
-    url: "/faq",
+    name: "Contact",
+    url: "/contact-us",
   },
 ];
 
@@ -58,7 +60,7 @@ const NavItems: FC<Props> = ({ activeItem, isMobile }) => {
         <div className="w-full 800px:hidden mt-5">
             <div className="full text-center py-6">
                 <Link href="/" passHref>
-                    <span className="text-[25px] font-Poppins font-[500] text-black dark:text-white">ELearning</span>
+                <Image src={logo} alt="Logo" width={150} height={50} />
                 </Link>
             </div>
           {navItemsData &&
