@@ -58,12 +58,12 @@ const Navbar: React.FC<NavbarProps> = ({ activeItem, isMobile }) => {
               ></span>
             </Link>
             <Link
-              href="/investments"
+              href="/our-approach"
               className={`relative group ${
-                isActiveLink("/investments") ? "text-main" : ""
+                isActiveLink("/our-approach") ? "text-main" : ""
               }`}
             >
-              Investments
+              Our Approach
               <span
                 className={`absolute left-0 -bottom-1 h-1 rounded-md bg-main block w-0 group-hover:w-3/4 transition-all duration-300 ${
                   isActiveLink("/investments") ? "w-3/4" : ""
@@ -84,12 +84,12 @@ const Navbar: React.FC<NavbarProps> = ({ activeItem, isMobile }) => {
               ></span>
             </Link>
             <Link
-              href="/portfolio"
+              href="/news"
               className={`relative group ${
-                isActiveLink("/portfolio") ? "text-main" : ""
+                isActiveLink("/news") ? "text-main" : ""
               }`}
             >
-              Portfolio
+              News
               <span
                 className={`absolute left-0 -bottom-1 h-1 rounded-md bg-main block w-0 group-hover:w-3/4 transition-all duration-300 ${
                   isActiveLink("/portfolio") ? "w-3/4" : ""
@@ -148,13 +148,13 @@ const Navbar: React.FC<NavbarProps> = ({ activeItem, isMobile }) => {
                     Home
                   </Link>
                   <Link
-                    href="/investments"
+                    href="/our-approach"
                     className={`block text-base font-semibold ${
-                      isActiveLink("/investments") ? "text-main" : ""
+                      isActiveLink("/our-approach") ? "text-main" : ""
                     }`}
                     onClick={handleLinkClick}
                   >
-                    Investments
+                    Our Approach
                   </Link>
                   <Link
                     href="/services"
@@ -166,13 +166,13 @@ const Navbar: React.FC<NavbarProps> = ({ activeItem, isMobile }) => {
                     Services
                   </Link>
                   <Link
-                    href="/portfolio"
+                    href="/News"
                     className={`block text-base font-semibold ${
-                      isActiveLink("/portfolio") ? "text-main" : ""
+                      isActiveLink("/News") ? "text-main" : ""
                     }`}
                     onClick={handleLinkClick}
                   >
-                    Portfolio
+                    News
                   </Link>
                   <Link
                     href="/about"

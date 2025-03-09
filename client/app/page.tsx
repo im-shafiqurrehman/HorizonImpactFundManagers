@@ -2,10 +2,17 @@
 
 import { FC, useState } from "react";
 import Header from "./components/Header";
-import Hero from "./components/Route/Hero";
 import Headings from "./utlis/Heading";
-import Footer from "@/components/Layout/Footer";
-import ContactSection from "@/components/Home/Contact";
+import AboutUs from "@/components/Home/About";
+import Slider from "@/components/Home/AnimatedHero";
+import KeyFeaturesAndBenefits from "@/components/Home/Benifits";
+// import ProductShowcase from "@/components/Home/Products";
+// import Projects from "@/components/Home/Projects";
+import Services from "@/components/Home/Services";
+import { Sponser } from "@/components/Home/Sponsers";
+import TargetedMarkets from "@/components/Home/TargetedMarkets";
+import { Testimonial } from "@/components/Home/Testimonial";
+import MainLayout from "@/components/Layout/MainLayout";
 
 interface Props {}
 
@@ -16,6 +23,7 @@ const Page: FC<Props> = (props) => {
 
   return (
     <div>
+       <MainLayout>
       <Headings
         title="Horizon"
         description="Our Investment Company provides strategic financial solutions and expert guidance to help you grow your wealth."
@@ -28,9 +36,17 @@ const Page: FC<Props> = (props) => {
         setRoute={setRoute}
         route={route}
       />
-     <Hero isLoading={true} />
-       <ContactSection/>
-     <Footer/>
+     <Slider />
+        <AboutUs />
+        <TargetedMarkets />
+        {/* <ProductShowcase slice={true} /> */}
+        <Services />
+        {/* <Projects /> */}
+        <KeyFeaturesAndBenefits />
+        <Sponser />
+        <Testimonial/>
+
+     </MainLayout>
     </div>
   );
 };
