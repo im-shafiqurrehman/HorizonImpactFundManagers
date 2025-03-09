@@ -39,6 +39,8 @@ const Header: FC<Props> = ({ activeItem, open, setOpen, route, setRoute }) => {
     skip: !logout ? true : false,
   });
 
+  console.log("setOpen:", setOpen); // Debugging line
+
   useEffect(() => {
     if (!isLoading) {
       if (!userData) {
@@ -55,7 +57,7 @@ const Header: FC<Props> = ({ activeItem, open, setOpen, route, setRoute }) => {
     if (data === null) {
       if (isSuccess) {
         toast.success("Welcome back to ELearning!");
-        setOpen(false);
+        setOpen(false); // Ensure setOpen is defined
       }
     }
     if (data === null && !isLoading && !userData) {
@@ -119,7 +121,7 @@ const Header: FC<Props> = ({ activeItem, open, setOpen, route, setRoute }) => {
                 <HiOutlineUserCircle
                   className="hidden 800px:block cursor-pointer text-black"
                   size={25}
-                  onClick={() => setOpen(true)}
+                  onClick={() => setOpen(true)} // Ensure setOpen is defined
                 />
               )}
             </div>

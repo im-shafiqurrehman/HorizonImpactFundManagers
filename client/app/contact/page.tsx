@@ -17,6 +17,7 @@ import { ErrorMessage, Field, Form, Formik, FormikHelpers } from "formik";
 import { object, string } from "yup";
 import toast from "react-hot-toast";
 import axios from "axios";
+import Loader from "../components/Loader/Loader";
 
 // Define the form values interface
 interface FormValues {
@@ -24,6 +25,9 @@ interface FormValues {
   email: string;
   message: string;
 }
+type Props = {
+  isLoading: boolean; // Define isLoading as a required prop
+};
 
 export default function ContactUs() {
   const [loading, setLoading] = useState(false);
@@ -77,11 +81,16 @@ export default function ContactUs() {
       setLoading(false);
     }
   };
-
   return (
+    <>
+      {/* Render loader while data is being fetched */}
+      {loading? (
+        <Loader/>
+      ) : (
     <MainLayout>
       <HeroBanner
         title={"Contact Us"}
+        subtitle={"Contact"} 
         backgroundImage={"/assets/contact-banner.jpg"}
       />
       <div className="container mx-auto px-4 md:px-8 lg:px-12 py-12">
@@ -279,5 +288,7 @@ export default function ContactUs() {
         </Fade>
       </div>
     </MainLayout>
-  );
-}
+      )}
+      </>
+    );
+};

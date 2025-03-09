@@ -1,5 +1,4 @@
 "use client";
-
 import React, { useEffect, useRef } from "react";
 import Image from "next/image";
 import gsap from "gsap";
@@ -35,6 +34,7 @@ const HeroBanner: React.FC<HeroBannerProps> = ({ title, subtitle, backgroundImag
 
   return (
     <section className="relative flex items-center justify-center h-[60vh] w-full overflow-hidden">
+      {/* Background Image */}
       <div className="absolute inset-0 -z-10 h-full w-full">
         <Image
           src={backgroundImage}
@@ -45,9 +45,11 @@ const HeroBanner: React.FC<HeroBannerProps> = ({ title, subtitle, backgroundImag
         />
       </div>
 
+      {/* Overlay */}
       <div className="absolute inset-0 bg-black opacity-70"></div>
 
-      <div className="relative text-center px-4 md:px-6 lg:px-8 max-w-3xl mx-auto text-white">
+      {/* Text Content */}
+      <div className="relative z-10 text-center px-4 md:px-6 lg:px-8 max-w-3xl mx-auto text-white">
         <h1
           ref={titleRef}
           className="text-3xl md:text-5xl lg:text-6xl uppercase font-bold leading-tight"

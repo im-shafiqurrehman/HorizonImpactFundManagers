@@ -1,59 +1,58 @@
-"use client"
+"use client";
 
-import { styles } from "@/app/styles/style"
-import { useUpdatePasswordMutation } from "@/redux/features/user/userApi"
-import { type FC, useEffect, useState } from "react"
-import toast from "react-hot-toast"
-import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai"
-import { RiLockPasswordLine } from "react-icons/ri"
+import { styles } from "@/app/styles/style";
+import { useUpdatePasswordMutation } from "@/redux/features/user/userApi";
+import { type FC, useEffect, useState } from "react";
+import toast from "react-hot-toast";
+import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
+import { RiLockPasswordLine } from "react-icons/ri";
 
-/* eslint-disable jsx-a11y/role-supports-aria-props */
-type Props = {}
+type Props = {};
 
 const ChangePassword: FC<Props> = (props) => {
-  const [oldPassword, setOldPassword] = useState("")
-  const [newPassword, setNewPassword] = useState("")
-  const [confirmPassword, setConfirmPassword] = useState("")
-  const [showOld, setShowOld] = useState(false)
-  const [showNew, setShowNew] = useState(false)
-  const [showConfirm, setShowConfirm] = useState(false)
-  const [updatePassword, { isSuccess, error }] = useUpdatePasswordMutation()
+  const [oldPassword, setOldPassword] = useState("");
+  const [newPassword, setNewPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [showOld, setShowOld] = useState(false);
+  const [showNew, setShowNew] = useState(false);
+  const [showConfirm, setShowConfirm] = useState(false);
+  const [updatePassword, { isSuccess, error }] = useUpdatePasswordMutation();
 
   useEffect(() => {
     if (isSuccess) {
-      toast.success("Password updated successfully")
-      setOldPassword("")
-      setNewPassword("")
-      setConfirmPassword("")
+      toast.success("Password updated successfully");
+      setOldPassword("");
+      setNewPassword("");
+      setConfirmPassword("");
     }
     if (error) {
       if ("data" in error) {
-        const errorData = error as any
-        toast.error(errorData.data.message)
+        const errorData = error as any;
+        toast.error(errorData.data.message);
       }
     }
-  }, [error, isSuccess])
+  }, [error, isSuccess]);
 
   const passwordChangeHandler = async (e: any) => {
-    e.preventDefault()
+    e.preventDefault();
 
     if (newPassword !== confirmPassword) {
-      toast.error("Passwords do not match")
+      toast.error("Passwords do not match");
     } else {
-      await updatePassword({ oldPassword, newPassword })
+      await updatePassword({ oldPassword, newPassword });
     }
-  }
+  };
 
   return (
-    <div className="w-full pl-7 px-2 800px:px-5 800px:pl-0">
-      <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md">
+    <div className="w-full pl-7 px-2 800px:px-5 800px:pl-0  mt-32 mb-16">
+      <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md border border-[#e9844c]/30">
         <div className="flex items-center justify-center mb-6">
-          <div className="w-16 h-16 rounded-full bg-blue-100 dark:bg-blue-900/30 flex items-center justify-center">
-            <RiLockPasswordLine size={30} className="text-blue-600 dark:text-blue-400" />
+          <div className="w-16 h-16 rounded-full bg-[#e9844c]/10 flex items-center justify-center">
+            <RiLockPasswordLine size={30} className="text-[#e9844c]" />
           </div>
         </div>
 
-        <h1 className="text-2xl font-semibold text-center text-gray-800 dark:text-white mb-8">Change Your Password</h1>
+        <h1 className="text-2xl font-semibold text-center text-[#e9844c] mb-8">Change Your Password</h1>
 
         <div className="w-full">
           <form aria-required onSubmit={passwordChangeHandler} className="flex flex-col items-center">
@@ -65,7 +64,7 @@ const ChangePassword: FC<Props> = (props) => {
                 <input
                   type={showOld ? "text" : "password"}
                   id="old-password"
-                  className={`${styles.input} !w-[95%] border border-gray-300 dark:border-gray-700 rounded-lg p-3 bg-white dark:bg-gray-800 focus:border-blue-500 focus:ring-2 focus:ring-blue-500/50 transition-all duration-300`}
+                  className={`${styles.input} !w-[95%] border border-[#e9844c]/50 rounded-lg p-3 bg-white focus:border-[#e9844c] focus:ring-2 focus:ring-[#e9844c]/30 transition-all duration-300`}
                   required
                   value={oldPassword}
                   onChange={(e) => setOldPassword(e.target.value)}
@@ -87,7 +86,7 @@ const ChangePassword: FC<Props> = (props) => {
                 <input
                   type={showNew ? "text" : "password"}
                   id="new-password"
-                  className={`${styles.input} !w-[95%] border border-gray-300 dark:border-gray-700 rounded-lg p-3 bg-white dark:bg-gray-800 focus:border-blue-500 focus:ring-2 focus:ring-blue-500/50 transition-all duration-300`}
+                  className={`${styles.input} !w-[95%] border border-[#e9844c]/50 rounded-lg p-3 bg-white focus:border-[#e9844c] focus:ring-2 focus:ring-[#e9844c]/30 transition-all duration-300`}
                   required
                   value={newPassword}
                   onChange={(e) => setNewPassword(e.target.value)}
@@ -109,7 +108,7 @@ const ChangePassword: FC<Props> = (props) => {
                 <input
                   type={showConfirm ? "text" : "password"}
                   id="confirm-password"
-                  className={`${styles.input} !w-[95%] border border-gray-300 dark:border-gray-700 rounded-lg p-3 bg-white dark:bg-gray-800 focus:border-blue-500 focus:ring-2 focus:ring-blue-500/50 transition-all duration-300`}
+                  className={`${styles.input} !w-[95%] border border-[#e9844c]/50 rounded-lg p-3 bg-white focus:border-[#e9844c] focus:ring-2 focus:ring-[#e9844c]/30 transition-all duration-300`}
                   required
                   value={confirmPassword}
                   onChange={(e) => setConfirmPassword(e.target.value)}
@@ -124,7 +123,7 @@ const ChangePassword: FC<Props> = (props) => {
 
               <input
                 type="submit"
-                className="!w-[95%] 800px:w-[250px] h-[45px] border border-blue-500 text-center rounded-lg mt-8 cursor-pointer bg-blue-600 hover:bg-blue-700 text-white transition-all duration-300 transform hover:scale-[1.02] active:scale-[0.98]"
+                className="!w-[95%] 800px:w-[250px] h-[45px] border border-[#e9844c] text-center rounded-lg mt-8 cursor-pointer bg-[#e9844c] text-black transition-all duration-300 transform hover:scale-[1.02] active:scale-[0.98]"
                 required
                 value="Update Password"
               />
@@ -133,8 +132,7 @@ const ChangePassword: FC<Props> = (props) => {
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default ChangePassword
-
+export default ChangePassword;

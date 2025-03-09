@@ -27,19 +27,18 @@ export default function ContactSection() {
           <div className="space-y-6">
             <Link href={"/"}>
               <Image
-                src="/assets/white-logo.png"
-                alt="Almaram Alfaneyah Logo"
+                src="/assets/logo1.png"
+                alt="Horizon Impact Logo"
                 width={200}
                 height={60}
                 className="mb-6"
               />
             </Link>
             <p className="text-gray-400 text-lg leading-relaxed">
-              Almaram Alfaneyah Manufacturing Co. is a certified channel partner
-              of Schneider Electric, specializing in the manufacturing of LV
-              switchgear panels in the Kingdom of Saudi Arabia. Based in Jeddah,
-              we are expanding to major cities in Saudi Arabia, meeting IEC,
-              ISO, and ASO standards.
+              Horizon Impact Fund Managers is a leading financial services
+              company specializing in impact investments. We are committed to
+              creating sustainable and impactful financial solutions for our
+              clients.
             </p>
             <div className="flex space-x-4">
               <TooltipProvider>
@@ -109,9 +108,8 @@ export default function ContactSection() {
                 </div>
                 <span className="text-lg text-gray-400">
                   <p>
-                    AL-MARAM AL-FANEYAH <br /> 3760 الأخطل, JJMA3760، 7766, حي
-                    المحجر, <br />
-                    Jeddah 22511 SAUDI ARABIA
+                    Horizon Impact Fund Managers <br />
+                    Nambabia, Pakistan
                   </p>
                 </span>
               </div>
@@ -122,10 +120,10 @@ export default function ContactSection() {
                 <span className="text-lg text-gray-400">
                   Call Us:
                   <a
-                    href="tel:+966569105621"
+                    href="tel:+923264139439"
                     className="text-lg pl-2 hover:text-main hover:underline"
                   >
-                    +966 56 910 5621
+                    +92 326 4139439
                   </a>
                 </span>
               </div>
@@ -136,12 +134,26 @@ export default function ContactSection() {
                 <span className="text-lg text-gray-400">
                   Whatsapp Us:
                   <a
-                    href="https://wa.me/966569105781"
+                    href="https://wa.me/923264139439"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-lg pl-2 hover:text-main hover:underline"
                   >
-                    +966 56 910 5781
+                    +92 326 4139439
+                  </a>
+                </span>
+              </div>
+              <div className="flex items-center gap-4">
+                <div className="flex items-center justify-center w-12 h-12 flex-shrink-0 bg-gray-200 rounded-full text-main">
+                  <FaWhatsapp className="text-xl" />
+                </div>
+                <span className="text-lg text-gray-400">
+                  Email Us:
+                  <a
+                    href="mailto:horizonimpactfundmanagers@gmail.com"
+                    className="text-lg pl-2 hover:text-main hover:underline"
+                  >
+                    horizonimpactfundmanagers@gmail.com
                   </a>
                 </span>
               </div>

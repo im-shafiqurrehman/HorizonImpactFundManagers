@@ -16,40 +16,31 @@ type Props = {
 };
 
 const ProfileInfo: React.FC<Props> = ({ user, avatar }) => {
-  // State to manage user name input
   const [name, setName] = React.useState(user && user.name);
-
-  // Mutation hooks for updating avatar and user details
   const [updateAvatar, { isSuccess, error }] = useUpdateAvatarMutation();
   const [updateUser, { isSuccess: success, error: updateUserError }] = useUpdateUserMutation();
-
-  // State to determine whether to refetch user data
   const [shouldFetch, setShouldFetch] = React.useState(false);
-
-  // Query hook to fetch user data with conditional fetching
   const { refetch, isLoading } = useLoadUserQuery(undefined, {
-    skip: !shouldFetch, // Only run when shouldFetch is true
+    skip: !shouldFetch,
   });
 
-  // Handle file input change for updating avatar
   const imageHandler = async (e: any) => {
     const fileReader = new FileReader();
 
     fileReader.onload = () => {
       if (fileReader.readyState === 2) {
         const avatar = fileReader.result;
-        updateAvatar(avatar); // Update avatar using mutation
+        updateAvatar(avatar);
       }
     };
 
     fileReader.readAsDataURL(e.target.files[0]);
   };
 
-  // Effect to handle avatar update success or error
   React.useEffect(() => {
     if (isSuccess) {
       toast.success("Avatar updated successfully");
-      setShouldFetch(true); // Trigger refetch after update
+      setShouldFetch(true);
     }
     if (error) {
       console.log(error);
@@ -57,15 +48,13 @@ const ProfileInfo: React.FC<Props> = ({ user, avatar }) => {
     }
   }, [isSuccess, error]);
 
-  // Effect to refetch user data when shouldFetch is true
   React.useEffect(() => {
     if (shouldFetch) {
-      refetch(); // Fetch user data
-      setShouldFetch(false); // Reset shouldFetch
+      refetch();
+      setShouldFetch(false);
     }
   }, [shouldFetch, refetch]);
 
-  // Handle form submission for updating user details
   const handleSubmit = async (e: any) => {
     e.preventDefault();
     if (name !== "") {
@@ -74,7 +63,7 @@ const ProfileInfo: React.FC<Props> = ({ user, avatar }) => {
       });
       if (result) {
         toast.success("Profile updated successfully");
-        setShouldFetch(true); // Trigger refetch
+        setShouldFetch(true);
       } else if (updateUserError) {
         toast.error("Error updating profile");
         console.log(updateUserError);
@@ -84,7 +73,7 @@ const ProfileInfo: React.FC<Props> = ({ user, avatar }) => {
 
   return (
     <>
-      <div className="w-full flex justify-center">
+      <div className="w-full flex justify-center h-full mt-16 mb-[-4]">
         {isLoading ? (
           <Loader />
         ) : (
@@ -116,9 +105,9 @@ const ProfileInfo: React.FC<Props> = ({ user, avatar }) => {
       <br />
 
       {/* User details form */}
-      <div className="w-full pl-6 800px:pl-10">
-        <form onSubmit={handleSubmit} className="bg-white p-6 rounded-lg shadow-md border border-[#248bac]/10">
-          <h2 className="text-xl font-semibold mb-6 text-[#248bac]">Personal Information</h2>
+      <div className="w-full pl-6 800px:pl-10 mb-10">
+        <form onSubmit={handleSubmit} className="bg-white p-6 rounded-lg shadow-md border border-[#e9844c]/30">
+          <h2 className="text-xl font-semibold mb-6 text-[#e9844c]">Personal Information</h2>
           <div className="800px:w-[70%] m-auto block pb-4">
             <div className="w-[100%] mb-6">
               <label className="block text-[#545454] font-medium mb-2" htmlFor="name">
@@ -127,7 +116,7 @@ const ProfileInfo: React.FC<Props> = ({ user, avatar }) => {
               <input
                 type="text"
                 id="name"
-                className={`${styles.input} !w-[95%] border border-[#248bac]/30 rounded-lg p-3 bg-white focus:border-[#248bac] focus:ring-2 focus:ring-[#248bac]/30 transition-all duration-300`}
+                className={`${styles.input} !w-[95%] border border-[#e9844c]/50 rounded-lg p-3 bg-white focus:border-[#e9844c] focus:ring-2 focus:ring-[#e9844c]/30 transition-all duration-300`}
                 required
                 value={name}
                 onChange={(e) => setName(e.target.value)}
@@ -149,7 +138,7 @@ const ProfileInfo: React.FC<Props> = ({ user, avatar }) => {
             <br />
             <input
               type="submit"
-              className="w-full 800px:w-[250px] h-[45px] border border-[#248bac] text-center rounded-lg mt-8 cursor-pointer bg-gradient-to-r from-[#248bac] to-[#e9844c] text-white transition-all duration-300 transform hover:scale-[1.02] active:scale-[0.98] shadow-md hover:shadow-lg"
+              className="w-full 800px:w-[250px] h-[45px] border border-[#e9844c] text-center rounded-lg mt-8 cursor-pointer bg-[#e9844c] text-black transition-all duration-300 transform hover:scale-[1.02] active:scale-[0.98] shadow-md hover:shadow-lg"
               required
               value="Update Profile"
             />

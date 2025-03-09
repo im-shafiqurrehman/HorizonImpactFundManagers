@@ -5,6 +5,7 @@ import Header from "./components/Header";
 import Hero from "./components/Route/Hero";
 import Headings from "./utlis/Heading";
 import Footer from "@/components/Layout/Footer";
+import ContactSection from "@/components/Home/Contact";
 
 interface Props {}
 
@@ -28,6 +29,7 @@ const Page: FC<Props> = (props) => {
         route={route}
       />
      <Hero isLoading={true} />
+       <ContactSection/>
      <Footer/>
     </div>
   );

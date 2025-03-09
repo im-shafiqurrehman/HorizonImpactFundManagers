@@ -1,11 +1,12 @@
 "use client";
 import { FC, useState } from "react";
 import { useSelector } from "react-redux";
-import Footer from "../components/Footer/Footer";
 import Header from "../components/Header";
 import Profile from "../components/Profile/Profile";
 import Protected from "../hooks/useProtected";
 import Headings from "../utlis/Heading";
+import ContactSection from "@/components/Home/Contact";
+import Footer from "@/components/Layout/Footer";
 
 type Props = {};
 
@@ -30,9 +31,11 @@ const Page: FC<Props> = (props) => {
           setRoute={setRoute}
           route={route}
         />
-      <Profile user={user} />
-      <Footer />
+       <Profile user={user} />
+       <ContactSection/>
+       <Footer/>
       </Protected>
+      
     </div>
   );
 };
