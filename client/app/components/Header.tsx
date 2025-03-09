@@ -16,8 +16,8 @@ import Login from "../components/Auth/Login";
 import Signup from "../components/Auth/Signup";
 import Verification from "../components/Auth/Verification";
 import CustomModal from "../utlis/CustomModal";
-import NavItems from "../utlis/NavItems";
-import logo from "../../public/assets/logo1.png"
+import logo from "../../public/assets/logo1.png";
+import Navbar from "../../components/Layout/Navbar";
 
 type Props = {
   open: boolean;
@@ -31,7 +31,7 @@ const Header: FC<Props> = ({ activeItem, open, setOpen, route, setRoute }) => {
   const [active, setActive] = useState(false);
   const [openSidebar, setOpenSidebar] = useState(false);
   const { user } = useSelector((state: any) => state.auth);
-  const {data: userData, isLoading, refetch} = useLoadUserQuery(undefined, {});
+  const { data: userData, isLoading, refetch } = useLoadUserQuery(undefined, {});
   const { data } = useSession();
   const [socialAuth, { isSuccess, error }] = useSocialAuthMutation();
   const [logout, setLogout] = useState(false);
@@ -42,7 +42,7 @@ const Header: FC<Props> = ({ activeItem, open, setOpen, route, setRoute }) => {
   useEffect(() => {
     if (!isLoading) {
       if (!userData) {
-        if(data) {
+        if (data) {
           socialAuth({
             email: data?.user?.email,
             name: data?.user?.name,
@@ -81,16 +81,22 @@ const Header: FC<Props> = ({ activeItem, open, setOpen, route, setRoute }) => {
 
   return (
     <div className="w-full relative">
-      <div className={`fixed top-0 left-0 w-full h-[80px] z-[80] border-b shadow-xl transition duration-500`}>
-        <div className="w-[95%] 800px:w-[92%] m-auto py-2 h-full">
+      <div
+        className={`fixed top-0 left-0 w-full h-[100px] z-[80] border-b shadow-xl transition duration-500 ${
+          active
+            ? "shadow-md py-3 px-4 lg:px-8 bg-gradient-to-r from-gray-100 to-white"
+            : "shadow py-3 px-4 lg:px-12 bg-gradient-to-r from-gray-100 to-white"
+        }`}
+      >
+        <div className="w-full max-w-[1200px] mx-auto py-2 h-full">
           <div className="w-full h-[80px] flex items-center justify-between p-3">
             <div>
               <Link href={"/"} className="text-[25px] font-Poppins font-[500] text-black">
-               <Image src={logo} alt="Logo" width={130} height={20}/>
+                <Image src={logo} alt="Logo" width={130} height={20} />
               </Link>
             </div>
             <div className="flex items-center">
-              <NavItems activeItem={activeItem} isMobile={false} />
+              <Navbar activeItem={activeItem} isMobile={false} />
               <div className="800px:hidden">
                 <HiOutlineMenuAlt3
                   size={25}
@@ -101,12 +107,12 @@ const Header: FC<Props> = ({ activeItem, open, setOpen, route, setRoute }) => {
               {userData ? (
                 <Link href={"/profile"}>
                   <Image
-                    src={userData?.user.avatar ?  userData?.user.avatar.url : avatar}
+                    src={userData?.user.avatar ? userData?.user.avatar.url : avatar}
                     alt="Profile Photo"
                     width={30}
                     height={30}
                     className="w-8 h-8 rounded-full cursor-pointer"
-                    style={{border: activeItem === 5 ? "2px solid cyan": "none"}}
+                    style={{ border: activeItem === 5 ? "2px solid cyan" : "none" }}
                   />
                 </Link>
               ) : (

@@ -1,10 +1,10 @@
 "use client";
 
 import { FC, useState } from "react";
-import Footer from "./components/Footer/Footer";
 import Header from "./components/Header";
 import Hero from "./components/Route/Hero";
 import Headings from "./utlis/Heading";
+import Footer from "@/components/Layout/Footer";
 
 interface Props {}
 
@@ -28,7 +28,7 @@ const Page: FC<Props> = (props) => {
         route={route}
       />
      <Hero isLoading={true} />
-      <Footer />
+     <Footer/>
     </div>
   );
 };
