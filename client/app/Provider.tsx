@@ -4,7 +4,6 @@ import { store } from "../redux/store";
 interface ProviderProps {
   children: any;
 }
-
 export function Providers({ children }: ProviderProps) {
   return <Provider store={store}>{children}</Provider>;
 }

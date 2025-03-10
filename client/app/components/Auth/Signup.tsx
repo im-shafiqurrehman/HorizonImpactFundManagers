@@ -1,22 +1,17 @@
 "use client";
+
 import { useRegisterMutation } from "@/redux/features/auth/authApi";
 import { useFormik } from "formik";
-import { FC, useEffect, useState } from "react";
+import { type FC, useEffect, useState } from "react";
 import toast from "react-hot-toast";
-import {
-  AiFillGithub,
-  AiOutlineEye,
-  AiOutlineEyeInvisible,
-} from "react-icons/ai";
+import { AiFillGithub, AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 import { FcGoogle } from "react-icons/fc";
 import * as Yup from "yup";
-import { styles } from "../../../app/styles/style";
 
 type Props = {
   setRoute: (route: string) => void;
 };
 
-// Form validation schema using Yup
 const Schema = Yup.object().shape({
   name: Yup.string().required("Please enter your name"),
   email: Yup.string().email("Invalid email").required("Email is required"),
@@ -24,15 +19,14 @@ const Schema = Yup.object().shape({
 });
 
 const Signup: FC<Props> = ({ setRoute }) => {
-  const [show, setShow] = useState(false); // State to toggle password visibility
+  const [show, setShow] = useState(false);
   const [register, { data, error, isSuccess }] = useRegisterMutation();
 
-  // Handle side effects based on API responses
   useEffect(() => {
     if (isSuccess) {
       const message = data?.message || "Registration Successful";
       toast.success(message);
-      setRoute("Verification"); // Redirect to verification route
+      setRoute("Verification");
     }
     if (error) {
       const errorData = error as any;
@@ -40,7 +34,6 @@ const Signup: FC<Props> = ({ setRoute }) => {
     }
   }, [isSuccess, error, data?.message, setRoute]);
 
-  // Initialize formik for form handling
   const formik = useFormik({
     initialValues: {
       name: "",
@@ -50,141 +43,119 @@ const Signup: FC<Props> = ({ setRoute }) => {
     validationSchema: Schema,
     onSubmit: async ({ name, email, password }) => {
       const data = { name, email, password };
-      await register(data); // Call register API
+      await register(data);
     },
   });
 
   const { errors, touched, values, handleChange, handleSubmit } = formik;
 
   return (
-    <div className="w-full p-3 bg-white rounded-lg shadow-md">
-      <h1 className={`${styles.title} text-center text-2xl font-bold text-[#e9844c] mb-6`}>
-        Join Horizon
-      </h1>
-      <form onSubmit={handleSubmit} className="space-y-5">
-        {/* Name Input */}
-        <div className="w-full relative mb-4">
-          <label className={`${styles.label} text-[#545454] font-medium`} htmlFor="name">
-            Full Name
-          </label>
-          <input
-            type="text"
-            name="name"
-            value={values.name}
-            onChange={handleChange}
-            id="name"
-            placeholder="John Doe"
-            className={`${errors.name && touched.name ? "border-red-500" : "border-[#e9844c]/30 focus:border-[#e9844c]"} ${
-              styles.input
-            } w-full p-3 rounded-lg border bg-white transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-[#e9844c]/30`}
-          />
-          {errors.name && touched.name && (
-            <span className="text-red-500 text-sm pt-1 block">{errors.name}</span>
-          )}
-        </div>
-
-        {/* Email Input */}
-        <div className="w-full relative mb-4">
-          <label className={`${styles.label} text-[#545454] font-medium`} htmlFor="email">
-            Email Address
-          </label>
-          <input
-            type="email"
-            name="email"
-            value={values.email}
-            onChange={handleChange}
-            id="email"
-            placeholder="you@example.com"
-            className={`${errors.email && touched.email ? "border-red-500" : "border-[#e9844c]/30 focus:border-[#e9844c]"} ${
-              styles.input
-            } w-full p-3 rounded-lg border bg-white transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-[#e9844c]/30`}
-          />
-          {errors.email && touched.email && (
-            <span className="text-red-500 text-sm pt-1 block">{errors.email}</span>
-          )}
-        </div>
-
-        {/* Password Input */}
-        <div className="w-full relative mb-4">
-          <label className={`${styles.label} text-[#545454] font-medium`} htmlFor="password">
-            Password
-          </label>
-          <div className="relative">
+    <div className="w-full flex justify-center items-center bg-transparent">
+      <div className="w-[65%] sm:w-[95%] max-w-[420px] mx-auto px-2 py-4 rounded-xl border border-gray-200 shadow-[0_2px_10px_rgba(0,0,0,0.07)]">
+        <h1 className="text-center text-lg font-bold text-[#e9844c] mb-4">Join Horizon</h1>
+        <form onSubmit={handleSubmit} className="space-y-3 bg-white">
+          <div className="space-y-1">
+            <label className="text-[#545454] sm:text-[16px] text-xs font-medium" htmlFor="name">
+              Full Name
+            </label>
             <input
-              type={!show ? "password" : "text"}
-              name="password"
-              value={values.password}
+              type="text"
+              name="name"
+              value={values.name}
               onChange={handleChange}
-              id="password"
-              placeholder="password@#!&"
-              className={`${
-                errors.password && touched.password ? "border-red-500" : "border-[#e9844c]/30 focus:border-[#e9844c]"
-              } ${styles.input} w-full p-3 rounded-lg border bg-white transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-[#e9844c]/30`}
+              id="name"
+              placeholder="John Doe"
+              className={`${errors.name && touched.name ? "border-red-500" : "border-[#e9844c]/30"} 
+              w-full px-2 py-1.5 rounded-md border outline-none focus:border-[#e9844c]`}
             />
-            {!show ? (
-              <AiOutlineEyeInvisible
-                className="absolute top-1/2 right-3 transform -translate-y-1/2 text-[#545454] hover:text-[#e9844c] cursor-pointer transition-colors"
-                size={22}
-                onClick={() => setShow(true)}
+            {errors.name && touched.name && <span className="text-red-500 text-[10px]">{errors.name}</span>}
+          </div>
+
+          <div className="space-y-1">
+            <label className="text-[#545454] sm:text-[16px] text-xs font-medium" htmlFor="email">
+              Email Address
+            </label>
+            <input
+              type="email"
+              name="email"
+              value={values.email}
+              onChange={handleChange}
+              id="email"
+              placeholder="you@example.com"
+              className={`${errors.email && touched.email ? "border-red-500" : "border-[#e9844c]/30"} 
+              w-full px-2 py-1.5 rounded-md border outline-none focus:border-[#e9844c]`}
+            />
+            {errors.email && touched.email && <span className="text-red-500 text-[10px]">{errors.email}</span>}
+          </div>
+
+          <div className="space-y-1">
+            <label className="text-[#545454] text-xs font-medium sm:text-[16px]" htmlFor="password" >
+              Password
+            </label>
+            <div className="relative">
+              <input
+                type={!show ? "password" : "text"}
+                name="password"
+                value={values.password}
+                onChange={handleChange}
+                id="password"
+                placeholder="password@#!&"
+                className={`${errors.password && touched.password ? "border-red-500" : "border-[#e9844c]/30"} 
+                w-full px-2 py-1.5 rounded-md border outline-none focus:border-[#e9844c]`}
               />
-            ) : (
-              <AiOutlineEye
-                className="absolute top-1/2 right-3 transform -translate-y-1/2 text-[#545454] hover:text-[#e9844c] cursor-pointer transition-colors"
-                size={22}
-                onClick={() => setShow(false)}
-              />
-            )}
+              {!show ? (
+                <AiOutlineEyeInvisible
+                  className="absolute top-1/2 right-2 -translate-y-1/2 text-[#545454] cursor-pointer"
+                  size={16}
+                  onClick={() => setShow(true)}
+                />
+              ) : (
+                <AiOutlineEye
+                  className="absolute top-1/2 right-2 -translate-y-1/2 text-[#545454] cursor-pointer"
+                  size={16}
+                  onClick={() => setShow(false)}
+                />
+              )}
+            </div>
+            {errors.password && touched.password && <span className="text-red-500 text-[10px]">{errors.password}</span>}
           </div>
-          {errors.password && touched.password && (
-            <span className="text-red-500 text-sm pt-1 block">{errors.password}</span>
-          )}
-        </div>
 
-        {/* Submit Button */}
-        <div className="w-full mt-6">
-          <input
-            type="submit"
-            value="Sign Up"
-            className={`${styles.button} w-full bg-[#e9844c] hover:bg-[#e9844c]/90 text-white font-medium py-3 rounded-lg transition-all duration-300 transform hover:scale-[1.02] active:scale-[0.98] cursor-pointer shadow-md hover:shadow-lg`}
-          />
-        </div>
+          <button type="submit" className="w-full bg-[#e9844c] text-white font-medium py-1.5 rounded-md mt-4">
+            Sign Up
+          </button>
 
-        {/* Alternative Signup Options */}
-        <div className="relative my-3">
-          <div className="absolute inset-0 flex items-center">
-            <div className="w-full border-t border-[#545454]/20"></div>
+          <div className="relative my-3">
+            <div className="absolute inset-0 flex items-center">
+              <div className="w-full border-t border-[#545454]/20"></div>
+            </div>
+            <div className="relative flex justify-center text-[10px]">
+              <span className="px-2 bg-white text-[#545454]">Or join with</span>
+            </div>
           </div>
-          <div className="relative flex justify-center text-sm">
-            <span className="px-2 bg-white text-[#545454]">Or join with</span>
-          </div>
-        </div>
-        
-        <div className="flex justify-center items-center gap-6">
-          <div 
-            className="flex items-center justify-center w-12 h-12 rounded-full bg-white border border-[#545454]/20 hover:border-[#e9844c]/50 hover:bg-[#e9844c]/5 cursor-pointer transition-all duration-300 shadow-sm hover:shadow"
-            onClick={() => console.log("Google Signup")}
-          >
-            <FcGoogle size={24} />
-          </div>
-          <div 
-            className="flex items-center justify-center w-12 h-12 rounded-full bg-white border border-[#545454]/20 hover:border-[#e9844c]/50 hover:bg-[#e9844c]/5 cursor-pointer transition-all duration-300 shadow-sm hover:shadow"
-            onClick={() => console.log("Github Signup")}
-          >
-            <AiFillGithub size={24} className="text-[#545454]" />
-          </div>
-        </div>
 
-        {/* Login Redirect */}
-        <h5 className="text-center font-medium text-sm text-[#545454]">
-          Already have an account?{" "}
-          <span
-            className="text-[#e9844c] hover:text-[#e9844c]/80 pl-1 cursor-pointer underline transition-colors"
-            onClick={() => setRoute("Login")}
-          >
-            Login
-          </span>
-        </h5>
-      </form>
+          <div className="flex justify-center gap-3">
+            <div
+              className="flex items-center justify-center w-8 h-8 rounded-full border border-[#545454]/20 cursor-pointer"
+              onClick={() => console.log("Google Signup")}
+            >
+              <FcGoogle size={16} />
+            </div>
+            <div
+              className="flex items-center justify-center w-8 h-8 rounded-full border border-[#545454]/20 cursor-pointer"
+              onClick={() => console.log("Github Signup")}
+            >
+              <AiFillGithub size={16} className="text-[#545454]" />
+            </div>
+          </div>
+
+          <p className="text-center text-[10px] text-[#545454] mt-3 sm:text-[16px]">
+            Already have an account?{" "}
+            <span className="text-[#e9844c] cursor-pointer" onClick={() => setRoute("Login")}>
+              Login
+            </span>
+          </p>
+        </form>
+      </div>
     </div>
   );
 };
