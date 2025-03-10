@@ -12,6 +12,7 @@ import Services from "@/components/Home/Services";
 import { Sponser } from "@/components/Home/Sponsers";
 import TargetedMarkets from "@/components/Home/TargetedMarkets";
 import { Testimonial } from "@/components/Home/Testimonial";
+import FAQSection from "@/components/Home/faqs";
 import MainLayout from "@/components/Layout/MainLayout";
 
 interface Props {}
@@ -45,7 +46,7 @@ const Page: FC<Props> = (props) => {
         <KeyFeaturesAndBenefits />
         <Sponser />
         <Testimonial/>
-
+       <FAQSection/>
      </MainLayout>
     </div>
   );

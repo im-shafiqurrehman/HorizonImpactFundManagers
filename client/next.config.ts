@@ -1,9 +1,7 @@
-import type { NextConfig } from "next";
-
-const nextConfig: NextConfig = {
+const nextConfig = {
   images: {
-    domains: ['res.cloudinary.com', 'example.com'], // Add all required domains
+    domains: ["res.cloudinary.com", "example.com", "images.unsplash.com"], // Add "images.unsplash.com"
   },
 };
 
-export default nextConfig;
+export default nextConfig;  

@@ -1,6 +1,7 @@
 import Header from "@/app/components/Header";
 import ContactSection from "../Home/Contact";
 import Footer from "./Footer";
+import ScrollToTop from "../../components/Common/ScrollToTop";
 
 const MainLayout = ({ children }) => {
   return (
@@ -9,6 +10,7 @@ const MainLayout = ({ children }) => {
       <main>{children}</main>
       <ContactSection />
       <Footer />
+      <ScrollToTop/>
     </>
   );
 };

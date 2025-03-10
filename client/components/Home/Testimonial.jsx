@@ -6,7 +6,7 @@ import Autoplay from "embla-carousel-autoplay";
 import { ArrowLeft, ArrowRight, ChevronLeft, ChevronRight } from "lucide-react";
 import { TestimonialCard } from "./testimonial-card";
 import Image from "next/image";
-import { testimonials } from "@/constants/testimonialData";
+import { testimonials } from "../../components/constants/testimonialData";
 import DotPattern from "../ui/dot-pattern";
 import { FaQuoteLeft, FaQuoteRight } from "react-icons/fa";
 
@@ -81,7 +81,7 @@ export function Testimonial() {
             className="w-8 mb-4 object-contain"
           />
         </div>
-        <h2 className="text-3xl font-bold text-center mb-8">
+        <h2 className="text-3xl font-bold text-center mb-8 text-[#e9844c]">
           What Our Customers Say
         </h2>
         <div className="relative container mx-auto">

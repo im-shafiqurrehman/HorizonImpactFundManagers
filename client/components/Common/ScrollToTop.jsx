@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { ArrowUp } from "lucide-react";
+import { ArrowUp } from 'lucide-react';
 
 const ScrollToTop = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -27,7 +27,7 @@ const ScrollToTop = () => {
       {isVisible && (
         <motion.button
           key="scroll-to-top"
-          className="fixed bottom-5 z-[10000] right-5 bg-main text-white p-3 rounded-full shadow-lg hover:scale-110 transition-transform"
+          className="fixed bottom-5 right-5 z-[10000] rounded-full hover:bg-[#248bac] p-3 text-white shadow-lg transition-all duration-300 bg-[#e9844c] hover:scale-110"
           onClick={scrollToTop}
           initial={{ opacity: 0, scale: 0, y: 50 }} // Start below the viewport
           animate={{ opacity: 1, scale: 1, y: 0 }} // Slide into view
