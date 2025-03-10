@@ -3,6 +3,7 @@
 import { useState } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import { ChevronDown, ChevronUp, Search, PlusCircle, MinusCircle, HelpCircle } from 'lucide-react'
+import Link from "next/link"
 
 // You can import this component and use it in your main file
 export default function FAQSection() {
@@ -13,11 +14,11 @@ export default function FAQSection() {
   // FAQ data
   const faqs = [
     {
-      question: "What investment options does InvestPro offer?",
-      answer: "InvestPro offers a diverse range of investment options including stocks, bonds, ETFs, mutual funds, real estate investment trusts (REITs), and alternative investments. Our platform is designed to accommodate various risk profiles, from conservative to aggressive growth strategies. Each investment option is carefully vetted by our expert team to ensure quality and potential for returns."
+      question: "What investment options does Horizon Impact Fund Managers offer?",
+      answer: "Horizon Impact Fund Managers offers a diverse range of investment options including stocks, bonds, ETFs, mutual funds, real estate investment trusts (REITs), and alternative investments. Our platform is designed to accommodate various risk profiles, from conservative to aggressive growth strategies. Each investment option is carefully vetted by our expert team to ensure quality and potential for returns."
     },
     {
-      question: "How does InvestPro ensure the security of my investments?",
+      question: "How does Horizon Impact Fund Managers ensure the security of my investments?",
       answer: "We implement bank-level security protocols including 256-bit encryption, two-factor authentication, and continuous monitoring systems. Additionally, all accounts are insured up to $500,000 through our partnership with leading financial security institutions. Our dedicated security team works around the clock to monitor and protect your investments from any potential threats."
     },
     {
@@ -25,15 +26,15 @@ export default function FAQSection() {
       answer: "Our standard accounts start with a minimum investment of $1,000. However, we offer specialized starter portfolios for as low as $250 for new investors. Premium investment strategies typically require a minimum of $10,000. We believe in making investing accessible to everyone, regardless of their starting capital."
     },
     {
-      question: "How are investment fees structured at InvestPro?",
-      answer: "InvestPro operates on a transparent fee structure with no hidden costs. We charge an annual management fee of 0.75% for standard accounts, which decreases to 0.5% for accounts over $100,000. Premium services include additional features and personalized advice for 1.25% annually. All transaction fees are clearly displayed before execution."
+      question: "How are investment fees structured at Horizon Impact Fund Managers?",
+      answer: "Horizon Impact Fund Managers operates on a transparent fee structure with no hidden costs. We charge an annual management fee of 0.75% for standard accounts, which decreases to 0.5% for accounts over $100,000. Premium services include additional features and personalized advice for 1.25% annually. All transaction fees are clearly displayed before execution."
     },
     {
       question: "Can I withdraw my investments at any time?",
       answer: "Yes, most investments can be liquidated and withdrawn at any time without penalty. However, certain specialized investment vehicles may have lock-up periods or early withdrawal fees. These terms are clearly communicated before investment. Standard withdrawals typically process within 2-3 business days, while larger amounts may take up to 5 business days."
     },
     {
-      question: "How does InvestPro help with tax optimization?",
+      question: "How does Horizon Impact Fund Managers help with tax optimization?",
       answer: "Our platform includes advanced tax optimization tools that automatically implement strategies like tax-loss harvesting, efficient asset location, and dividend optimization. Additionally, our premium clients receive personalized tax planning advice from our certified financial advisors. We provide comprehensive year-end tax reports and work with your tax professional to ensure optimal tax efficiency."
     },
     {
@@ -41,7 +42,7 @@ export default function FAQSection() {
       answer: "While past performance doesn't guarantee future results, our Conservative portfolios have historically yielded 3-5% annually, Balanced portfolios 5-8%, and Growth portfolios 8-12%+. Each investor's returns will vary based on their chosen strategy, market conditions, and investment timeline. We focus on long-term wealth building rather than short-term gains."
     },
     {
-      question: "How does InvestPro's advisory service work?",
+      question: "How does Horizon Impact Fund Managers' advisory service work?",
       answer: "Our advisory service combines sophisticated algorithms with human expertise. New clients complete a comprehensive financial assessment, after which our system generates personalized investment recommendations. These are then reviewed by a dedicated financial advisor who fine-tunes the strategy. Clients receive quarterly strategy reviews and can schedule unlimited one-on-one consultations with their advisor."
     }
   ]
@@ -109,7 +110,7 @@ export default function FAQSection() {
             Frequently Asked <span className="text-[#248bac]">Questions</span>
           </h2>
           <p className="mx-auto max-w-2xl text-lg text-[#545454]/80">
-            Find answers to common questions about investing with InvestPro. 
+            Find answers to common questions about investing with Horizon Impact Fund Managers. 
             Can't find what you're looking for? Contact our support team.
           </p>
         </motion.div>
@@ -185,7 +186,7 @@ export default function FAQSection() {
                         <PlusCircle className="h-5 w-5" />
                       )}
                     </div>
-                    <h3 className={`text-lg font-medium transition-colors duration-300 ${
+                    <h3 className={`text-base font-medium transition-colors duration-300 ${
                       activeIndex === index 
                         ? 'text-[#248bac]' 
                         : 'text-[#545454] group-hover:text-[#e9844c]'
@@ -213,7 +214,7 @@ export default function FAQSection() {
                     >
                       <div className="relative ml-11 border-l-2 border-dashed border-[#248bac]/30 pl-6">
                         <div className="absolute -left-[9px] top-0 h-4 w-4 rounded-full bg-[#248bac]/20" />
-                        <p className="text-[#545454]/80">
+                        <p className="text-sm text-[#545454]/80">
                           {faq.answer}
                         </p>
                         <div className="absolute -left-[9px] bottom-0 h-4 w-4 rounded-full bg-[#248bac]/20" />
@@ -263,19 +264,21 @@ export default function FAQSection() {
           </div>
           <h3 className="mb-3 text-2xl font-bold text-[#545454]">Still have questions?</h3>
           <p className="mb-6 text-[#545454]/80">
-            Our dedicated support team is here to help you with any questions you may have about investing with InvestPro.
+            Our dedicated support team is here to help you with any questions you may have about investing with Horizon Impact Fund Managers.
           </p>
           <div className="flex flex-col justify-center gap-4 sm:flex-row">
-            <button className="group relative overflow-hidden rounded-full bg-[#248bac] px-6 py-3 text-white transition-all duration-300 hover:shadow-lg hover:shadow-[#248bac]/20">
-              <span className="relative z-10 flex items-center justify-center gap-2" >
-                Contact Support
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M5 12h14"></path>
-                  <path d="m12 5 7 7-7 7"></path>
-                </svg>
-              </span>
-              <span className="absolute bottom-0 left-0 h-full w-0 bg-[#e9844c] transition-all duration-500 group-hover:w-full" />
-            </button>
+            <Link href="/contact">
+              <button className="group relative overflow-hidden rounded-full bg-[#248bac] px-6 py-3 text-white transition-all duration-300 hover:shadow-lg hover:shadow-[#248bac]/20">
+                <span className="relative z-10 flex items-center justify-center gap-2" >
+                  Contact Support
+                  <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M5 12h14"></path>
+                    <path d="m12 5 7 7-7 7"></path>
+                  </svg>
+                </span>
+                <span className="absolute bottom-0 left-0 h-full w-0 bg-[#e9844c] transition-all duration-500 group-hover:w-full" />
+              </button>
+            </Link>
           </div>
         </motion.div>
       </div>

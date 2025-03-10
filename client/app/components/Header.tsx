@@ -1,41 +1,42 @@
-"use client"
-import { useLoadUserQuery } from "@/redux/features/api/apiSlice"
-import { useLogoutQuery, useSocialAuthMutation } from "@/redux/features/auth/authApi"
-import { useSession } from "next-auth/react"
-import Image from "next/image"
-import Link from "next/link"
-import { type FC, useEffect, useState } from "react"
-import toast from "react-hot-toast"
-import { HiOutlineUserCircle } from "react-icons/hi"
-import { useSelector } from "react-redux"
-import avatar from "../../public/assets/Profile.png"
-import Login from "../components/Auth/Login"
-import Signup from "../components/Auth/Signup"
-import Verification from "../components/Auth/Verification"
-import CustomModal from "../utlis/CustomModal"
-import logo from "../../public/assets/logo1.png"
-import Navbar from "../../components/Layout/Navbar" // Corrected import path
-import { Twirl as Hamburger } from "hamburger-react"
+"use client";
+
+import { useLoadUserQuery } from "@/redux/features/api/apiSlice";
+import { useLogoutQuery, useSocialAuthMutation } from "@/redux/features/auth/authApi";
+import { useSession } from "next-auth/react";
+import Image from "next/image";
+import Link from "next/link";
+import { type FC, useEffect, useState } from "react";
+import toast from "react-hot-toast";
+import { HiOutlineUserCircle } from "react-icons/hi";
+import { useSelector } from "react-redux";
+import avatar from "../../public/assets/Profile.png";
+import Login from "../components/Auth/Login";
+import Signup from "../components/Auth/Signup";
+import Verification from "../components/Auth/Verification";
+import CustomModal from "../utlis/CustomModal";
+import logo from "../../public/assets/logo1.png";
+import Navbar from "../../components/Layout/Navbar"; 
+import { Twirl as Hamburger } from "hamburger-react";
 
 type Props = {
-  open: boolean
-  setOpen: (open: boolean) => void
-  activeItem: number
-  route: string
-  setRoute: (route: string) => void
-}
+  open: boolean;
+  setOpen: (open: boolean) => void;
+  activeItem: number;
+  route: string;
+  setRoute: (route: string) => void;
+};
 
 const Header: FC<Props> = ({ activeItem, open, setOpen, route, setRoute }) => {
-  const [active, setActive] = useState(false)
-  const [openSidebar, setOpenSidebar] = useState(false)
-  const { user } = useSelector((state: any) => state.auth)
-  const { data: userData, isLoading, refetch } = useLoadUserQuery(undefined, {})
-  const { data } = useSession()
-  const [socialAuth, { isSuccess, error }] = useSocialAuthMutation()
-  const [logout, setLogout] = useState(false)
+  const [active, setActive] = useState(false);
+  const [openSidebar, setOpenSidebar] = useState(false);
+  const { user } = useSelector((state: any) => state.auth);
+  const { data: userData, isLoading, refetch } = useLoadUserQuery(undefined, {});
+  const { data } = useSession();
+  const [socialAuth, { isSuccess, error }] = useSocialAuthMutation();
+  const [logout, setLogout] = useState(false);
   const {} = useLogoutQuery(undefined, {
     skip: !logout ? true : false,
-  })
+  });
 
   useEffect(() => {
     if (!isLoading) {
@@ -45,43 +46,43 @@ const Header: FC<Props> = ({ activeItem, open, setOpen, route, setRoute }) => {
             email: data?.user?.email,
             name: data?.user?.name,
             avatar: data?.user?.image,
-          })
-          refetch()
+          });
+          refetch();
         }
       }
     }
     if (data === null) {
       if (isSuccess) {
-        toast.success("Welcome back to ELearning!")
-        setOpen(false)
+        toast.success("Welcome back to Horizon Impact Fund Managers!");
+        setOpen(false);
       }
     }
     if (data === null && !isLoading && !userData) {
-      setLogout(true)
+      setLogout(true);
     }
-  }, [data, isLoading, isSuccess, refetch, setOpen, socialAuth, userData])
+  }, [data, isLoading, isSuccess, refetch, setOpen, socialAuth, userData]);
 
   // Handle responsive breakpoints
   useEffect(() => {
     const handleResize = () => {
       // Close sidebar automatically on larger screens
       if (window.innerWidth >= 800 && openSidebar) {
-        setOpenSidebar(false)
+        setOpenSidebar(false);
       }
     }
 
-    window.addEventListener("resize", handleResize)
-    return () => window.removeEventListener("resize", handleResize)
-  }, [openSidebar])
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, [openSidebar]);
 
   if (typeof window !== "undefined") {
     window.addEventListener("scroll", () => {
       if (window.scrollY > 80) {
-        setActive(true)
+        setActive(true);
       } else {
-        setActive(false)
+        setActive(false);
       }
-    })
+    });
   }
 
   return (
@@ -161,8 +162,7 @@ const Header: FC<Props> = ({ activeItem, open, setOpen, route, setRoute }) => {
         />
       )}
     </div>
-  )                                                                                                                                                           
+  )
 }
 
-export default Header
-
+export default Header;
