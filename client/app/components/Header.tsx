@@ -40,7 +40,6 @@ type Props = {
 const Header: FC<Props> = ({ activeItem, open, setOpen, route, setRoute }) => {
   const [active, setActive] = useState(false)
   const [openSidebar, setOpenSidebar] = useState(false)
-  // const { user } = useSelector((state: any) => state.auth)
   const { data: userData, isLoading, refetch } = useLoadUserQuery(undefined, {})
   const { data } = useSession()
   const [socialAuth, { isSuccess }] = useSocialAuthMutation()
@@ -61,7 +60,6 @@ const Header: FC<Props> = ({ activeItem, open, setOpen, route, setRoute }) => {
   ]
 
   useEffect(() => {
-    console.log(userData)
     if (!isLoading) {
       if (!userData) {
         if (data) {
@@ -85,10 +83,8 @@ const Header: FC<Props> = ({ activeItem, open, setOpen, route, setRoute }) => {
     }
   }, [data, isLoading, isSuccess, refetch, setOpen, socialAuth, userData])
 
-  // Handle responsive breakpoints
   useEffect(() => {
     const handleResize = () => {
-      // Close sidebar automatically on larger screens
       if (window.innerWidth >= 800 && openSidebar) {
         setOpenSidebar(false)
       }
@@ -114,7 +110,6 @@ const Header: FC<Props> = ({ activeItem, open, setOpen, route, setRoute }) => {
     }
   }, [])
 
-  // Function to handle profile icon click
   const handleProfileClick = () => {
     setRoute("Login")
     setOpen(true)
@@ -127,7 +122,7 @@ const Header: FC<Props> = ({ activeItem, open, setOpen, route, setRoute }) => {
           active ? "shadow-md py-2 px-4 lg:px-8 bg-white" : "shadow-sm py-2 px-4 lg:px-12 bg-white"
         }`}
       >
-        <div className="w-full max-w-[1200px]  h-full flex items-center justify-between">
+        <div className="w-full max-w-[1200px] h-full flex items-center justify-between">
           <Link href={"/"} className="text-[25px] font-Poppins font-[500] text-black">
             <Image src={logo || "/placeholder.svg"} alt="Logo" width={85} height={170} priority />
           </Link>
@@ -151,12 +146,12 @@ const Header: FC<Props> = ({ activeItem, open, setOpen, route, setRoute }) => {
           </nav>
 
           <div className="flex items-center">
-            {/* Mobile hamburger menu - only visible on mobile */}
+            {/* Mobile hamburger menu */}
             <div className="800px:hidden z-10 w-[40px] h-[40px] flex items-center justify-center">
               <Hamburger toggled={openSidebar} toggle={setOpenSidebar} size={20} color="#000000" duration={0.2} />
             </div>
 
-            {/* User profile icon - only visible on desktop */}
+            {/* User profile icon - desktop */}
             <div className="hidden 800px:block">
               {userData ? (
                 <Link href={"/profile"}>
@@ -183,12 +178,11 @@ const Header: FC<Props> = ({ activeItem, open, setOpen, route, setRoute }) => {
           side="right"
           className="w-[280px] mt-6 sm:w-[350px] min-h-screen bg-white pt-[100px] overflow-y-auto no-scrollbar text-gray-800"
         >
-          <SheetClose className="absolute right-4 top-6 rounded-sm opacity-70 ring-offset-background transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:pointer-events-none data-[state=open]:bg-secondary w-[40px] h-[40px] flex items-center justify-center">
+          <SheetClose className="absolute right-4 top-6 rounded-sm opacity-70 ring-offset-background transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:pointer-events-none data-[state=open]:bg-secondary w-10 h-10 flex items-center justify-center p-2">
             <X className="h-5 w-5" />
             <span className="sr-only">Close</span>
           </SheetClose>
           <nav className="flex flex-col gap-6 px-2">
-            {/* Mobile Navigation Links */}
             {navLinks.map((link) => (
               <Link
                 key={link.href}
@@ -269,4 +263,3 @@ const Header: FC<Props> = ({ activeItem, open, setOpen, route, setRoute }) => {
 }
 
 export default Header
-

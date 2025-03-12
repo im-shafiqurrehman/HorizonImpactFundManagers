@@ -86,7 +86,8 @@ const Verification: FC<Props> = ({ setRoute }) => {
   };
 
   return (
-    <div className="w-[65%] sm:w-[75%] max-w-[320px] mx-auto px-2 py-2 rounded-xl border border-gray-200 shadow-[0_2px_10px_rgba(0,0,0,0.07)]">
+<div className="min-h-screen flex flex-col items-center justify-start pt-16">
+<div className="w-[65%] sm:w-[95%] max-w-[420px] mx-auto px-2 py-2 rounded-xl border border-gray-200 shadow-[0_2px_10px_rgba(0,0,0,0.07)] bg-white">
       <h1 className="text-center text-lg sm:text-xl font-bold text-[#e9844c] mb-4">
         Verify your account
       </h1>
@@ -136,6 +137,7 @@ const Verification: FC<Props> = ({ setRoute }) => {
           Sign in
         </span>
       </p>
+    </div>
     </div>
   );
 };
