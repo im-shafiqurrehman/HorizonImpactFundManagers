@@ -52,7 +52,8 @@ const Login: FC<Props> = ({ setRoute, setOpen, refetch }) => {
   const { errors, touched, values, handleChange, handleSubmit } = formik
 
   return (
-    <div className="w-[65%] sm:w-[95%] max-w-[420px] mx-auto px-2  rounded-xl border border-gray-200 shadow-[0_2px_10px_rgba(0,0,0,0.07)] bg-white">
+<div className="min-h-screen flex flex-col items-center justify-start pt-16">
+<div className="w-[65%] sm:w-[95%] max-w-[420px] mx-auto px-2 py-2 rounded-xl border border-gray-200 shadow-[0_2px_10px_rgba(0,0,0,0.07)] bg-white">
       <h1 className="text-center text-lg font-bold text-[#e9844c] mb-4">Login with Horizon</h1>
       <form onSubmit={handleSubmit} className="space-y-4">
         <div className="space-y-2">
@@ -150,6 +151,7 @@ const Login: FC<Props> = ({ setRoute, setOpen, refetch }) => {
           </span>
         </p>
       </form>
+    </div>
     </div>
   )
 }

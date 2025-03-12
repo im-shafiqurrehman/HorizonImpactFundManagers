@@ -51,7 +51,7 @@ const Signup: FC<Props> = ({ setRoute }) => {
 
   return (
     <div className="w-full flex justify-center items-center bg-transparent">
-      <div className="w-[65%] sm:w-[95%] max-w-[420px] mx-auto px-2  rounded-xl border border-gray-200 shadow-[0_2px_10px_rgba(0,0,0,0.07)] bg-white">
+      <div className="w-[65%] sm:w-[95%] max-w-[420px] mx-auto px-2 py-2 rounded-xl border border-gray-200 shadow-[0_2px_10px_rgba(0,0,0,0.07)] bg-white">
         <h1 className="text-center text-lg font-bold text-[#e9844c] mb-4">Join Horizon</h1>
         <form onSubmit={handleSubmit} className="space-y-4">
           <div className="space-y-2">
