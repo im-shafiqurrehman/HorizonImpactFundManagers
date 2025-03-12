@@ -33,7 +33,9 @@ mongoose
   .catch((err) => {
     console.error("MongoDB connection error:", err);
   });
-
+app.use("/",()=>{
+  res.send("Server chal da paya aa")
+})
 app.use("/server/v1", userRouter);
 
 // unknown routes
