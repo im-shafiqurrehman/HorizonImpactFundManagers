@@ -116,9 +116,9 @@ const Header: FC<Props> = ({ activeItem, open, setOpen, route, setRoute }) => {
   }
 
   return (
-    <header className="fixed top-0 left-0 w-full z-[80] overflow-x-hidden max-w-[100vw]">
+    <header className="fixed top-0 left-0 w-full z-[80]">
       <div
-        className={`h-[80px] border-b transition duration-500 overflow-hidden ${
+        className={`h-[80px] border-b transition duration-500 ${
           active ? "shadow-md py-2 px-4 lg:px-8 bg-white" : "shadow-sm py-2 px-4 lg:px-12 bg-white"
         }`}
       >
@@ -176,10 +176,10 @@ const Header: FC<Props> = ({ activeItem, open, setOpen, route, setRoute }) => {
       <Sheet open={openSidebar} onOpenChange={setOpenSidebar}>
         <SheetContent
           side="right"
-          className="w-[280px] mt-6 sm:w-[350px] min-h-screen bg-white pt-[100px] overflow-y-auto no-scrollbar text-gray-800"
+          className="w-[280px] sm:w-[350px] h-full bg-white pt-16 overflow-y-auto text-gray-800"
         >
-          <SheetClose className="absolute right-4 top-6 rounded-sm opacity-70 ring-offset-background transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:pointer-events-none data-[state=open]:bg-secondary w-10 h-10 flex items-center justify-center p-2">
-            <X className="h-5 w-5" />
+          <SheetClose className="absolute top-4 right-4 rounded-sm opacity-70 ring-offset-background transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:pointer-events-none data-[state=open]:bg-secondary">
+            <X className="h-6 w-6" />
             <span className="sr-only">Close</span>
           </SheetClose>
           <nav className="flex flex-col gap-6 px-2">
@@ -196,10 +196,14 @@ const Header: FC<Props> = ({ activeItem, open, setOpen, route, setRoute }) => {
 
             {/* User profile in mobile menu */}
             <div className="mt-4 pt-2 border-t border-gray-200">
-              <div className="flex items-center gap-3">
+              <div className="flex items-center gap-3 w-full">
                 {userData ? (
-                  <Link href="/profile" className="flex items-center gap-3" onClick={() => setOpenSidebar(false)}>
-                    <div className="w-10 h-10 rounded-full overflow-hidden border-2 border-gray-200">
+                  <Link
+                    href="/profile"
+                    className="flex items-center gap-3 w-full"
+                    onClick={() => setOpenSidebar(false)}
+                  >
+                    <div className="min-w-10 h-10 rounded-full overflow-hidden border-2 border-gray-200 flex-shrink-0">
                       <Image
                         src={userData?.user?.avatar?.url || avatarDefault}
                         alt="Profile"
@@ -208,24 +212,24 @@ const Header: FC<Props> = ({ activeItem, open, setOpen, route, setRoute }) => {
                         className="w-full h-full object-cover"
                       />
                     </div>
-                    <div>
-                      <p className="text-sm text-gray-500">Access your account</p>
+                    <div className="w-full overflow-hidden">
+                      <p className="text-sm text-gray-500 truncate">Access your account</p>
                     </div>
                   </Link>
                 ) : (
                   <button
-                    className="flex items-center gap-3"
+                    className="flex items-center gap-3 w-full"
                     onClick={() => {
                       setRoute("Login")
                       setOpen(true)
                       setOpenSidebar(false)
                     }}
                   >
-                    <div className="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center">
+                    <div className="min-w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center flex-shrink-0">
                       <HiOutlineUserCircle className="w-6 h-6 text-gray-600" />
                     </div>
-                    <div>
-                      <p className="text-sm text-gray-500">Access your account</p>
+                    <div className="w-full overflow-hidden">
+                      <p className="text-sm text-gray-500 truncate">Access your account</p>
                     </div>
                   </button>
                 )}
@@ -263,3 +267,4 @@ const Header: FC<Props> = ({ activeItem, open, setOpen, route, setRoute }) => {
 }
 
 export default Header
+
