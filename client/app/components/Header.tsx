@@ -116,13 +116,13 @@ const Header: FC<Props> = ({ activeItem, open, setOpen, route, setRoute }) => {
   }
 
   return (
-    <header className="fixed top-0 left-0 w-full z-[80]">
+    <header className="fixed top-0 left-0 w-full z-[80] overflow-hidden" style={{ maxWidth: "100vw" }}>
       <div
-        className={`h-[80px] border-b transition duration-500 ${
+        className={`h-[80px] border-b transition duration-500 overflow-hidden ${
           active ? "shadow-md py-2 px-4 lg:px-8 bg-white" : "shadow-sm py-2 px-4 lg:px-12 bg-white"
         }`}
       >
-        <div className="w-full max-w-[1200px] h-full flex items-center justify-between">
+        <div className="w-full max-w-[1200px] h-full flex items-center justify-between overflow-hidden">
           <Link href={"/"} className="text-[25px] font-Poppins font-[500] text-black">
             <Image src={logo || "/placeholder.svg"} alt="Logo" width={85} height={170} priority />
           </Link>
@@ -176,13 +176,22 @@ const Header: FC<Props> = ({ activeItem, open, setOpen, route, setRoute }) => {
       <Sheet open={openSidebar} onOpenChange={setOpenSidebar}>
         <SheetContent
           side="right"
-          className="w-[280px] sm:w-[350px] h-full bg-white pt-16 overflow-y-auto text-gray-800"
+          className="w-[280px] sm:w-[350px] h-full bg-white pt-16 overflow-hidden text-gray-800"
+          style={{ maxWidth: "100vw" }}
         >
           <SheetClose className="absolute top-4 right-4 rounded-sm opacity-70 ring-offset-background transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:pointer-events-none data-[state=open]:bg-secondary">
             <X className="h-6 w-6" />
             <span className="sr-only">Close</span>
           </SheetClose>
-          <nav className="flex flex-col gap-6 px-2">
+          <nav
+            className="flex flex-col gap-6 px-2 h-full overflow-y-auto overflow-x-hidden"
+            style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
+          >
+            <style jsx>{`
+              nav::-webkit-scrollbar {
+                display: none;
+              }
+            `}</style>
             {navLinks.map((link) => (
               <Link
                 key={link.href}
@@ -195,8 +204,8 @@ const Header: FC<Props> = ({ activeItem, open, setOpen, route, setRoute }) => {
             ))}
 
             {/* User profile in mobile menu */}
-            <div className="mt-4 pt-2 border-t border-gray-200">
-              <div className="flex items-center gap-3 w-full">
+            <div className="mt-4 pt-2 border-t border-gray-200 overflow-hidden">
+              <div className="flex items-center gap-3 w-full overflow-hidden">
                 {userData ? (
                   <Link
                     href="/profile"
