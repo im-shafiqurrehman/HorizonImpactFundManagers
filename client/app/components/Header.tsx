@@ -179,7 +179,7 @@ const Header: FC<Props> = ({ activeItem, open, setOpen, route, setRoute }) => {
       <Sheet open={openSidebar} onOpenChange={setOpenSidebar}>
         <SheetContent
           side="right"
-          className="w-[280px] sm:w-[350px] h-full bg-white pt-16 overflow-hidden text-gray-800"
+          className="w-[280px] sm:w-[350px] h-full bg-white pt-16 mt-10 overflow-hidden text-gray-800"
           style={{ maxWidth: "100vw" }}
         >
           <SheetClose className="absolute top-4 right-4 rounded-sm opacity-70 ring-offset-background transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:pointer-events-none data-[state=open]:bg-secondary">
@@ -224,7 +224,7 @@ const Header: FC<Props> = ({ activeItem, open, setOpen, route, setRoute }) => {
                         className="w-full h-full object-cover"
                       />
                     </div>
-                    <div className="w-full overflow-hidden">
+                    <div className="w-full overflow-hidden mr-6">
                       <p className="text-sm text-gray-500 truncate">Access your account</p>
                     </div>
                   </Link>
@@ -240,7 +240,7 @@ const Header: FC<Props> = ({ activeItem, open, setOpen, route, setRoute }) => {
                     <div className="min-w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center flex-shrink-0">
                       <HiOutlineUserCircle className="w-6 h-6 text-gray-600" />
                     </div>
-                    <div className="w-full overflow-hidden">
+                    <div className="w-full overflow-hidden mr-6">
                       <p className="text-sm text-gray-500 truncate">Access your account</p>
                     </div>
                   </button>

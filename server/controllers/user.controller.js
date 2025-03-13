@@ -465,7 +465,6 @@ export const forgetpassword = async (req, res, next) => {
 
 
 
-
 export const createForgetPasswordToken = (user) => {
 const activecode = Math.floor(100000 + Math.random() * 900000).toString();
   const token = jwt.sign(

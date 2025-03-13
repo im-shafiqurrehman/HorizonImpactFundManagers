@@ -232,7 +232,7 @@ const Forgetpasswordotp: FC<Props> = ({ setRoute, setOpen, refetch }) => {
                 onChange={(e) => handleChange(e, index)}
                 onKeyDown={(e) => handleKeyDown(e, index)}
                 onPaste={handlePaste}
-                className={`w-8 h-8 sm:w-12 sm:h-1 bg-gray-100 border-2 rounded-md text-center text-lg font-medium outline-none text-gray-800 ${
+                className={`w-8 h-8 sm:w-12 sm:h-12 bg-gray-100 border-2 rounded-md text-center text-lg font-medium outline-none text-gray-800 ${
                   invalidError ? "shake border-red-500" : "border-[#e9844c]/30"
                 } focus:border-[#e9844c] transition-colors`}
                 required

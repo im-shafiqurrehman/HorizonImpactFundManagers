@@ -17,44 +17,47 @@ type forgetdata={
   email:string,
 }
 
+interface RegisterationResponse {
+  message: string;
+  activationToken: string;
+  user : string
+}
+
+interface RegisterationData {}
+
 export const authApi = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
     // endpoints are here
-    register: builder.mutation<RegistrationResponse, RegistrationData>({ // query = add or fetch data and mutation = delete , post , put etc
+    register: builder.mutation<RegisterationResponse, RegisterationData>({
       query: (data) => ({
         url: "registration",
         method: "POST",
         body: data,
         credentials: "include" as const,
       }),
-      async onQueryStarted(arg, { queryFulfilled, dispatch }) {
+      async onQueryStarted(arg, { queryFulfilled, dispatch }){
         try {
           const result = await queryFulfilled;
           dispatch(
             userRegistration({
               token: result.data.activationToken,
+              user: result.data.user || null,
             })
           );
-        } catch (error: any) {
+        } catch (error) {
           console.log(error);
         }
       },
     }),
     activation: builder.mutation({
-      query: ({ activationToken, activationCode }) => {
-        console.log("Token:", localStorage.getItem("accessToken")); // Check JWT
-        return {
-          url: "activate-user",
-          method: "POST",
-          body: {
-            activationToken,
-            activationCode,
-          },
-          headers: {
-            Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
-          },
-        };
-      },
+      query: ({ activationToken, activationCode }) => ({
+        url: "activate-user",
+        method: "POST",
+        body: {
+          activationToken,  // ✅ Correct key
+          activationCode,   // ✅ Correct key
+        },
+      }),
     }),
     login: builder.mutation({
       query: ({ email, password }) => ({
@@ -156,8 +159,6 @@ export const authApi = apiSlice.injectEndpoints({
         body: data,
       }),
     }),
-
-
   }),
 });
 

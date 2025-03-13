@@ -18,11 +18,25 @@ cloudinary.config({
 const app = express();
 app.use(express.json({ limit: "50mb" })); // Limit for large file uploads
 
+
+
+
 app.use(cors({
-  origin: true,  // Allows all origins
+  origin: [
+    'http://localhost:3000', 
+    'https://horizon-impact-fund-managers-dv8d.vercel.app', 
+    'https://horizon-impact-fund-managers.vercel.app'  // Add this
+  ],
   credentials: true,
   optionsSuccessStatus: 200,
 }));
+
+
+
+
+
+
+
 
 // Connect to MongoDB
 const PORT = process.env.PORT || 3000;

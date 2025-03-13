@@ -20,7 +20,6 @@ userRouter.put("/update-user-avatar",updateAccessToken, isAuthenticated, updateU
 userRouter.post("/forgetpassword",forgetpassword);
 userRouter.post("/checkResetPasswordOtp",checkResetPasswordOtp);
 userRouter.post("/resetPassword",resetPassword);
-
 userRouter.post("/send-email", sendContactForm);
 
 

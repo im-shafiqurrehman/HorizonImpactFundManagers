@@ -2,18 +2,16 @@ import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   token: "",
-  user: "",
+  user: null as any, // 👈 Make sure user is null instead of an empty string
 };
-
 const authSlice = createSlice({
   name: "auth",
   initialState,
   reducers: {
-    userRegistration: (state, action: PayloadAction<{ token: string; user?: any }>) => {
+    userRegistration: (state, action: PayloadAction<{ token: string, user: any }>) => {
       state.token = action.payload.token;
-      if (action.payload.user) {
-        state.user = action.payload.user;
-      }
+      state.user = action.payload.user
+
     },
     userLoggedIn: (state, action: PayloadAction<{ accessToken: string; user: any }>) => {
       state.token = action.payload.accessToken;
@@ -21,7 +19,7 @@ const authSlice = createSlice({
     },
     userLoggedOut: (state) => {
       state.token = "";
-      state.user = "";
+      state.user = null; 
     },
   },
 });
