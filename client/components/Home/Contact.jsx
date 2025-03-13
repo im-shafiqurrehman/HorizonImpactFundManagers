@@ -151,7 +151,7 @@ export default function ContactSection() {
                   Email Us:
                   <a
                     href="mailto:horizonimpactfundmanagers@gmail.com"
-                    className="text-lg pl-2 hover:text-main hover:underline"
+                    className="text-sm pl:2  hover:text-main hover:underline"
                   >
                     horizonimpactfundmanagers@gmail.com
                   </a>

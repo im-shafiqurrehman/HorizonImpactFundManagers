@@ -22,14 +22,15 @@ const AboutPage = () => {
         <Fade triggerOnce direction="up" duration={800} cascade damping={0.2}>
           <header className="text-center mb-12 px-4">
             <h1 className="text-4xl font-extrabold mb-6 text-main">
-              About Horizon Impact Fund Managers
+              About Us
             </h1>
             <p className="max-w-3xl mx-auto text-lg text-gray-600 leading-relaxed">
-              Horizon Impact Fund Managers is a leading financial services
-              company specializing in impact investments. We are committed to
-              creating sustainable and impactful financial solutions for our
-              clients.
-            </p>
+              Horizon Impact Fund Managers is a Southern Africa-focused impact investment firm dedicated to driving sustainable development and inclusive economic growth. We bridge the financing gap in high-impact industries, unlocking capital for sustainable agriculture, hydrocarbons, the green economy, basic needs (housing, water, sanitation, healthcare, and education), sports & the creative industry, and fintech & digital infrastructure.
+
+              With a target fund size of USD 10–50 million and an investment horizon of 7–10 years, we provide innovative financing solutions that generate measurable social and environmental impact while delivering competitive financial returns. By focusing on micro, small, and medium-sized enterprises (MSMEs) across Namibia and Southern Africa, we aim to catalyze job creation, climate resilience, and economic transformation in underserved markets.
+
+              Our investment approach combines financial expertise, strategic partnerships, and responsible capital allocation to drive long-term value and sustainable impact. Horizon Impact Fund Managers is committed to reshaping Africa&apos;s investment landscape—one transformative investment at a time.
+              </p>
           </header>
         </Fade>
         <div
@@ -54,10 +55,7 @@ const AboutPage = () => {
                   Our Mission
                 </h2>
                 <p className="text-lg text-gray-100 leading-relaxed">
-                  At Horizon Impact Fund Managers, our mission is to deliver
-                  innovative financial solutions that drive positive social and
-                  environmental impact while generating sustainable returns for
-                  our clients.
+                  To bridge the gap between social impact and economic growth by providing innovative, blended financing solutions that empower sustainable enterprises, underserved industries, and high-growth sectors across Namibia and Southern Africa. Through strategic investments in agriculture, energy, fintech, basic needs, sports, and the creative industry, we drive inclusive prosperity, climate resilience, and long-term economic transformation while delivering competitive financial returns.
                 </p>
               </div>
               <figure className="imageSHineEffect">
@@ -99,9 +97,7 @@ const AboutPage = () => {
                   Our Vision
                 </h2>
                 <p className="text-lg text-gray-600 leading-relaxed">
-                  We envision a world where financial investments not only
-                  generate returns but also contribute to solving global
-                  challenges such as climate change, poverty, and inequality.
+                To be Southern Africa&apos;s leading impact investment firm, pioneering financial solutions that unlock capital for transformative industries, foster entrepreneurship, and create sustainable livelihoods. By bridging social impact and economic progress, we aim to reshape the region&apos;s investment landscape, ensuring equitable growth and lasting change.
                 </p>
               </div>
             </div>

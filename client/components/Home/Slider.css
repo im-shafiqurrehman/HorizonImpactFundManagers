@@ -1,3 +1,16 @@
+/* Apply box-sizing to all elements */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+/* Prevent horizontal scrolling at the root level */
+html, body {
+  overflow-x: hidden;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
 .wrapper {
   width: 100%;
   height: 95vh; /* Kept original height */
@@ -7,8 +20,8 @@
   justify-content: center;
   align-items: center;
   position: relative;
-  overflow: hidden;
-  max-width: 100vw; /* Added to prevent horizontal overflow */
+  overflow: hidden; /* Ensure overflow is hidden in all directions */
+  max-width: 100%; /* Changed from 100vw to 100% */
 }
 
 .slider {
@@ -61,6 +74,8 @@
   padding: 1rem;
   font-weight: 600;
   text-shadow: 1px 1px 8px rgba(0, 0, 0, 0.6);
+  word-wrap: break-word; /* Ensure text wraps */
+  overflow-wrap: break-word; /* Modern browsers */
 }
 
 .slide-description {
@@ -73,6 +88,8 @@
   z-index: 2;
   max-width: 80%;
   text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5);
+  word-wrap: break-word; /* Ensure text wraps */
+  overflow-wrap: break-word; /* Modern browsers */
 }
 
 /* Responsive Design */
@@ -85,7 +102,7 @@
   }
   .wrapper {
     height: 50vh; /* Kept original height */
-    max-width: 100%; /* Added to prevent horizontal overflow */
+    max-width: 100%; /* Changed from 100vw to 100% */
   }
   .slider {
     height: 50vh; /* Kept original height */

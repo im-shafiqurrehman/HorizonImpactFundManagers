@@ -42,16 +42,11 @@ export default function AboutUs() {
                   className="w-6 mb-3 object-contain"
                 />
                 <h1 className="text-4xl font-semibold mb-4 text-white">
-                  About Horizon Impact Fund Managers
+                  About Us
                 </h1>
                 <p className="max-w-3xl text-base text-gray-100 text-balance leading-relaxed">
-                  Horizon Impact Fund Managers is a leading financial services
-                  company specializing in impact investments. We are committed
-                  to creating sustainable and impactful financial solutions for
-                  our clients, ensuring both financial returns and positive
-                  social and environmental outcomes.
-                </p>
-                <ul className="list-none space-y-2 mt-4">
+                Horizon Impact Fund Managers is a Southern Africa-focused impact investment firm driving sustainable development and inclusive growth. We bridge financing gaps in high-impact sectors like sustainable agriculture, green economy, basic needs, and fintech. With a target fund size of USD 10–50 million and a 7–10 year horizon, we support MSMEs in Namibia and Southern Africa to create jobs, build climate resilience, and transform economies. Our approach combines financial expertise, partnerships, and responsible capital to deliver social, environmental, and financial impact, reshaping Africa&apos;s investment landscape.                </p>
+                {/* <ul className="list-none space-y-2 mt-4">
                   {ABOUT_LIST.map((item, index) => (
                     <li key={index} className="flex items-center gap-3">
                       <CheckCircle className="text-white" />
@@ -60,7 +55,7 @@ export default function AboutUs() {
                       </p>
                     </li>
                   ))}
-                </ul>
+                </ul> */}
               </div>
             </div>
           </Fade>
@@ -73,12 +68,7 @@ export default function AboutUs() {
                   Our Vision
                 </h2>
                 <p className="max-w-2xl mx-auto text-lg text-gray-100 leading-relaxed">
-                  To remain committed to our clients by providing innovative
-                  financial solutions that drive positive social and
-                  environmental impact while generating sustainable returns.
-                  We aim to be a global leader in impact investing, leveraging
-                  cutting-edge financial tools and technologies to create a
-                  better future for all.
+                To be Southern Africa&apos;s leading impact investment firm, pioneering financial solutions that unlock capital for transformative industries, foster entrepreneurship, and create sustainable livelihoods. By bridging social impact and economic progress, we aim to reshape the region&apos;s investment landscape, ensuring equitable growth and lasting change.
                 </p>
               </div>
               <div className="flex-1 w-full">
