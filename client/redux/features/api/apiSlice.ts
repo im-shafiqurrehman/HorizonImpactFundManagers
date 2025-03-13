@@ -20,9 +20,15 @@ export const apiSlice = createApi({
         method: "GET",
         credentials: "include" as const,
       }),
-      async onQueryStarted(arg, {queryFulfilled, dispatch}){
+      async onQueryStarted(arg, { queryFulfilled, dispatch }) {
         try {
           const result = await queryFulfilled;
+
+          // Store token securely
+          if (result.data.accessToken) {
+            localStorage.setItem("accessToken", result.data.accessToken);
+          }
+
           dispatch(
             userLoggedIn({
               accessToken: result.data.accessToken,
@@ -30,9 +36,10 @@ export const apiSlice = createApi({
             })
           );
         } catch (error: any) {
-          console.log(error)
+          console.error("Error loading user:", error);
         }
       }
+
     }),
   }),
 });

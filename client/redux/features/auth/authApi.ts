@@ -41,14 +41,20 @@ export const authApi = apiSlice.injectEndpoints({
       },
     }),
     activation: builder.mutation({
-      query: ({ activationToken, activationCode }) => ({
-        url: "activate-user",
-        method: "POST",
-        body: {
-          activationToken,
-          activationCode,
-        },
-      }),
+      query: ({ activationToken, activationCode }) => {
+        console.log("Token:", localStorage.getItem("accessToken")); // Check JWT
+        return {
+          url: "activate-user",
+          method: "POST",
+          body: {
+            activationToken,
+            activationCode,
+          },
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+          },
+        };
+      },
     }),
     login: builder.mutation({
       query: ({ email, password }) => ({
