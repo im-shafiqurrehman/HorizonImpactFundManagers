@@ -13,21 +13,7 @@ import Signup from "../components/Auth/Signup"
 import Verification from "../components/Auth/Verification"
 import CustomModal from "../utlis/CustomModal"
 import logo from "../../public/assets/logo1.png"
-import { Twirl as Hamburger } from "hamburger-react"
 import { usePathname } from "next/navigation"
-import { Sheet, SheetContent, SheetClose } from "../../components/ui/sheet"
-import { X } from "lucide-react"
-
-interface User {
-  avatar?: {
-    url: string
-  }
-  user?: {
-    avatar?: {
-      url: string
-    }
-  }
-}
 
 type Props = {
   open: boolean
@@ -39,7 +25,7 @@ type Props = {
 
 const Header: FC<Props> = ({ activeItem, open, setOpen, route, setRoute }) => {
   const [active, setActive] = useState(false)
-  const [openSidebar, setOpenSidebar] = useState(false)
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const { data: userData, isLoading, refetch } = useLoadUserQuery(undefined, {})
   const { data } = useSession()
   const [socialAuth, { isSuccess }] = useSocialAuthMutation()
@@ -84,17 +70,6 @@ const Header: FC<Props> = ({ activeItem, open, setOpen, route, setRoute }) => {
   }, [data, isLoading, isSuccess, refetch, setOpen, socialAuth, userData])
 
   useEffect(() => {
-    const handleResize = () => {
-      if (window.innerWidth >= 800 && openSidebar) {
-        setOpenSidebar(false)
-      }
-    }
-
-    window.addEventListener("resize", handleResize)
-    return () => window.removeEventListener("resize", handleResize)
-  }, [openSidebar])
-
-  useEffect(() => {
     const handleScroll = () => {
       if (window.scrollY > 80) {
         setActive(true)
@@ -115,138 +90,93 @@ const Header: FC<Props> = ({ activeItem, open, setOpen, route, setRoute }) => {
     setOpen(true)
   }
 
+  const toggleMobileMenu = () => {
+    setMobileMenuOpen(!mobileMenuOpen)
+  }
+
   return (
-    <header className="fixed top-0 left-0 w-full z-[80] overflow-hidden" style={{ maxWidth: "100vw" }}>
-      <div
-        className={`h-[80px] border-b transition duration-500 overflow-hidden ${
-          active ? "shadow-md py-2 px-4 lg:px-8 bg-white" : "shadow-sm py-2 px-4 lg:px-12 bg-white"
-        }`}
-      >
-        <div className="w-full max-w-[1200px] h-full flex items-center justify-between overflow-hidden">
-          <Link href={"/"} className="text-[25px] font-Poppins font-[500] text-black">
-            <Image src={logo || "/placeholder.svg"} alt="Logo" width={85} height={170} priority />
-          </Link>
+    <nav className={`bg-white border-gray-200 fixed top-0 left-0 w-full z-[80] ${active ? "shadow-md" : ""}`}>
+      <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-1">
+        <Link href="/" className="flex items-center space-x-3 rtl:space-x-reverse">
+          <Image src={logo} alt="Logo" width={60} height={40} priority />
+        </Link>
 
-          {/* Desktop Navigation Links */}
-          <nav className="hidden 800px:flex items-center gap-6 font-semibold text-gray-700">
-            {navLinks.map((link) => (
-              <Link
-                key={link.href}
-                href={link.href}
-                className={`relative group ${isActiveLink(link.href) ? "text-main" : ""}`}
-              >
-                {link.label}
-                <span
-                  className={`absolute left-0 -bottom-1 h-1 rounded-md bg-main block w-0 group-hover:w-3/4 transition-all duration-300 ${
-                    isActiveLink(link.href) ? "w-3/4" : ""
-                  }`}
-                ></span>
+        <div className="flex md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse items-center">
+          {/* Profile Icon */}
+          <div className="mr-4 transition-transform duration-300 hover:scale-110">
+            {userData ? (
+              <Link href="/profile">
+                <Image
+                  src={userData?.user?.avatar ? userData?.user?.avatar.url : avatarDefault}
+                  alt="Profile Photo"
+                  width={30}
+                  height={30}
+                  className="w-8 h-8 rounded-full cursor-pointer transition-all duration-300 hover:shadow-md"
+                  style={{ border: activeItem === 5 ? "2px solid cyan" : "none" }}
+                />
               </Link>
-            ))}
-          </nav>
-
-          <div className="flex items-center">
-            {/* Mobile hamburger menu */}
-            <div className="800px:hidden z-10 w-[40px] h-[40px] flex items-center justify-center">
-              <Hamburger toggled={openSidebar} toggle={setOpenSidebar} size={20} color="#000000" duration={0.2} />
-            </div>
-
-            {/* User profile icon - desktop */}
-            <div className="hidden 800px:block">
-              {userData ? (
-                <Link href={"/profile"}>
-                  <Image
-                    src={userData?.user?.avatar ? userData?.user?.avatar.url : avatarDefault}
-                    alt="Profile Photo"
-                    width={30}
-                    height={30}
-                    className="w-8 h-8 rounded-full cursor-pointer"
-                    style={{ border: activeItem === 5 ? "2px solid cyan" : "none" }}
-                  />
-                </Link>
-              ) : (
-                <HiOutlineUserCircle className="cursor-pointer text-black" size={25} onClick={handleProfileClick} />
-              )}
-            </div>
+            ) : (
+              <HiOutlineUserCircle
+                className="cursor-pointer text-black transition-colors duration-300 hover:text-main"
+                size={25}
+                onClick={handleProfileClick}
+              />
+            )}
           </div>
+
+          {/* Mobile menu button */}
+          <button
+            type="button"
+            className="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200"
+            onClick={toggleMobileMenu}
+            aria-controls="navbar-menu"
+            aria-expanded={mobileMenuOpen}
+          >
+            <span className="sr-only">Open main menu</span>
+            <svg
+              className="w-5 h-5"
+              aria-hidden="true"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 17 14"
+            >
+              <path
+                stroke="currentColor"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2"
+                d="M1 1h15M1 7h15M1 13h15"
+              />
+            </svg>
+          </button>
+        </div>
+
+        <div
+          className={`items-center justify-between ${mobileMenuOpen ? "block" : "hidden"} w-full md:flex md:w-auto md:order-1`}
+          id="navbar-menu"
+        >
+          <ul className="flex flex-col font-medium p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:border-0 md:bg-white">
+            {navLinks.map((link) => (
+              <li key={link.href}>
+                <Link
+                  href={link.href}
+                  className={`block py-2 px-3 md:p-0 relative group ${
+                    isActiveLink(link.href) ? "text-main" : "text-gray-700 md:hover:text-main"
+                  }`}
+                >
+                  {link.label}
+                  {/* Only show underline effect on desktop */}
+                  <span
+                    className={`hidden md:block absolute left-0 -bottom-1 h-1 rounded-md bg-main w-0 group-hover:w-3/4 transition-all duration-300 ${
+                      isActiveLink(link.href) ? "w-3/4" : ""
+                    }`}
+                  ></span>
+                </Link>
+              </li>
+            ))}
+          </ul>
         </div>
       </div>
-
-      {/* Mobile Menu Sheet */}
-      <Sheet open={openSidebar} onOpenChange={setOpenSidebar}>
-        <SheetContent
-          side="right"
-          className="w-[280px] sm:w-[350px] h-full bg-white pt-16 overflow-hidden text-gray-800"
-          style={{ maxWidth: "100vw" }}
-        >
-          <SheetClose className="absolute top-4 right-4 rounded-sm opacity-70 ring-offset-background transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:pointer-events-none data-[state=open]:bg-secondary">
-            <X className="h-6 w-6" />
-            <span className="sr-only">Close</span>
-          </SheetClose>
-          <nav
-            className="flex flex-col gap-6 px-2 h-full overflow-y-auto overflow-x-hidden"
-            style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
-          >
-            <style jsx>{`
-              nav::-webkit-scrollbar {
-                display: none;
-              }
-            `}</style>
-            {navLinks.map((link) => (
-              <Link
-                key={link.href}
-                href={link.href}
-                className={`block text-base font-semibold py-3 ${isActiveLink(link.href) ? "text-main" : ""}`}
-                onClick={() => setOpenSidebar(false)}
-              >
-                {link.label}
-              </Link>
-            ))}
-
-            {/* User profile in mobile menu */}
-            <div className="mt-4 pt-2 border-t border-gray-200 overflow-hidden">
-              <div className="flex items-center gap-3 w-full overflow-hidden">
-                {userData ? (
-                  <Link
-                    href="/profile"
-                    className="flex items-center gap-3 w-full"
-                    onClick={() => setOpenSidebar(false)}
-                  >
-                    <div className="min-w-10 h-10 rounded-full overflow-hidden border-2 border-gray-200 flex-shrink-0">
-                      <Image
-                        src={userData?.user?.avatar?.url || avatarDefault}
-                        alt="Profile"
-                        width={40}
-                        height={40}
-                        className="w-full h-full object-cover"
-                      />
-                    </div>
-                    <div className="w-full overflow-hidden">
-                      <p className="text-sm text-gray-500 truncate">Access your account</p>
-                    </div>
-                  </Link>
-                ) : (
-                  <button
-                    className="flex items-center gap-3 w-full"
-                    onClick={() => {
-                      setRoute("Login")
-                      setOpen(true)
-                      setOpenSidebar(false)
-                    }}
-                  >
-                    <div className="min-w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center flex-shrink-0">
-                      <HiOutlineUserCircle className="w-6 h-6 text-gray-600" />
-                    </div>
-                    <div className="w-full overflow-hidden">
-                      <p className="text-sm text-gray-500 truncate">Access your account</p>
-                    </div>
-                  </button>
-                )}
-              </div>
-            </div>
-          </nav>
-        </SheetContent>
-      </Sheet>
 
       {/* Authentication modals */}
       {route === "Login" && open && (
@@ -271,7 +201,7 @@ const Header: FC<Props> = ({ activeItem, open, setOpen, route, setRoute }) => {
           component={Verification}
         />
       )}
-    </header>
+    </nav>
   )
 }
 
