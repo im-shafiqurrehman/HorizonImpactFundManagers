@@ -7,15 +7,16 @@ import cookieParser from 'cookie-parser';
 import cors from 'cors';
 import userRouter from './routes/user.route.js';
 import { v2 as cloudinary } from 'cloudinary';
+
 dotenv.config();
 cloudinary.config({
   cloud_name: process.env.CLOUD_NAME,
   api_key: process.env.CLOUD_API,
   api_secret: process.env.CLOUD_SECRETE_KEY,
-})
+});
 
 const app = express();
-app.use(express.json({ limit: "50mb" })); // Limit for large file uploads, e.g., Cloudinary storage
+app.use(express.json({ limit: "50mb" })); // Limit for large file uploads
 app.use(cookieParser());
 app.use(cors({
   origin: ['http://localhost:3000', 'https://horizon-impact-fund-managers-dv8d.vercel.app'],
@@ -27,24 +28,23 @@ app.use(cors({
 const PORT = process.env.PORT || 3000;
 mongoose
   .connect(process.env.MONGO)
-  .then(() => {
-    console.log("MongoDB connected successfully");
-  })
-  .catch((err) => {
-    console.error("MongoDB connection error:", err);
-  });
-app.use("/", (req, res) => {
-  res.send("Server is running ")
-})
+  .then(() => console.log("MongoDB connected successfully"))
+  .catch((err) => console.error("MongoDB connection error:", err));
+
+// API Routes
 app.use("/server/v1", userRouter);
 
-// unknown routes
+// Health Check Route
+app.get('/health', (req, res) => {
+  res.status(200).json({ status: 'success', message: 'Server is running' });
+});
+
+// Unknown Routes
 app.all("*", (req, res, next) => {
   next(new ErrorHandler(`Cannot find ${req.originalUrl} on this server!`, 404));
 });
 
-
-// Error handler middleware
+// Error Handler Middleware
 app.use((err, req, res, next) => {
   console.error('Error:', err);  // Log the full error object
 
@@ -70,7 +70,6 @@ app.use((err, req, res, next) => {
     message,
   });
 });
-
 
 app.listen(PORT, () => {
   console.log(`Server is running on PORT ${PORT}`);

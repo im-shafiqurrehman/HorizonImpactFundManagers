@@ -12,17 +12,17 @@ import redisClient from "../utilis/redis.js";
 import { accessTokenOptions, refreshTokenOptions } from "../utilis/jwt.js";
 import { getAllUserService, getUserById, updateUserRoleService } from "../services/user.services.js";
 import cloudinary from "cloudinary";
-import nodemailer from "nodemailer";
+
 
 dotenv.config();
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
-const DEFAULT_AVATAR = {
-    public_id: 'default_avatar_public_id',
-    url: 'https://example.com/default-avatar.png'
-};
+// const DEFAULT_AVATAR = {
+//     public_id: 'default_avatar_public_id',
+//     url: 'https://example.com/default-avatar.png'
+// };
 
 const createActivationToken = (userData) => {
     const activationCode = Math.floor(100000 + Math.random() * 900000).toString();
@@ -437,7 +437,7 @@ export const forgetpassword = async (req, res, next) => {
     // Render email HTML using EJS
     const __filename = fileURLToPath(import.meta.url);
     const __dirname = dirname(__filename);
-    const html = await ejs.renderFile(join(__dirname, "../mail/passwordreset-mailer.ejs"), data);
+    const html = await ejs.renderFile(join(__dirname, "../mails/passwordreset-mailer.ejs"), data);
 
     // Send email
     try {
@@ -462,8 +462,12 @@ export const forgetpassword = async (req, res, next) => {
   }
 };
 
+
+
+
+
 export const createForgetPasswordToken = (user) => {
-  const activecode = Math.floor(Math.random() * 9000 + 1000).toString();
+const activecode = Math.floor(100000 + Math.random() * 900000).toString();
   const token = jwt.sign(
     { user, activecode },
     process.env.JWTKEY,

@@ -1,57 +1,58 @@
-"use client"
-import { useLoadUserQuery } from "@/redux/features/api/apiSlice"
-import { useLogoutQuery, useSocialAuthMutation } from "@/redux/features/auth/authApi"
-import { useSession } from "next-auth/react"
-import Image from "next/image"
-import Link from "next/link"
-import { type FC, useEffect, useState } from "react"
-import toast from "react-hot-toast"
-import { HiOutlineUserCircle } from "react-icons/hi"
-import avatarDefault from "../../public/assets/avatardefault.jpeg"
-import Login from "../components/Auth/Login"
-import Signup from "../components/Auth/Signup"
-import Forgetpasswordotp from "../components/Auth/Forgetpasswordotp";
+"use client";
+
+import { useLoadUserQuery } from "@/redux/features/api/apiSlice";
+import { useLogoutQuery, useSocialAuthMutation } from "@/redux/features/auth/authApi";
+import { useSession } from "next-auth/react";
+import Image from "next/image";
+import Link from "next/link";
+import { type FC, useEffect, useState } from "react";
+import toast from "react-hot-toast";
+import { HiOutlineUserCircle } from "react-icons/hi";
+import avatarDefault from "../../public/assets/avatardefault.jpeg";
+import Login from "../components/Auth/Login";
+import Signup from "../components/Auth/Signup";
 import ForgetPassword from "../components/Auth/ForgetPassword";
-import Verification from "../components/Auth/Verification"
-import CustomModal from "../utlis/CustomModal"
-import logo from "../../public/assets/logo1.png"
-import { Twirl as Hamburger } from "hamburger-react"
-import { usePathname } from "next/navigation"
-import { Sheet, SheetContent, SheetClose } from "../../components/ui/sheet"
-import { X } from "lucide-react"
+import Forgetpasswordotp from "../components/Auth/Forgetpasswordotp";
+import Verification from "../components/Auth/Verification";
+import CustomModal from "../utlis/CustomModal";
+import logo from "../../public/assets/logo1.png";
+import { Twirl as Hamburger } from "hamburger-react";
+import { usePathname } from "next/navigation";
+import { Sheet, SheetContent, SheetClose } from "../../components/ui/sheet";
+import { X } from "lucide-react";
 
 interface User {
   avatar?: {
-    url: string
-  }
+    url: string;
+  };
   user?: {
     avatar?: {
-      url: string
-    }
-  }
+      url: string;
+    };
+  };
 }
 
 type Props = {
-  open: boolean
-  setOpen: (open: boolean) => void
-  activeItem: number
-  route: string
-  setRoute: (route: string) => void
-}
+  open: boolean;
+  setOpen: (open: boolean) => void;
+  activeItem: number;
+  route: string;
+  setRoute: (route: string) => void;
+};
 
 const Header: FC<Props> = ({ activeItem, open, setOpen, route, setRoute }) => {
-  const [active, setActive] = useState(false)
-  const [openSidebar, setOpenSidebar] = useState(false)
-  const { data: userData, isLoading, refetch } = useLoadUserQuery(undefined, {})
-  const { data } = useSession()
-  const [socialAuth, { isSuccess }] = useSocialAuthMutation()
-  const [logout, setLogout] = useState(false)
+  const [active, setActive] = useState(false);
+  const [openSidebar, setOpenSidebar] = useState(false);
+  const { data: userData, isLoading, refetch } = useLoadUserQuery(undefined, {});
+  const { data } = useSession();
+  const [socialAuth, { isSuccess }] = useSocialAuthMutation();
+  const [logout, setLogout] = useState(false);
   const {} = useLogoutQuery(undefined, {
     skip: !logout ? true : false,
-  })
-  const pathname = usePathname()
+  });
+  const pathname = usePathname();
 
-  const isActiveLink = (href: string) => pathname === href
+  const isActiveLink = (href: string) => pathname === href;
 
   const navLinks = [
     { href: "/", label: "Home" },
@@ -59,7 +60,7 @@ const Header: FC<Props> = ({ activeItem, open, setOpen, route, setRoute }) => {
     { href: "/services", label: "Services" },
     { href: "/about", label: "About Us" },
     { href: "/contact", label: "Contact Us" },
-  ]
+  ];
 
   useEffect(() => {
     if (!isLoading) {
@@ -69,53 +70,53 @@ const Header: FC<Props> = ({ activeItem, open, setOpen, route, setRoute }) => {
             email: data?.user?.email,
             name: data?.user?.name,
             socialimage: data?.user?.image,
-          })
-          refetch()
+          });
+          refetch();
         }
       }
     }
     if (data === null) {
       if (isSuccess) {
-        toast.success("Welcome back to ELearning!")
-        setOpen(false)
+        toast.success("Welcome back to ELearning!");
+        setOpen(false);
       }
     }
     if (data === null && !isLoading && !userData) {
-      setLogout(true)
+      setLogout(true);
     }
-  }, [data, isLoading, isSuccess, refetch, setOpen, socialAuth, userData])
+  }, [data, isLoading, isSuccess, refetch, setOpen, socialAuth, userData]);
 
   useEffect(() => {
     const handleResize = () => {
       if (window.innerWidth >= 800 && openSidebar) {
-        setOpenSidebar(false)
+        setOpenSidebar(false);
       }
-    }
+    };
 
-    window.addEventListener("resize", handleResize)
-    return () => window.removeEventListener("resize", handleResize)
-  }, [openSidebar])
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, [openSidebar]);
 
   useEffect(() => {
     const handleScroll = () => {
       if (window.scrollY > 80) {
-        setActive(true)
+        setActive(true);
       } else {
-        setActive(false)
+        setActive(false);
       }
-    }
+    };
 
-    window.addEventListener("scroll", handleScroll)
+    window.addEventListener("scroll", handleScroll);
 
     return () => {
-      window.removeEventListener("scroll", handleScroll)
-    }
-  }, [])
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
 
   const handleProfileClick = () => {
-    setRoute("Login")
-    setOpen(true)
-  }
+    setRoute("Login");
+    setOpen(true);
+  };
 
   return (
     <header className="fixed top-0 left-0 w-full z-[80] overflow-hidden" style={{ maxWidth: "100vw" }}>
@@ -231,15 +232,15 @@ const Header: FC<Props> = ({ activeItem, open, setOpen, route, setRoute }) => {
                   <button
                     className="flex items-center gap-3 w-full"
                     onClick={() => {
-                      setRoute("Login")
-                      setOpen(true)
-                      setOpenSidebar(false)
+                      setRoute("Login");
+                      setOpen(true);
+                      setOpenSidebar(false);
                     }}
                   >
                     <div className="min-w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center flex-shrink-0">
                       <HiOutlineUserCircle className="w-6 h-6 text-gray-600" />
                     </div>
-                    <div className="w-full overflow-hidden hover:bg-orange-600">
+                    <div className="w-full overflow-hidden">
                       <p className="text-sm text-gray-500 truncate">Access your account</p>
                     </div>
                   </button>
@@ -273,9 +274,26 @@ const Header: FC<Props> = ({ activeItem, open, setOpen, route, setRoute }) => {
           component={Verification}
         />
       )}
+      {route === "Forget" && open && (
+        <CustomModal
+          open={open}
+          setOpen={setOpen}
+          setRoute={setRoute}
+          activeItem={activeItem}
+          component={ForgetPassword}
+        />
+      )}
+      {route === "Forgetpasswordotp" && open && (
+        <CustomModal
+          open={open}
+          setOpen={setOpen}
+          setRoute={setRoute}
+          activeItem={activeItem}
+          component={Forgetpasswordotp}
+        />
+      )}
     </header>
-  )
-}
+  );
+};
 
-export default Header
-
+export default Header;
