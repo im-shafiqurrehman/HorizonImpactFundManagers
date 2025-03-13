@@ -7,12 +7,21 @@ type RegistrationResponse = {
 };
 
 type RegistrationData = {};
+type forgetresponse={
+  message: string;
+  activationToken: string;
+  user:any
+}
+type forgetdata={
+  name:string,
+  email:string,
+}
 
 export const authApi = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
     // endpoints are here
     register: builder.mutation<RegistrationResponse, RegistrationData>({ // query = add or fetch data and mutation = delete , post , put etc
-      query: (data) => ({   
+      query: (data) => ({
         url: "registration",
         method: "POST",
         body: data,
@@ -67,7 +76,7 @@ export const authApi = apiSlice.injectEndpoints({
     }),
     socialAuth: builder.mutation({
       query: ({ email, name, socialimage }) => ({
-        url: "social-auth", 
+        url: "social-auth",
         method: "POST",
         body: {
           email,
@@ -104,6 +113,45 @@ export const authApi = apiSlice.injectEndpoints({
         }
       },
     }),
+
+    forgetpassword: builder.mutation<forgetresponse, forgetdata>({
+      query: (data) => ({
+        url: "/user/forgetpassword",
+        method: "POST",
+        body: data,
+        credentials: "include" as const,
+      }),
+      async onQueryStarted(arg, { queryFulfilled, dispatch }) {
+        try {
+          const result = await queryFulfilled;
+          dispatch(
+            userRegistration({
+              token: result.data.activationToken,
+              user: result.data.user,
+            })
+          );
+        } catch (error) {
+          console.log(error);
+        }
+      },
+    }),
+
+    checkResetPasswordOtp: builder.mutation({
+      query: (data) => ({
+        url: "/user/checkResetPasswordOtp",
+        method: "POST",
+        body: data,
+      }),
+    }),
+    resetPassword: builder.mutation({
+      query: (data) => ({
+        url: "/user/resetPassword",
+        method: "POST",
+        body: data,
+      }),
+    }),
+
+
   }),
 });
 
@@ -112,5 +160,8 @@ export const {
   useActivationMutation,
   useLoginMutation,
   useSocialAuthMutation,
-  useLogoutQuery
+  useLogoutQuery,
+  useForgetpasswordMutation,
+  useCheckResetPasswordOtpMutation,
+  useResetPasswordMutation,
 } = authApi;

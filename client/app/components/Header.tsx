@@ -10,6 +10,8 @@ import { HiOutlineUserCircle } from "react-icons/hi"
 import avatarDefault from "../../public/assets/avatardefault.jpeg"
 import Login from "../components/Auth/Login"
 import Signup from "../components/Auth/Signup"
+import Forgetpasswordotp from "../components/Auth/Forgetpasswordotp";
+import ForgetPassword from "../components/Auth/ForgetPassword";
 import Verification from "../components/Auth/Verification"
 import CustomModal from "../utlis/CustomModal"
 import logo from "../../public/assets/logo1.png"
@@ -165,7 +167,7 @@ const Header: FC<Props> = ({ activeItem, open, setOpen, route, setRoute }) => {
                   />
                 </Link>
               ) : (
-                <HiOutlineUserCircle className="cursor-pointer text-black" size={25} onClick={handleProfileClick} />
+                <HiOutlineUserCircle className="cursor-pointer text-black" size={30} onClick={handleProfileClick} />
               )}
             </div>
           </div>
@@ -204,7 +206,7 @@ const Header: FC<Props> = ({ activeItem, open, setOpen, route, setRoute }) => {
             ))}
 
             {/* User profile in mobile menu */}
-            <div className="mt-4 pt-2 border-t border-gray-200 overflow-hidden">
+            <div className="mt-8 pt-2 border-t border-gray-200 overflow-hidden">
               <div className="flex items-center gap-3 w-full overflow-hidden">
                 {userData ? (
                   <Link
@@ -237,7 +239,7 @@ const Header: FC<Props> = ({ activeItem, open, setOpen, route, setRoute }) => {
                     <div className="min-w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center flex-shrink-0">
                       <HiOutlineUserCircle className="w-6 h-6 text-gray-600" />
                     </div>
-                    <div className="w-full overflow-hidden">
+                    <div className="w-full overflow-hidden hover:bg-orange-600">
                       <p className="text-sm text-gray-500 truncate">Access your account</p>
                     </div>
                   </button>

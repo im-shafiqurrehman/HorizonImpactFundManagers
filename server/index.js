@@ -18,7 +18,7 @@ const app = express();
 app.use(express.json({ limit: "50mb" })); // Limit for large file uploads, e.g., Cloudinary storage
 app.use(cookieParser());
 app.use(cors({
-  origin: ['http://localhost:3000','https://horizon-impact-fund-managers-dv8d.vercel.app'],
+  origin: ['http://localhost:3000', 'https://horizon-impact-fund-managers-dv8d.vercel.app'],
   credentials: true,
   optionsSuccessStatus: 200,
 }));
@@ -33,8 +33,8 @@ mongoose
   .catch((err) => {
     console.error("MongoDB connection error:", err);
   });
-app.use("/",(req,res)=>{  
-  res.send("Server chal da paya aa")
+app.use("/", (req, res) => {
+  res.send("Server is running ")
 })
 app.use("/server/v1", userRouter);
 

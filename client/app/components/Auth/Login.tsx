@@ -103,12 +103,15 @@ const Login: FC<Props> = ({ setRoute, setOpen, refetch }) => {
           </div>
           {errors.password && touched.password && <span className="text-red-500 text-[10px]">{errors.password}</span>}
           <div className="flex justify-end">
-            <span
-              className="text-[#e9844c] text-[12px] sm:text-[14px] cursor-pointer hover:underline"
-              onClick={() => setRoute("Forgot-Password")}
-            >
-              Forgot password?
-            </span>
+          <span
+  className="text-[#e9844c] text-[12px] sm:text-[14px] cursor-pointer hover:underline"
+  onClick={() => {
+    console.log("Forgot password clicked"); // Debugging
+    setRoute("Forget");
+  }}
+>
+  Forgot password?
+</span>
           </div>
         </div>
 

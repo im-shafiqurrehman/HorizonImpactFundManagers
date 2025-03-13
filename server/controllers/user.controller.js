@@ -371,48 +371,6 @@ export const updateUserAvatar = async (req, res, next) => {
     }
 };
 
-//Get all Users --only Admin
-export const getAllUser = async (req, res, next) => {
-    try {
-        await getAllUserService(req, res, next); 
-    } catch (error) {
-        next(new ErrorHandler(error.message, 400));
-    }
-};
-
-// update user role only for admin
-export const updateUserRole = async (req, res, next) => {
-    try {
-        const { id, role } = req.body;
-        await updateUserRoleService(id, role, res, next);
-    } catch (error) {
-        next(new ErrorHandler(error.message, 400));
-    }
-};
-
-// Delete User  -- only admin
-export const deleteUser = async (req, res, next) => {
-    try {
-        const { id } = req.params;
-
-        const user = await User.findById(id);
-        if (!user) {
-            return next(new ErrorHandler("User not found", 404));
-        }
-        await user.deleteOne();
-        await redisClient.del(id);
-
-        res.status(200).json({
-            success: true,
-            message: "User deleted successfully",
-        });
-    } catch (error) {
-        next(new ErrorHandler(error.message, 400));
-    }
-};
-
-
-
 
 
 
@@ -450,6 +408,129 @@ export const sendContactForm = async (req, res, next) => {
         next(new ErrorHandler(error.message, 500));
     }
 };
+
+
+
+
+
+export const forgetpassword = async (req, res, next) => {
+  try {
+    const { email, name } = req.body;
+
+    // Check if email exists in the database
+    const isEmailExist = await User.findOne({ email });
+    if (!isEmailExist) {
+      return next(new ErrorHandler("Please enter a valid email", 400));
+    }
+
+    const user = {
+      name,
+      email,
+    };
+
+    // Create activation token
+    const { token, activecode } = createForgetPasswordToken(user);
+
+    // Prepare data for email
+    const data = { user: { name: user.name }, activationCode: activecode };
+
+    // Render email HTML using EJS
+    const __filename = fileURLToPath(import.meta.url);
+    const __dirname = dirname(__filename);
+    const html = await ejs.renderFile(join(__dirname, "../mail/passwordreset-mailer.ejs"), data);
+
+    // Send email
+    try {
+      await sendMail({
+        email,
+        subject: "Reset your Password",
+        template: "passwordreset-mailer.ejs", // Adjust to the actual mailer utility
+        data,
+      });
+
+      res.status(201).json({
+        success: true,
+        message: `Please check your email: ${email} to reset your password!`,
+        activationToken: token,
+        user,
+      });
+    } catch (err) {
+      return next(new ErrorHandler(err.message, 400));
+    }
+  } catch (error) {
+    return next(new ErrorHandler(error.message, 400));
+  }
+};
+
+export const createForgetPasswordToken = (user) => {
+  const activecode = Math.floor(Math.random() * 9000 + 1000).toString();
+  const token = jwt.sign(
+    { user, activecode },
+    process.env.JWTKEY,
+    { expiresIn: "5m" } // Token will expire after 5 minutes
+  );
+
+  return { token, activecode };
+};
+
+export const checkResetPasswordOtp = async (req, res, next) => {
+  try {
+    const { activation_token, activation_code } = req.body;
+
+    // Verify token
+    const decode = jwt.verify(activation_token, process.env.JWTKEY);
+
+    // Check activation code
+    if (decode.activecode !== activation_code) {
+      return next(new ErrorHandler("Invalid reset password code", 400));
+    }
+
+    res.status(201).json({
+      success: true,
+      message: "Your OTP verify successfully",
+    });
+  } catch (err) {
+    return next(new ErrorHandler(err.message, 400));
+  }
+};
+
+export const resetPassword = async (req, res, next) => {
+  try {
+    const { activation_token, newpassword } = req.body; // Getting the activation token and new password from the request body
+
+    // Verify the token
+    const decoded = jwt.verify(activation_token, process.env.JWTKEY);
+
+    // Retrieve the email from the decoded token
+    const email = decoded.user.email;
+
+    // Check if the user exists in the database using the email
+    const existingUser = await User.findOne({ email });
+
+    if (!existingUser) {
+      return next(new ErrorHandler("User not found. Please check your email.", 400));
+    }
+
+    // Update the user's password
+    existingUser.password = newpassword;
+    const userId = existingUser._id;
+
+    // Save the updated user object to the database
+    await existingUser.save();
+    await redisClient.set(userId.toString(), JSON.stringify(existingUser));
+
+    // Return a response indicating success
+    res.status(200).json({
+      success: true,
+      message: "Password has been updated successfully.",
+    });
+  } catch (err) {
+    return next(new ErrorHandler(err.message, 400));
+  }
+};
+
+
+
 
 
 

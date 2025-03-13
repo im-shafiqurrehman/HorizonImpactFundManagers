@@ -2,7 +2,7 @@ import express from "express"
 import {
     registerUser, activateUser, LoginUser, LogoutUser, updateAccessToken,
     getUserInfo, socialAuth, updateUserInfo,updateUserPassword,updateUserAvatar,
-     getAllUser,updateUserRole,deleteUser, sendContactForm
+    forgetpassword,checkResetPasswordOtp,resetPassword, sendContactForm
 } from "../controllers/user.controller.js"
 import { isAuthenticated, authorizeRoles } from "../middleWare/auth.js"
 
@@ -17,9 +17,9 @@ userRouter.post("/social-auth", socialAuth);
 userRouter.put("/update-user-info",updateAccessToken, isAuthenticated, updateUserInfo);
 userRouter.put("/update-user-password",updateAccessToken, isAuthenticated, updateUserPassword);
 userRouter.put("/update-user-avatar",updateAccessToken, isAuthenticated, updateUserAvatar);
-userRouter.get("/get-all-users",updateAccessToken, isAuthenticated, authorizeRoles("admin") ,getAllUser);
-userRouter.put("/update-user-role",updateAccessToken, isAuthenticated, authorizeRoles("admin") ,updateUserRole);
-userRouter.delete("/delete-user/:id",updateAccessToken, isAuthenticated, authorizeRoles("admin") ,deleteUser);
+userRouter.post("/forgetpassword",forgetpassword);
+userRouter.post("/checkResetPasswordOtp",checkResetPasswordOtp);
+userRouter.post("/resetPassword",resetPassword);
 
 userRouter.post("/send-email", sendContactForm);
 
