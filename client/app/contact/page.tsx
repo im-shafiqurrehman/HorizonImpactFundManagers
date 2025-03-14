@@ -97,7 +97,7 @@ export default function ContactUs() {
               icon: MapPin,
               title: "Our Location",
               content: (
-                <span className="text-main">Nambabia</span>
+                <span className="text-main">Southern Africa</span>
               ),
             },
             {
@@ -122,7 +122,7 @@ export default function ContactUs() {
                   href="tel:+923264139439"
                   className="text-main hover:underline"
                 >
-                  +967 977 787 787 987 98787
+                  +967 97757687
                 </a>
               ),
             },
@@ -136,7 +136,7 @@ export default function ContactUs() {
                   rel="noopener noreferrer"
                   className="text-main hover:underline"
                 >
-                 +967 977 787 787 987 98787
+                 +967 87879870980
                 </a>
               ),
             },
@@ -163,7 +163,7 @@ export default function ContactUs() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             <Card className="shadow-md rounded-lg border border-gray-200 bg-white">
               <CardHeader>
-                <CardTitle>Send Us a Message</CardTitle>
+                <CardTitle className="text-gray-600 font-semibold">Send Us a Message</CardTitle>
               </CardHeader>
               <CardContent>
                 <Formik
@@ -242,8 +242,8 @@ export default function ContactUs() {
             {/* Contact Information */}
             <Card className="shadow-md rounded-lg border border-gray-200 bg-white">
               <CardHeader>
-                <CardTitle>Our Contact Information</CardTitle>
-                <CardDescription>
+                <CardTitle className="text-gray-600">Our Contact Information</CardTitle>
+                <CardDescription className="text-gray-600">
                   Feel free to reach out to us directly.
                 </CardDescription>
               </CardHeader>
@@ -255,7 +255,7 @@ export default function ContactUs() {
                   </div>
                   <div className="flex items-center space-x-2 text-gray-600">
                     <Phone className="h-5 w-5 text-main" />
-                    <span>+967 977 787 787 987 98787</span>
+                    <span>+967 977876876</span>
                   </div>
                   <div className="flex items-center space-x-2 text-gray-600">
                     <Mail className="h-5 w-5 text-main" />
@@ -263,7 +263,7 @@ export default function ContactUs() {
                   </div>
                   <div className="flex items-center space-x-2 text-gray-600">
                     <MessageCircle className="h-5 w-5 text-main" />
-                    <span>WhatsApp:  +967 977 787 787 987 98787</span>
+                    <span>WhatsApp:  +967 97787879</span>
                   </div>
 
                   <div className="mt-6">

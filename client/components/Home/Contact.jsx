@@ -24,13 +24,13 @@ export default function ContactSection() {
     <section className="py-16 bg-gray-800">
       <div className="max-w-7xl mx-auto px-6 lg:px-8 xl:px-16">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
-          <div className="space-y-4">
+          <div className="space-y-2">
             <Link href={"/"}>
               <Image
                 src="/assets/logo1.png"
                 alt="Horizon Impact Logo"
-                width={150}
-                height={50}
+                width={120}
+                height={30}
                 className="mb-6"
               />
             </Link>
@@ -123,7 +123,7 @@ export default function ContactSection() {
                     href="tel:+923264139439"
                     className="text-lg pl-2 hover:text-main hover:underline"
                   >
-                    +32 4532 31323232232
+                    +32 4532 33423
                   </a>
                 </span>
               </div>
@@ -139,7 +139,7 @@ export default function ContactSection() {
                     rel="noopener noreferrer"
                     className="text-lg pl-2 hover:text-main hover:underline"
                   >
-                    +32 4532 31323232232
+                    +32 4532 31323
                   </a>
                 </span>
               </div>
@@ -151,7 +151,7 @@ export default function ContactSection() {
                   Email Us:
                   <a
                     href="mailto:horizonimpactfundmanagers@gmail.com"
-                    className="text-sm pl:2  hover:text-main hover:underline"
+                    className="text-[12px] pl:1 hover:text-main hover:underline"
                   >
                     horizonimpactfundmanagers@gmail.com
                   </a>

@@ -19,17 +19,16 @@ const app = express();
 app.use(express.json({ limit: "50mb" })); // Limit for large file uploads
 
 
-
-
 app.use(cors({
   origin: [
-    'http://localhost:3000', 
-    'https://horizon-impact-fund-managers-dv8d.vercel.app', 
-    'https://horizon-impact-fund-managers.vercel.app'  // Add this
+    'http://localhost:3000',
+    'https://horizon-impact-fund-managers-dv8d.vercel.app',
+    'https://horizon-impact-fund-managers.vercel.app'
   ],
   credentials: true,
   optionsSuccessStatus: 200,
 }));
+
 
 
 

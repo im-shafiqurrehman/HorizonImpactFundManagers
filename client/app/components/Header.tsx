@@ -127,7 +127,7 @@ const Header: FC<Props> = ({ activeItem, open, setOpen, route, setRoute }) => {
       >
         <div className="w-full max-w-[1200px] h-full flex items-center justify-between overflow-hidden">
           <Link href={"/"} className="text-[25px] font-Poppins font-[500] text-black">
-            <Image src={logo || "/placeholder.svg"} alt="Logo" width={85} height={170} priority />
+            <Image src={logo || "/placeholder.svg"} alt="Logo" width={80} height={160} priority />
           </Link>
 
           {/* Desktop Navigation Links */}
