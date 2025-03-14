@@ -2,7 +2,7 @@ import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   token: "",
-  user: null as any, // 👈 Make sure user is null instead of an empty string
+  user:""
 };
 const authSlice = createSlice({
   name: "auth",
@@ -19,7 +19,7 @@ const authSlice = createSlice({
     },
     userLoggedOut: (state) => {
       state.token = "";
-      state.user = null; 
+      state.user = ""; 
     },
   },
 });

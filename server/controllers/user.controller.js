@@ -19,10 +19,10 @@ dotenv.config();
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
-// const DEFAULT_AVATAR = {
-//     public_id: 'default_avatar_public_id',
-//     url: 'https://example.com/default-avatar.png'
-// };
+const DEFAULT_AVATAR = {
+    public_id: 'default_avatar_public_id',
+    url: 'https://example.com/default-avatar.png'
+};
 
 const createActivationToken = (userData) => {
     const activationCode = Math.floor(100000 + Math.random() * 900000).toString();
@@ -78,9 +78,6 @@ export const registerUser = async (req, res, next) => {
         return next(new ErrorHandler(error.message, 500));
     }
 };
-
-
-
 
 
 
@@ -167,6 +164,8 @@ export const LogoutUser = async (req, res, next) => {
     }
 };
 
+
+
 // Function to update access token using a new refresh token name
 export const updateAccessToken = async (req, res, next) => {
     try {
@@ -206,6 +205,8 @@ export const updateAccessToken = async (req, res, next) => {
     }
 };
 
+
+
 // get User (load user)
 export const getUserInfo = async (req, res, next) => {
     try {
@@ -221,8 +222,8 @@ export const getUserInfo = async (req, res, next) => {
 export const socialAuth = async (req, res, next) => {
     try {
         const { email, name, socialimage } = req.body;
-        console.log("avatar");
-        console.log(req.body);
+        // console.log("avatar");
+        // console.log(req.body);
 
         let user = await User.findOne({ email });
 

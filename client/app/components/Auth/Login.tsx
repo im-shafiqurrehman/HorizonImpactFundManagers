@@ -39,7 +39,7 @@ const Login: FC<Props> = ({ setRoute, setOpen, refetch }) => {
     if (isSuccess) {
       toast.success("Welcome back to Horizon!")
       setOpen(false)
-      refetch()
+      refetch();    
     }
     if (error) {
       if ("data" in error) {
