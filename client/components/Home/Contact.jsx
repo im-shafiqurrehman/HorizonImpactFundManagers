@@ -21,16 +21,16 @@ import { MessageCircle } from "lucide-react";
 
 export default function ContactSection() {
   return (
-    <section className="py-16 bg-gray-800">
+    <section className="py-6 bg-gray-800">
       <div className="max-w-7xl mx-auto px-6 lg:px-8 xl:px-16">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
-          <div className="space-y-2">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="space-y-4">
             <Link href={"/"}>
               <Image
                 src="/assets/logo1.png"
                 alt="Horizon Impact Logo"
-                width={120}
-                height={30}
+                width={80} 
+                height={160} 
                 className="mb-6"
               />
             </Link>
