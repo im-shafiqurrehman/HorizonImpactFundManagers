@@ -37,17 +37,17 @@ const Login: FC<Props> = ({ setRoute, setOpen, refetch }) => {
 
   useEffect(() => {
     if (isSuccess) {
-      toast.success("Welcome back to Horizon!")
-      setOpen(false)
-      refetch();    
+      toast.success("Welcome back to Horizon!");
+      setOpen(false);
+      refetch();
     }
     if (error) {
       if ("data" in error) {
-        const errorData = error as { data: { message: string } }
-        toast.error(errorData.data.message)
+        const errorData = error as any;
+        toast.error(errorData.data.message);
       }
     }
-  }, [error, isSuccess, refetch, setOpen])
+  }, [error, isSuccess, refetch, setOpen]);
 
   const { errors, touched, values, handleChange, handleSubmit } = formik
 
@@ -106,7 +106,6 @@ const Login: FC<Props> = ({ setRoute, setOpen, refetch }) => {
           <span
   className="text-[#e9844c] text-[12px] sm:text-[14px] cursor-pointer hover:underline"
   onClick={() => {
-    console.log("Forgot password clicked"); // Debugging
     setRoute("Forget");
   }}
 >

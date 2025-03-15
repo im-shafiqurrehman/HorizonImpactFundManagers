@@ -23,11 +23,16 @@ app.use(cors({
   origin: [
     'http://localhost:3000',
     'https://horizon-impact-fund-managers-dv8d.vercel.app',
-    'https://horizon-impact-fund-managers.vercel.app'
+    'https://horizon-impact-fund-managers.vercel.app',
+    "https://horizon-impact-fund-managers-7pt1ic2qv.vercel.app/",
+
   ],
   credentials: true,
   optionsSuccessStatus: 200,
+  allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With'],
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS']
 }));
+
 
 
 

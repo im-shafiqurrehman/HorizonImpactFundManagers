@@ -217,7 +217,6 @@ export const getUserInfo = async (req, res, next) => {
     }
 };
 
-
 // Social Auth function
 export const socialAuth = async (req, res, next) => {
     try {

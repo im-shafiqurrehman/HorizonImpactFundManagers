@@ -2,7 +2,7 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { userLoggedIn } from "../auth/authSlice";
 
 export const apiSlice = createApi({
-  reducerPath: "server",
+  reducerPath: "api",
   baseQuery: fetchBaseQuery({
     baseUrl: process.env.NEXT_PUBLIC_SERVER_URI,
   }),
@@ -20,15 +20,9 @@ export const apiSlice = createApi({
         method: "GET",
         credentials: "include" as const,
       }),
-      async onQueryStarted(arg, { queryFulfilled, dispatch }) {
+      async onQueryStarted(arg, {queryFulfilled, dispatch}){
         try {
           const result = await queryFulfilled;
-
-          // Store token securely
-          if (result.data.accessToken) {
-            localStorage.setItem("accessToken", result.data.accessToken);
-          }
-
           dispatch(
             userLoggedIn({
               accessToken: result.data.accessToken,
@@ -36,10 +30,9 @@ export const apiSlice = createApi({
             })
           );
         } catch (error: any) {
-          console.log("Error loading user:", error);
+          console.log(error)
         }
       }
-
     }),
   }),
 });

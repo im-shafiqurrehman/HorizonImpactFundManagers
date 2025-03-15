@@ -79,14 +79,12 @@ userSchema.methods.comparePassword = async function (inputPassword) {
 
 // Sign access token
 userSchema.methods.SignAccessToken = function () {
-  return jwt.sign({ id: this._id }, process.env.ACCESS_TOKEN || '');
+  return jwt.sign({ id: this._id }, process.env.ACCESS_TOKEN || '',{ expiresIn: process.env.ACCESS_TOKEN_EXPIRE || "5m" });
 };
 
 // Sign refresh token
 userSchema.methods.SignRefreshToken = function () {
-  return jwt.sign({ id: this._id }, process.env.REFRESH_TOKEN || '', {
-    expiresIn: "5m",
-  });
+  return jwt.sign({ id: this._id }, process.env.REFRESH_TOKEN || '', { expiresIn: process.env.REFRESH_TOKEN_EXPIRE || "7d" });
 };
 
 // Export Mongoose model
