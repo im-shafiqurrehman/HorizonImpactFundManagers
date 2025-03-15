@@ -11,7 +11,7 @@ export const accessTokenOptions = {
     maxAge: accessTokenExpire * 60 * 1000,
     httpOnly: true,
     sameSite: 'None',   // Change this to 'None' for cross-origin requests
-    secure: true        // Ensures cookies are sent only over HTTPS
+    secure: isProduction,    
 };
 
 export const refreshTokenOptions = {
@@ -19,7 +19,7 @@ export const refreshTokenOptions = {
     maxAge: accessRefreshExpire * 1000,
     httpOnly: true,
     sameSite: 'None',   // Change this to 'None' for cross-origin requests
-    secure: true        // Ensures cookies are sent only over HTTPS
+    secure: isProduction,      
 };
 
 export const sendToken = async (user, statusCode, res) => {
