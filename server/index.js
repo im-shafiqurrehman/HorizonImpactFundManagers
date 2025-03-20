@@ -3,7 +3,6 @@ import express from 'express';
 import mongoose from 'mongoose';
 import ErrorHandler, { handleMongoError, handleJWTError, handleJWTExpiredError } from './utilis/ErrorHandler.js';
 import dotenv from 'dotenv';
-import cookieParser from 'cookie-parser';
 import cors from 'cors';
 import userRouter from './routes/user.route.js';
 import { v2 as cloudinary } from 'cloudinary';
@@ -24,7 +23,7 @@ app.use(cors({
     'http://localhost:3000',
     'https://horizon-impact-fund-managers-dv8d.vercel.app',
     'https://horizon-impact-fund-managers.vercel.app',
-    "https://horizon-impact-fund-managers-7pt1ic2qv.vercel.app/",
+    "https://horizon-impact-fund-managers-7pt1ic2qv.vercel.app",
 
   ],
   credentials: true,
@@ -41,40 +40,27 @@ app.use((req, res, next) => {
   next();
 });
 
-
-
-
-
-
-
-
-
-
-// Connect to MongoDB
 const PORT = process.env.PORT || 3000;
 mongoose
   .connect(process.env.MONGO)
   .then(() => console.log("MongoDB connected successfully"))
   .catch((err) => console.error("MongoDB connection error:", err));
 
-// API Routes
-app.use("/server/v1", userRouter);
 
-// Health Check Route
+app.use("/server/v1", userRouter);
 app.get('/health', (req, res) => {
   res.status(200).json({ status: 'success', message: 'Server is running' });
 });
 
-// Unknown Routes
+
 app.all("*", (req, res, next) => {
   next(new ErrorHandler(`Cannot find ${req.originalUrl} on this server!`, 404));
 });
 
-// Error Handler Middleware
-app.use((err, req, res, next) => {
-  console.error('Error:', err);  // Log the full error object
 
-  // Handle MongoDB errors
+app.use((err, req, res, next) => {
+  console.error('Error:', err); 
+
   if (err.name === 'MongoError' || err.name === 'ValidationError') {
     err = handleMongoError(err);
   }
