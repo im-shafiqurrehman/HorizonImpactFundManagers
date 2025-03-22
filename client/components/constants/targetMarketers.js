@@ -23,4 +23,5 @@ export const industries = [
     name: "Real Estate & Residential Development",
     image: "/assets/marketers/Residential-Complexes.jpg",
   },
-];
+]
+
