@@ -172,7 +172,7 @@ export default function ContactUs() {
                   onSubmit={handleSubmit}
                 >
                   <Form>
-                    <div className="grid gap-6">
+                    <div className="grid gap-6 ">
                       <div className="flex flex-col">
                         <Label htmlFor="name" className="text-gray-600 mb-2">
                           Your Name
@@ -182,7 +182,7 @@ export default function ContactUs() {
                           name="name"
                           type="text"
                           placeholder="Enter your name"
-                          className="border-gray-300 w-full px-3 py-1.5 border rounded-md shadow-sm focus:ring-2 focus:ring-[#E66F3D] focus:outline-none"
+                          className="border-gray-300 w-full px-3 py-1.5 border rounded-md shadow-sm focus:ring-2 focus:ring-[#E66F3D] focus:outline-none text-gray-900"
                         />
                         <ErrorMessage
                           name="name"
@@ -200,7 +200,7 @@ export default function ContactUs() {
                           name="email"
                           type="email"
                           placeholder="Enter your email"
-                          className="border-gray-300 w-full mt-1 px-3 py-1.5 border rounded-md shadow-sm focus:ring-2 focus:ring-[#E66F3D] focus:outline-none"
+                          className="border-gray-300 w-full mt-1 px-3 py-1.5 border rounded-md shadow-sm focus:ring-2 focus:ring-[#E66F3D] focus:outline-none text-gray-900"
                         />
                         <ErrorMessage
                           name="email"

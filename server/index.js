@@ -1,4 +1,4 @@
-// index.js
+
 import express from 'express';
 import mongoose from 'mongoose';
 import ErrorHandler, { handleMongoError, handleJWTError, handleJWTExpiredError } from './utilis/ErrorHandler.js';
@@ -18,27 +18,30 @@ const app = express();
 app.use(express.json({ limit: "50mb" })); // Limit for large file uploads
 
 
-app.use(cors({
-  origin: [
-    'http://localhost:3000',
-    'https://horizon-impact-fund-managers-dv8d.vercel.app',
-    'https://horizon-impact-fund-managers.vercel.app',
-    "https://horizon-impact-fund-managers-7pt1ic2qv.vercel.app",
+const allowedOrigins = [
+  'http://localhost:3000',
+  'https://horizon-impact-fund-managers-dv8d.vercel.app',
+  'https://horizon-impact-fund-managers.vercel.app',
+  'https://horizon-impact-fund-managers-7pt1ic2qv.vercel.app',
+  'https://horizon-impact-fund-manag-git-68bb62-shafiq-ur-rehmans-projects.vercel.app',
+];
 
-  ],
+const corsOptions = {
+  origin: (origin, callback) => {
+    if (allowedOrigins.includes(origin) || !origin) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
   credentials: true,
   optionsSuccessStatus: 200,
   allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With'],
-  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS']
-}));
-// Allow headers in response
-app.use((req, res, next) => {
-  res.header("Access-Control-Allow-Origin", req.headers.origin); // 👈 Dynamic origin handling
-  res.header("Access-Control-Allow-Credentials", "true"); // 👈 Important for cookies
-  res.header("Access-Control-Allow-Methods", "GET,POST,PUT,DELETE,OPTIONS");
-  res.header("Access-Control-Allow-Headers", "Content-Type, Authorization");
-  next();
-});
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+};
+
+app.use(cors(corsOptions));
+
 
 const PORT = process.env.PORT || 3000;
 mongoose

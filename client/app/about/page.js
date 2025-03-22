@@ -8,6 +8,7 @@ import Image from "next/image";
 import { FaLightbulb, FaUsers, FaCogs } from "react-icons/fa";
 import { Sponser } from "@/components/Home/Sponsers";
 import DotPattern from "@/components/ui/dot-pattern";
+import TeamProfiles from "../../components/AboutUs/teamprofiles.jsx"
 
 const AboutPage = () => {
   return (
@@ -104,7 +105,7 @@ const AboutPage = () => {
           </div>
         </Fade>
       </section>
-
+      <TeamProfiles></TeamProfiles>
       <div className="relative">
         <DotPattern className="absolute inset-0 opacity-50 z-0" />
         <section className="py-16 bg-gradient-to-b from-gray-200 to-gray-300">
@@ -162,7 +163,7 @@ const AboutPage = () => {
           </div>
         </Fade>
       </section>
-
+   
       <div className="bg-gray-50">
         <Sponser />
       </div>
