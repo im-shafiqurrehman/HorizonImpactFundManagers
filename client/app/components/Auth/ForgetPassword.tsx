@@ -35,8 +35,8 @@ const ForgetPassword: FC<Props> = ({ setRoute, setOpen, refetch }) => {
   // Handle API responses
   useEffect(() => {
     if (isSuccess) {
-      const message = data?.message || "OTP sent successfully";
-      toast.success(message);
+      // const message = data?.message || "OTP sent successfully";
+      // toast.success(message);
       setRoute("Forgetpasswordotp");
     }
     if (error) {

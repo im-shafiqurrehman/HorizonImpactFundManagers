@@ -1,5 +1,7 @@
 import dotenv from "dotenv";
 import redisClient from '../utilis/redis.js';
+const isProduction = process.env.NODE_ENV === 'production';
+
 
 dotenv.config();
 

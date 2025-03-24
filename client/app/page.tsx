@@ -6,8 +6,6 @@ import Headings from "./utlis/Heading";
 import AboutUs from "@/components/Home/About";
 import Slider from "@/components/Home/AnimatedHero";
 import KeyFeaturesAndBenefits from "@/components/Home/Benifits";
-// import ProductShowcase from "@/components/Home/Products";
-// import Projects from "@/components/Home/Projects";
 import Services from "@/components/Home/Services";
 import { Sponser } from "@/components/Home/Sponsers";
 import TargetedMarkets from "@/components/Home/TargetedMarkets";

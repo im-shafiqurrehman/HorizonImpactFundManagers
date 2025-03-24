@@ -160,7 +160,7 @@ const Forgetpasswordotp: FC<Props> = ({ setRoute, setOpen, refetch }) => {
     const otpCode = otp.join("");
 
     if (otpCode.length !== 6) {
-      toast.error("Please enter the complete 6-digit OTP");
+      toast.error("Please enter the complete 6-digit OTP ");
       return;
     }
 

@@ -63,7 +63,7 @@ const Header: FC<Props> = ({ activeItem, open, setOpen, route, setRoute }) => {
   ];
 
   useEffect(() => {
-    console.log("User Data: ", userData); 
+    // console.log("User Data: ", userData); 
     if (!isLoading) {
       if (!userData) {
         if(data) {

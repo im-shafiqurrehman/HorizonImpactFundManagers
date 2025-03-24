@@ -19,10 +19,10 @@ dotenv.config();
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
-const DEFAULT_AVATAR = {
-    public_id: 'default_avatar_public_id',
-    url: 'https://example.com/default-avatar.png'
-};
+// const DEFAULT_AVATAR = {
+//     public_id: 'default_avatar_public_id',
+//     url: 'https://example.com/default-avatar.png'
+// };
 
 const createActivationToken = (userData) => {
     const activationCode = Math.floor(100000 + Math.random() * 900000).toString();
@@ -170,6 +170,7 @@ export const LogoutUser = async (req, res, next) => {
 export const updateAccessToken = async (req, res, next) => {
     try {
         const newRefreshToken = req.cookies?.refresh_token;
+        // console.log("Refresh Token Received:", newRefreshToken);
         const decoded = jwt.verify(newRefreshToken, process.env.REFRESH_TOKEN);
         if (!decoded) {
             return next(new ErrorHandler("Could not refresh token", 400));
@@ -210,12 +211,15 @@ export const updateAccessToken = async (req, res, next) => {
 // get User (load user)
 export const getUserInfo = async (req, res, next) => {
     try {
+        console.log("Incoming Request:", req.user);
         const userId = req.user?._id; // Extract user ID from the authenticated request
         await getUserById(userId, res); // Pass the userId directly
     } catch (error) {
         return next(new ErrorHandler(error.message, 400));
     }
 };
+
+
 
 // Social Auth function
 export const socialAuth = async (req, res, next) => {
@@ -413,68 +417,71 @@ export const sendContactForm = async (req, res, next) => {
 
 
 
+
+
 export const forgetpassword = async (req, res, next) => {
-  try {
-    const { email, name } = req.body;
-
-    // Check if email exists in the database
-    const isEmailExist = await User.findOne({ email });
-    if (!isEmailExist) {
-      return next(new ErrorHandler("Please enter a valid email", 400));
-    }
-
-    const user = {
-      name,
-      email,
-    };
-
-    // Create activation token
-    const { token, activecode } = createForgetPasswordToken(user);
-
-    // Prepare data for email
-    const data = { user: { name: user.name }, activationCode: activecode };
-
-    // Render email HTML using EJS
-    const __filename = fileURLToPath(import.meta.url);
-    const __dirname = dirname(__filename);
-    const html = await ejs.renderFile(join(__dirname, "../mails/passwordreset-mailer.ejs"), data);
-
-    // Send email
     try {
-      await sendMail({
-        email,
-        subject: "Reset your Password",
-        template: "passwordreset-mailer.ejs", // Adjust to the actual mailer utility
-        data,
-      });
-
-      res.status(201).json({
-        success: true,
-        message: `Please check your email: ${email} to reset your password!`,
-        activationToken: token,
-        user,
-      });
-    } catch (err) {
-      return next(new ErrorHandler(err.message, 400));
+      const { email, name } = req.body;
+  
+      const isEmailExist = await User.findOne({ email });
+      if (!isEmailExist) {
+        return next(new ErrorHandler("Please enter a valid email", 400));
+      }
+  
+      const user = { name, email };
+  
+      const { activation_token, activation_code } = createForgetPasswordToken(user);
+  
+      const data = { 
+        user: { name: user.name }, 
+        activationCode: activation_code, 
+      };
+  
+      const __filename = fileURLToPath(import.meta.url);
+      const __dirname = dirname(__filename);
+      const html = await ejs.renderFile(join(__dirname, "../mails/passwordreset-mailer.ejs"), data);
+  
+      try {
+        await sendMail({
+          email,
+          subject: "Reset your Password",
+          template: "passwordreset-mailer.ejs",
+          data,
+        });
+  
+        res.status(201).json({
+          success: true,
+          message: `Please check your email: ${email} to reset your password!`,
+          activationToken: activation_token, 
+          user,
+        });
+      } catch (err) {
+        return next(new ErrorHandler(err.message, 400));
+      }
+    } catch (error) {
+      return next(new ErrorHandler(error.message, 400));
     }
-  } catch (error) {
-    return next(new ErrorHandler(error.message, 400));
-  }
-};
+  };
+  
 
 
 
 
-export const createForgetPasswordToken = (user) => {
-const activecode = Math.floor(100000 + Math.random() * 900000).toString();
-  const token = jwt.sign(
-    { user, activecode },
-    process.env.JWTKEY,
-    { expiresIn: "5m" } // Token will expire after 5 minutes
-  );
 
-  return { token, activecode };
-};
+
+  export const createForgetPasswordToken = (user) => {
+    const activecode = Math.floor(100000 + Math.random() * 900000).toString();
+    const activation_token = jwt.sign(
+      { user, activecode },
+      process.env.JWTKEY,
+      { expiresIn: "5m" }
+    );
+  
+    return { activation_token, activation_code: activecode }; 
+  };
+  
+
+
 
 export const checkResetPasswordOtp = async (req, res, next) => {
   try {

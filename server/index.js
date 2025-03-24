@@ -6,6 +6,7 @@ import dotenv from 'dotenv';
 import cors from 'cors';
 import userRouter from './routes/user.route.js';
 import { v2 as cloudinary } from 'cloudinary';
+import cookieParser from "cookie-parser";
 
 dotenv.config();
 cloudinary.config({
@@ -16,7 +17,7 @@ cloudinary.config({
 
 const app = express();
 app.use(express.json({ limit: "50mb" })); // Limit for large file uploads
-
+app.use(cookieParser());
 
 const allowedOrigins = [
   'http://localhost:3000',
@@ -36,8 +37,6 @@ const corsOptions = {
   },
   credentials: true,
   optionsSuccessStatus: 200,
-  allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With'],
-  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
 };
 
 app.use(cors(corsOptions));

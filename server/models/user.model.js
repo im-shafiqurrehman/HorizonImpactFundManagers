@@ -72,20 +72,21 @@ userSchema.pre("save", async function (next) {
   }
 });
 
-// Compare password
+//  compare password
 userSchema.methods.comparePassword = async function (inputPassword) {
   return await bcrypt.compare(inputPassword, this.password);
 };
-
-// Sign access token
+// sign access token
 userSchema.methods.SignAccessToken = function () {
-  return jwt.sign({ id: this._id }, process.env.ACCESS_TOKEN || '',{ expiresIn: process.env.ACCESS_TOKEN_EXPIRE || "5m" });
+  return jwt.sign({ id: this._id }, process.env.ACCESS_TOKEN || '');
 };
 
-// Sign refresh token
+// sing refresh token
 userSchema.methods.SignRefreshToken = function () {
-  return jwt.sign({ id: this._id }, process.env.REFRESH_TOKEN || '', { expiresIn: process.env.REFRESH_TOKEN_EXPIRE || "7d" });
-};
+  return jwt.sign({ id: this._id }, process.env.REFRESH_TOKEN || '', {
+    expiresIn: "7d",
+  });
+}
 
 // Export Mongoose model
 const User = mongoose.model("User", userSchema);
