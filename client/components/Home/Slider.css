@@ -1,10 +1,13 @@
 /* Apply box-sizing to all elements */
-*, *::before, *::after {
+*,
+*::before,
+*::after {
   box-sizing: border-box;
 }
 
 /* Prevent horizontal scrolling at the root level */
-html, body {
+html,
+body {
   overflow-x: hidden;
   width: 100%;
   margin: 0;
@@ -108,3 +111,4 @@ html, body {
     height: 50vh; /* Kept original height */
   }
 }
+
