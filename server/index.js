@@ -20,11 +20,12 @@ app.use(express.json({ limit: "50mb" })); // Limit for large file uploads
 app.use(cookieParser());
 
 const allowedOrigins = [
-  'http://localhost:3000',
-  'https://horizon-impact-fund-managers-dv8d.vercel.app',
-  'https://horizon-impact-fund-managers.vercel.app',
-  'https://horizon-impact-fund-managers-7pt1ic2qv.vercel.app',
-  'https://horizon-impact-fund-manag-git-68bb62-shafiq-ur-rehmans-projects.vercel.app',
+  // 'http://localhost:3000',
+  "https://horizon-impact-fund-manag-git-68bb62-shafiq-ur-rehmans-projects.vercel.app",
+  // 'https://horizon-impact-fund-managers-dv8d.vercel.app',   // frontend
+  // 'https://horizon-impact-fund-managers.vercel.app',
+  // 'https://horizon-impact-fund-managers-7pt1ic2qv.vercel.app', 
+  // 'https://horizon-impact-fund-manag-git-68bb62-shafiq-ur-rehmans-projects.vercel.app',    // backend
 ];
 
 const corsOptions = {

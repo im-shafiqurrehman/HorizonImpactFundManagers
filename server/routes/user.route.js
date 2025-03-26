@@ -12,7 +12,7 @@ userRouter.post("/activate-user", activateUser);
 userRouter.post("/login", LoginUser);
 userRouter.get("/logout",isAuthenticated, LogoutUser);
 userRouter.get("/refresh", updateAccessToken);
-userRouter.get("/me",updateAccessToken, isAuthenticated, getUserInfo);
+userRouter.get("/me",isAuthenticated, getUserInfo);
 userRouter.post("/social-auth", updateAccessToken,socialAuth);
 userRouter.put("/update-user-info",updateAccessToken, isAuthenticated, updateUserInfo);
 userRouter.put("/update-user-password",updateAccessToken, isAuthenticated, updateUserPassword);
