@@ -40,44 +40,86 @@ const createActivationToken = (userData) => {
     return { token, activationCode };
 };
 
+// export const registerUser = async (req, res, next) => {
+//     try {
+//         const { name, email, password } = req.body;
+//         const isEmailExists = await User.findOne({ email });
+//         if (isEmailExists) {
+//             return next(new ErrorHandler("Email already exists!", 400));
+//         }
+
+//         const { token: activationToken, activationCode } = createActivationToken({ name, email, password });
+
+//         const data = { user: { name }, activationCode };
+//         const templatePath = join(__dirname, '..', 'mails', 'activation-mail.ejs');
+
+//         try {
+//             const html = await ejs.renderFile(templatePath, data);
+//             await sendMail({
+//                 email: email,
+//                 subject: "Activate your email",
+//                 html: html,
+//             });
+
+//             res.status(200).json({
+//                 success: true,
+//                 message: `Please check your email ${email} to activate your account`,
+//                 activationToken,
+//                 user: { name, email },
+//             });
+//         } catch (error) {
+//             console.error("Error in email sending:", error);
+//             return next(new ErrorHandler(error.message, 500));
+//         }
+//     } catch (error) {
+//         console.error("Error in user registration:", error);
+//         return next(new ErrorHandler(error.message, 500));
+//     }
+// };
+
+
+
 export const registerUser = async (req, res, next) => {
-    // console.log("Received registration request:", req.body);
     try {
         const { name, email, password } = req.body;
-        const isEmailExists = await User.findOne({ email });
-        if (isEmailExists) {
-            return next(new ErrorHandler("Email already exists!", 400));
+        const isEmailExist = await User.findOne({ email });
+        if (isEmailExist) {
+            return next(new ErrorHandler("Email already exists", 400));
         }
 
-        // Generate activation token
         const { token: activationToken, activationCode } = createActivationToken({ name, email, password });
 
         const data = { user: { name }, activationCode };
-        const templatePath = join(__dirname, '..', 'mails', 'activation-mail.ejs');
-        // console.log("Template path:", templatePath);
+
+        const html = await ejs.renderFile(
+            join(dirname(fileURLToPath(import.meta.url)), "../mails/activation-mail.ejs"),
+            data
+        );
 
         try {
-            const html = await ejs.renderFile(templatePath, data);
             await sendMail({
-                email: email,
-                subject: "Activate your email",
-                html: html,
+                email,
+                subject: "Activate your account",
+                template: "activation-mail.ejs",
+                data,
             });
 
-            res.status(200).json({
+            res.status(201).json({
                 success: true,
-                message: `Please check your email ${email} to activate your account`,
+                message: `Please check your email: ${email} to activate your account!`,
                 activationToken,
+                user: { name, email, password }
             });
-        } catch (error) {
-            console.error("Error in email sending:", error);
-            return next(new ErrorHandler(error.message, 500));
+
+        } catch (err) {
+            return next(new ErrorHandler(err.message, 400));
         }
+
     } catch (error) {
-        console.error("Error in user registration:", error);
-        return next(new ErrorHandler(error.message, 500));
+        return next(new ErrorHandler(error.message, 400));
     }
 };
+
 
 
 

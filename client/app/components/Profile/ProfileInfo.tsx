@@ -18,7 +18,7 @@ type Props = {
 const ProfileInfo: React.FC<Props> = ({ user, avatar }) => {
   const [name, setName] = React.useState(user && user.name);
   const [updateAvatar, { isSuccess, error }] = useUpdateAvatarMutation();
-  const [updateUser, { isSuccess: success, error: updateUserError }] = useUpdateUserMutation();
+  const [updateUser, { isSuccess: success, error: updateUserError,isLoading: isUpdating }] = useUpdateUserMutation();
   const [shouldFetch, setShouldFetch] = React.useState(false);
   const { refetch, isLoading } = useLoadUserQuery(undefined, {
     skip: !shouldFetch,
@@ -138,9 +138,9 @@ const ProfileInfo: React.FC<Props> = ({ user, avatar }) => {
             <br />
             <input
               type="submit"
-              className="w-full 800px:w-[250px] h-[45px] border border-[#e9844c] text-center rounded-lg mt-8 cursor-pointer bg-[#e9844c] text-black transition-all duration-300 transform hover:scale-[1.02] active:scale-[0.98] shadow-md hover:shadow-lg"
+              className="w-full 800px:w-[250px] h-[45px] border border-[#e9844c] text-center rounded-lg mt-8 cursor-pointer bg-[#e9844c] text-white transition-all duration-300 transform hover:scale-[1.02] active:scale-[0.98] shadow-md hover:shadow-lg"
               required
-              value="Update Profile"
+              value={isUpdating ? "Updating..." : "Update Profile"}
             />
           </div>
         </form>

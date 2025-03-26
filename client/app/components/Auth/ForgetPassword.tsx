@@ -13,7 +13,7 @@ type Props = {
 };
 
 const ForgetPassword: FC<Props> = ({ setRoute, setOpen, refetch }) => {
-  const [forgetpassword, { isSuccess, error, data }] = useForgetpasswordMutation();
+  const [forgetpassword, { isLoading,isSuccess, error, data }] = useForgetpasswordMutation();
 
   // Form validation schema
   const validationSchema = Yup.object().shape({
@@ -102,7 +102,7 @@ const ForgetPassword: FC<Props> = ({ setRoute, setOpen, refetch }) => {
           type="submit"
           className="w-full bg-[#e9844c] text-white font-medium py-3 rounded-md mt-4 hover:bg-[#d8733b] hover:-translate-y-1 transition duration-300"
         >
-          Send OTP
+           {isLoading ? "Sending OTP..." : "Send OTP"}
         </button>
       </form>
 

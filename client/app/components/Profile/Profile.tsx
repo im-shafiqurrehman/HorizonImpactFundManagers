@@ -22,7 +22,9 @@ const Profile: FC<Props> = ({ user }) => {
 
   const logoutHandler = async () => {
     setLogout(true);
-    await signOut();
+    await signOut({ redirect: false });
+    localStorage.clear(); // Clear storage if session data is stored locally
+    window.location.href = "/"; // Manual redirection to the homepage
   };
 
   if (typeof window !== "undefined") {

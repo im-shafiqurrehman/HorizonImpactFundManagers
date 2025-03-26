@@ -9,6 +9,7 @@ import {
   useResetPasswordMutation,
 } from "@/redux/features/auth/authApi";
 import { useSelector } from "react-redux";
+import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 
 interface Props {
   setRoute: (route: string) => void;
@@ -25,6 +26,10 @@ const Forgetpasswordotp: FC<Props> = ({ setRoute, setOpen, refetch }) => {
   const [passwordData, setPasswordData] = useState({
     newPassword: "",
     confirmPassword: "",
+  });
+  const [showPassword, setShowPassword] = useState({
+    newPassword: false,
+    confirmPassword: false,
   });
 
   const inputRefs = [
@@ -208,6 +213,13 @@ const Forgetpasswordotp: FC<Props> = ({ setRoute, setOpen, refetch }) => {
     }
   };
 
+  const togglePasswordVisibility = (field: keyof typeof showPassword) => {
+    setShowPassword((prev) => ({
+      ...prev,
+      [field]: !prev[field],
+    }));
+  };
+
   return (
     <div className="w-[65%] sm:w-[95%] max-w-[420px] mx-auto px-2 py-2 mt-[-12px] sm:mt-2 rounded-xl border border-gray-200 shadow-[0_2px_10px_rgba(0,0,0,0.07)] bg-white">
       <Toaster position="top-center" reverseOrder={false} />
@@ -264,40 +276,63 @@ const Forgetpasswordotp: FC<Props> = ({ setRoute, setOpen, refetch }) => {
           </button>
         </form>
       ) : (
-
-
-        
         <form onSubmit={handleResetPassword} className="space-y-4">
           <div className="space-y-2">
             <label className="text-[#545454] sm:text-[16px] text-xs font-medium" htmlFor="newPassword">
               New Password
             </label>
-            <input
-              type="password"
-              name="newPassword"
-              id="newPassword"
-              value={passwordData.newPassword}
-              onChange={handlePasswordChange}
-              placeholder="Enter new password"
-              className={`w-full px-3 py-2 rounded-md border border-[#e9844c]/30 outline-none focus:border-[#e9844c] bg-gray-100 text-gray-800`}
-              required
-            />
+            <div className="relative">
+              <input
+                type={showPassword.newPassword ? "text" : "password"}
+                name="newPassword"
+                id="newPassword"
+                value={passwordData.newPassword}
+                onChange={handlePasswordChange}
+                placeholder="Enter new password"
+                className={`w-full px-3 py-2 rounded-md border border-[#e9844c]/30 outline-none focus:border-[#e9844c] bg-gray-100 text-gray-800`}
+                required
+              />
+              <button
+                type="button"
+                className="absolute top-1/2 right-3 -translate-y-1/2 text-[#545454]"
+                onClick={() => togglePasswordVisibility("newPassword")}
+              >
+                {showPassword.newPassword ? (
+                  <AiOutlineEyeInvisible size={16} />
+                ) : (
+                  <AiOutlineEye size={16} />
+                )}
+              </button>
+            </div>
           </div>
 
           <div className="space-y-2">
             <label className="text-[#545454] sm:text-[16px] text-xs font-medium" htmlFor="confirmPassword">
               Confirm Password
             </label>
-            <input
-              type="password"
-              name="confirmPassword"
-              id="confirmPassword"
-              value={passwordData.confirmPassword}
-              onChange={handlePasswordChange}
-              placeholder="Confirm new password"
-              className={`w-full px-3 py-2 rounded-md border border-[#e9844c]/30 outline-none focus:border-[#e9844c] bg-gray-100 text-gray-800`}
-              required
-            />
+            <div className="relative">
+              <input
+                type={showPassword.confirmPassword ? "text" : "password"}
+                name="confirmPassword"
+                id="confirmPassword"
+                value={passwordData.confirmPassword}
+                onChange={handlePasswordChange}
+                placeholder="Confirm new password"
+                className={`w-full px-3 py-2 rounded-md border border-[#e9844c]/30 outline-none focus:border-[#e9844c] bg-gray-100 text-gray-800`}
+                required
+              />
+              <button
+                type="button"
+                className="absolute top-1/2 right-3 -translate-y-1/2 text-[#545454]"
+                onClick={() => togglePasswordVisibility("confirmPassword")}
+              >
+                {showPassword.confirmPassword ? (
+                  <AiOutlineEyeInvisible size={16} />
+                ) : (
+                  <AiOutlineEye size={16} />
+                )}
+              </button>
+            </div>
           </div>
 
           <button
@@ -308,8 +343,6 @@ const Forgetpasswordotp: FC<Props> = ({ setRoute, setOpen, refetch }) => {
             {isResetting ? "Resetting..." : "Reset Password"}
           </button>
         </form>
-
-
       )}
 
       <p className="text-center text-[12px] sm:text-[16px] text-[#545454] mt-3">

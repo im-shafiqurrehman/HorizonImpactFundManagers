@@ -20,7 +20,7 @@ const Schema = Yup.object().shape({
 
 const Signup: FC<Props> = ({ setRoute }) => {
   const [show, setShow] = useState(false);
-  const [register, { data, error, isSuccess }] = useRegisterMutation();
+  const [register, { isLoading, data, error, isSuccess }] = useRegisterMutation();
 
   useEffect(() => {
     if (isSuccess) {
@@ -121,7 +121,7 @@ const Signup: FC<Props> = ({ setRoute }) => {
           </div>
 
           <button type="submit" className="w-full bg-[#e9844c] text-white font-medium py-3 rounded-md mt-4 hover:bg-[#d8733b] hover:-translate-y-1 transition duration-300">
-            Sign Up
+          {isLoading ? "Creating account..." : "Sign Up"}
           </button>
 
           <div className="relative my-4">

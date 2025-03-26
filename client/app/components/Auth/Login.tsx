@@ -22,7 +22,7 @@ const Schema = Yup.object().shape({
 
 const Login: FC<Props> = ({ setRoute, setOpen, refetch }) => {
   const [show, setShow] = useState(false)
-  const [login, { error, isSuccess }] = useLoginMutation()
+  const [login, { isLoading,error, isSuccess }] = useLoginMutation()
 
   const formik = useFormik({
     initialValues: {
@@ -103,22 +103,22 @@ const Login: FC<Props> = ({ setRoute, setOpen, refetch }) => {
           </div>
           {errors.password && touched.password && <span className="text-red-500 text-[10px]">{errors.password}</span>}
           <div className="flex justify-end">
-          <span
-  className="text-[#e9844c] text-[12px] sm:text-[14px] cursor-pointer hover:underline"
-  onClick={() => {
-    setRoute("Forget");
-  }}
->
-  Forgot password?
-</span>
-          </div>
+        <span
+         className="text-[#e9844c] text-[12px] sm:text-[14px] cursor-pointer hover:underline"
+          onClick={() => {
+                setRoute("Forget");
+              }}
+          >
+           Forgot password?
+        </span>
+        </div>
         </div>
 
         <button
           type="submit"
           className="w-full bg-[#e9844c] text-white font-medium py-3 rounded-md mt-4 hover:bg-[#d8733b] hover:-translate-y-1 transition duration-300"
         >
-          Login
+          {isLoading ? "Logginng in..." : "Login"}
         </button>
 
         <div className="relative my-4">

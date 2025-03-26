@@ -16,11 +16,11 @@ cloudinary.config({
 });
 
 const app = express();
-app.use(express.json({ limit: "50mb" })); // Limit for large file uploads
+app.use(express.json({ limit: "50mb" })); 
 app.use(cookieParser());
 
 const allowedOrigins = [
-  // 'http://localhost:3000',
+  'http://localhost:3000',
   "https://horizon-frontend-app.vercel.app",
 ];
 

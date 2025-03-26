@@ -21,8 +21,9 @@ type VerifyNumber = {
 
 const Verification: FC<Props> = ({ setRoute }) => {
   const { token, user } = useSelector((state: any) => state.auth);
-  const [activation, { isSuccess, error, data }] = useActivationMutation();
-  const [resendOtp, { isLoading: isResending }] = useRegisterMutation();
+  const [activation, { isLoading,isSuccess, error, data }] = useActivationMutation();
+  const [registerUser, { isLoading: isResending }] = useRegisterMutation();
+
   const [invalidError, setInvalidError] = useState<boolean>(false);
   const [resendTimer, setResendTimer] = useState(60);
   const [showResendButton, setShowResendButton] = useState(false);
@@ -70,16 +71,23 @@ const Verification: FC<Props> = ({ setRoute }) => {
   const handleResendOtp = async () => {
     try {
       if (user) {
-        await resendOtp({ email: user.email });
-        startTimer();
-        toast.success("OTP resent successfully");
+        await registerUser({
+          name: user.name,
+          email: user.email,
+          password: user.password,
+        })
+        setResendTimer(60)
+        setShowResendButton(false)
+        // Restart the timer when OTP is resent
+        startTimer()
+        toast.success("OTP resent successfully")
       } else {
-        toast.error("User information not found");
+        toast.error("User information not found")
       }
     } catch (err) {
-      toast.error("Failed to resend OTP");
+      toast.error("Failed to resend OTP")
     }
-  };
+  }
 
   const inputRefs = Array.from({ length: 6 }, () => useRef<HTMLInputElement>(null));
   const [verifyNumber, setVerifyNumber] = useState<VerifyNumber>({
@@ -131,7 +139,7 @@ const Verification: FC<Props> = ({ setRoute }) => {
           className="w-full bg-[#e9844c] text-white font-medium py-3 rounded-md hover:bg-[#d8733b] hover:-translate-y-1 transition duration-300"
           onClick={verifyHandler}
         >
-          Verify OTP
+         {isLoading ? "Verifying..." : "Verify OTP"}
         </button>
       </div>
       {showResendButton ? (
