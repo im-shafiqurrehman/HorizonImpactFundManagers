@@ -1,9 +1,6 @@
 "use client";
-
 import React, { useEffect, useRef, useState, useCallback } from "react";
 import gsap from "gsap";
-
-
 const Slider = () => {
   const sliderRef = useRef(null);
   const slidesRef = useRef([]);
@@ -37,7 +34,6 @@ const Slider = () => {
 
   const slideDirections = ["left", "right", "top", "bottom"];
 
-  // Preload images
   useEffect(() => {
     const preloadImages = async () => {
       const imagePromises = images.map((src) => {
@@ -45,7 +41,7 @@ const Slider = () => {
           const img = new Image();
           img.src = src.replace("url('", "").replace("')", "");
           img.onload = resolve;
-          img.onerror = resolve; // Handle errors gracefully
+          img.onerror = resolve;
         });
       });
       await Promise.all(imagePromises);
@@ -118,7 +114,6 @@ const Slider = () => {
     });
   }, [currentIndex, isTweening, imagesLoaded]);
 
-  // Initial setup and animation
   useEffect(() => {
     if (!imagesLoaded) return;
 
@@ -147,7 +142,6 @@ const Slider = () => {
     }
   }, [imagesLoaded, isInitialized]);
 
-  // Auto-rotation
   useEffect(() => {
     if (isInitialized && imagesLoaded) {
       const timer = setInterval(gotoNextSlide, 5000);
@@ -156,26 +150,122 @@ const Slider = () => {
   }, [gotoNextSlide, isInitialized, imagesLoaded]);
 
   return (
-    <div className="wrapper mt-12">
+    <div 
+      style={{
+        boxSizing: "border-box",
+        width: "100%",
+        height: "95vh",
+        backgroundColor: "#111",
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "center",
+        alignItems: "center",
+        position: "relative",
+        overflow: "hidden",
+        maxWidth: "100%",
+        marginTop: "3rem"
+      }}
+    >
       {!imagesLoaded ? (
-        <div className="loading">Loading...</div>
+        <div
+          style={{
+            boxSizing: "border-box",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            width: "100%",
+            height: "100%",
+            color: "#ffffff",
+            fontSize: "1.5rem",
+            backgroundColor: "#111",
+            position: "absolute",
+            zIndex: 3
+          }}
+        >
+          Loading...
+        </div>
       ) : (
-        <div className="slider" ref={sliderRef}>
+        <div
+          ref={sliderRef}
+          style={{
+            boxSizing: "border-box",
+            width: "100%",
+            height: "100%",
+            position: "relative",
+            overflow: "hidden"
+          }}
+        >
           {textContents.map((text, i) => (
             <div
               key={i}
-              className="slide"
               ref={(el) => (slidesRef.current[i] = el)}
+              style={{
+                boxSizing: "border-box",
+                width: "100%",
+                height: "100%",
+                position: "absolute",
+                top: 0,
+                left: 0,
+                display: "flex",
+                flexDirection: "column",
+                justifyContent: "center",
+                alignItems: "center",
+                clipPath: i === 0 
+                  ? "polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)" 
+                  : "polygon(100% 0%, 100% 0%, 100% 100%, 100% 100%)",
+                backgroundSize: "cover",
+                backgroundPosition: "center",
+                backgroundRepeat: "no-repeat",
+                backgroundImage: images[i],
+                "::before": {
+                  content: '""',
+                  position: "absolute",
+                  top: 0,
+                  left: 0,
+                  width: "100%",
+                  height: "100%",
+                  background: "linear-gradient(180deg, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.8))",
+                  zIndex: 1
+                }
+              }}
             >
               <div
-                className="slide-text"
                 ref={(el) => (textRefs.current[i] = el)}
+                style={{
+                  boxSizing: "border-box",
+                  color: "#ffffff",
+                  fontSize: "2rem",
+                  textAlign: "center",
+                  transform: "translateY(100%)",
+                  opacity: 0,
+                  position: "relative",
+                  zIndex: 2,
+                  maxWidth: "80%",
+                  padding: "1rem",
+                  fontWeight: 600,
+                  textShadow: "1px 1px 8px rgba(0, 0, 0, 0.6)",
+                  wordWrap: "break-word",
+                  overflowWrap: "break-word"
+                }}
               >
                 {text}
               </div>
               <div
-                className="slide-description"
                 ref={(el) => (descRefs.current[i] = el)}
+                style={{
+                  boxSizing: "border-box",
+                  color: "#d1d1d1",
+                  fontSize: "1.2rem",
+                  textAlign: "center",
+                  transform: "translateY(100%)",
+                  opacity: 0,
+                  position: "relative",
+                  zIndex: 2,
+                  maxWidth: "80%",
+                  textShadow: "1px 1px 5px rgba(0, 0, 0, 0.5)",
+                  wordWrap: "break-word",
+                  overflowWrap: "break-word"
+                }}
               >
                 {descriptionContents[i]}
               </div>
