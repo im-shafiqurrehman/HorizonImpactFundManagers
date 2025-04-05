@@ -169,10 +169,6 @@ const AboutPage = () => {
           </div>
         </Fade>
       </section>
-
-      <div className="bg-gray-50">
-        <Sponser />
-      </div>
     </MainLayout>
   );
 };

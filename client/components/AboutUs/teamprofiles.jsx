@@ -1,14 +1,14 @@
-"use client"
+"use client";
 
-import { useState } from "react"
-import Image from "next/image"
-import { motion } from "framer-motion"
-import { Card, CardContent } from "@/components/ui/card"
-import {Arinze} from "../../public/assets/Arinze.jpeg"
-import {Sean} from "../../public/assets/Sean.png"
-import {Justin} from "../../public/assets/Justin.png"
-import {Utaara} from "../../public/assets/Utaara.png"
-import {Veneranda} from "../../public/assets/Veneranda.png"
+import { useState } from "react";
+import Image from "next/image";
+import { motion } from "framer-motion";
+import { Card, CardContent } from "@/components/ui/card";
+import Arinze from "../../public/assets/Arinze.jpeg"; // Remove curly braces
+import Sean from "../../public/assets/Sean.png";
+import Justin from "../../public/assets/Justin.png";
+import Utaara from "../../public/assets/Utaara.png";
+import Veneranda from "../../public/assets/Veneranda.png";
 
 // Team member data
 const teamMembers = [
@@ -22,7 +22,7 @@ const teamMembers = [
       "As the Chief Executive Officer (CEO) of Horizon Impact Fund, Arinze Okafor, CFA, CAIA, will provide strategic leadership and vision to the fund. His primary responsibilities include aligning the fund with its mission, ensuring adherence to its investment principles, and maintaining a balanced focus on both financial performance and social impact. Arinze will engage with key stakeholders—such as investors, development agencies, and policymakers—to foster strategic partnerships and leverage opportunities for collaboration.",
     trackRecord:
       "Arinze Okafor brings an extensive background in asset management and impact investing, with a proven track record of establishing and managing successful funds across multiple asset classes.",
-      image: {Arinze},
+    image: Arinze, // Direct reference to imported image
   },
   {
     id: 2,
@@ -34,7 +34,7 @@ const teamMembers = [
       "As Chief Investment Officer, Justin leads the fund's investment strategy and portfolio management, focusing on identifying and executing investments that deliver both financial returns and meaningful social impact.",
     trackRecord:
       "With over 20 years of experience, Justin has mobilized over $300 million for African impact funds and structured over 500MW of renewable energy deals, demonstrating exceptional expertise in sustainable finance.",
-    image: {Justin},
+    image: Justin,
   },
   {
     id: 3,
@@ -46,7 +46,7 @@ const teamMembers = [
       "As Independent Board Chairperson, Veneranda oversees governance and risk management, ensuring the fund operates with transparency and accountability to all stakeholders.",
     trackRecord:
       "With over 15 years in financial regulation and pension fund governance at NAMFISA, Veneranda brings critical expertise in regulatory compliance and investor protection.",
-    image: {Veneranda},
+    image: Veneranda,
   },
   {
     id: 4,
@@ -58,7 +58,7 @@ const teamMembers = [
       "As an Independent Non-Executive Director, Utaara provides oversight on legal compliance and investment structuring, ensuring the fund adheres to strict governance standards.",
     trackRecord:
       "With extensive experience in financial regulation and corporate governance, Utaara has a proven record of navigating complex regulatory environments while protecting investor interests.",
-    image: {Utaara},
+    image: Utaara,
   },
   {
     id: 5,
@@ -70,16 +70,17 @@ const teamMembers = [
       "As Assistant Portfolio Manager, Sean supports investment operations through deal sourcing, due diligence, and monitoring of portfolio companies.",
     trackRecord:
       "Sean brings valuable expertise in financial analysis and impact measurement, ensuring investments meet both financial and social impact objectives.",
-    image: {Sean},
+    image: Sean,
   },
-]
+];
 
 const TeamProfiles = () => {
-  const [expandedId, setExpandedId] = useState(null)
+  const [expandedId, setExpandedId] = useState(null);
 
   const toggleExpand = (id) => {
-    setExpandedId(expandedId === id ? null : id)
-  }
+    setExpandedId(expandedId === id ? null : id);
+  };
+
   return (
     <div className="container mx-auto py-12 px-4">
       <div className="space-y-8">
@@ -97,11 +98,11 @@ const TeamProfiles = () => {
                   {/* Image Section */}
                   <div className="md:w-1/4 lg:w-1/5 md:order-2">
                     <div className="relative aspect-square md:h-full overflow-hidden">
-                      <Image 
-                        src={member.image || "/placeholder.svg"} 
-                        alt={member.name} 
-                        fill 
-                        className="object-cover" 
+                      <Image
+                        src={member.image} // Use direct image reference
+                        alt={member.name}
+                        fill
+                        className="object-cover"
                       />
                     </div>
                   </div>
@@ -141,8 +142,7 @@ const TeamProfiles = () => {
         ))}
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default TeamProfiles
-
+export default TeamProfiles;
