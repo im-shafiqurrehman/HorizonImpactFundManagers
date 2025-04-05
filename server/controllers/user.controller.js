@@ -253,7 +253,7 @@ export const updateAccessToken = async (req, res, next) => {
 // get User (load user)
 export const getUserInfo = async (req, res, next) => {
     try {
-        console.log("Incoming Request:", req.user);
+
         const userId = req.user?._id; // Extract user ID from the authenticated request
         await getUserById(userId, res); // Pass the userId directly
     } catch (error) {

@@ -18,6 +18,7 @@ import { object, string } from "yup";
 import toast from "react-hot-toast";
 import axios from "axios";
 import Loader from "../components/Loader/Loader";
+import contactUsBanner from "../../public/assets/contact-us-banner.png"
 
 // Define the form values interface
 interface FormValues {
@@ -87,7 +88,7 @@ export default function ContactUs() {
       <HeroBanner
         title={"Contact Us"}
         subtitle={"Contact"} 
-        backgroundImage={"/assets/contact-banner.jpg"}
+        backgroundImage={contactUsBanner}
       />
       <div className="container mx-auto px-4 md:px-8 lg:px-12 py-12">
         {/* Contact Information Cards */}

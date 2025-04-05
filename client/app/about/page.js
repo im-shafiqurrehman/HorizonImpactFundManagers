@@ -8,6 +8,7 @@ import Image from "next/image";
 import { FaLightbulb, FaUsers, FaCogs } from "react-icons/fa";
 import DotPattern from "@/components/ui/dot-pattern";
 import TeamProfiles from "../../components/AboutUs/teamprofiles.jsx"
+import aboutBanner from "../../public/assets/about-banner.png";
 
 const AboutPage = () => {
   return (
@@ -15,7 +16,7 @@ const AboutPage = () => {
       <HeroBanner
         title="About Us"
         subtitle="Who We Are"
-        backgroundImage="/assets/about-banner.jpg"
+        backgroundImage= {aboutBanner}
       />
 
       <section className="py-8 md:py-16 bg-gray-50 relative overflow-hidden">
