@@ -1,7 +1,7 @@
 "use client"
 
 import Image from "next/image"
-import { useScrollAnimation } from "../our-approach/use-scroll-animation";
+import { useScrollAnimation } from "../our-approach/use-scroll-animation"
 
 export default function WhatWeDo() {
   const [section1Visible, section1Ref] = useScrollAnimation()
@@ -24,7 +24,7 @@ export default function WhatWeDo() {
           >
             <Image
               src="/assets/banner-1.png"
-              alt="Team meeting"
+              alt="Impact Investment"
               width={600}
               height={400}
               className="w-full h-auto"
@@ -36,15 +36,16 @@ export default function WhatWeDo() {
             }`}
           >
             <div className="mb-4 text-slate-600">
-              <span className="font-medium">00.</span> What We Do
+              <span className="font-medium">01.</span> What We Do
             </div>
             <h2 className="text-4xl md:text-5xl font-bold text-slate-800 mb-6 hover:text-[#e9844c] transition-colors duration-300">
-              Sector expertise.
+              Impact-driven investment.
             </h2>
             <p className="text-slate-600 text-lg">
-              Specialization matters to us. Our deep domain knowledge and thesis-driven approach have led to our track
-              record of investment success. Specialization also matters to our partners. It allows us to add value from
-              day one, without wasting time getting up to speed.
+              Horizon Impact Fund Managers is a Southern Africa-focused impact investment firm dedicated to driving
+              sustainable development and inclusive economic growth. We bridge the financing gap in high-impact
+              industries, unlocking capital for sustainable agriculture, hydrocarbons, the green economy, basic needs,
+              sports & the creative industry, and fintech & digital infrastructure.
             </p>
           </div>
         </div>
@@ -56,15 +57,16 @@ export default function WhatWeDo() {
             }`}
           >
             <div className="mb-4 text-slate-600">
-              <span className="font-medium">00.</span> What We Do
+              <span className="font-medium">02.</span> What We Do
             </div>
             <h2 className="text-4xl md:text-5xl font-bold text-slate-800 mb-6 hover:text-[#e9844c] transition-colors duration-300">
-              Collaborative and flexible partnerships.
+              Innovative financing solutions.
             </h2>
             <p className="text-slate-600 text-lg">
-              A spirit of partnership sits at the foundation of every Long Ridge investment. We seek to align incentives
-              with our management teams. Our investment structures are tailored to achieve a company&apos;s objectives,
-              rather than the other way around.
+              With a target fund size of USD 10–50 million and an investment horizon of 7–10 years, we provide
+              innovative financing solutions that generate measurable social and environmental impact while delivering
+              competitive financial returns. Our flexible investment structures are tailored to achieve both company and
+              community objectives.
             </p>
           </div>
           <div
@@ -74,7 +76,7 @@ export default function WhatWeDo() {
           >
             <Image
               src="/assets/banner-1.png"
-              alt="Collaborative partnerships"
+              alt="Innovative financing"
               width={600}
               height={400}
               className="w-full h-auto"
@@ -88,13 +90,7 @@ export default function WhatWeDo() {
               section3Visible ? "translate-x-0 opacity-100" : "translate-x-full opacity-0"
             }`}
           >
-            <Image
-               src="/assets/banner-1.png"
-              alt="Network of industry leaders"
-              width={600}
-              height={400}
-              className="w-full h-auto"
-            />
+            <Image src="/assets/banner-1.png" alt="MSME focus" width={600} height={400} className="w-full h-auto" />
           </div>
           <div
             className={`flex flex-col justify-center transform transition-all duration-1000 ease-in-out ${
@@ -102,15 +98,16 @@ export default function WhatWeDo() {
             }`}
           >
             <div className="mb-4 text-slate-600">
-              <span className="font-medium">00.</span> What We Do
+              <span className="font-medium">03.</span> What We Do
             </div>
             <h2 className="text-4xl md:text-5xl font-bold text-slate-800 mb-6 hover:text-[#e9844c] transition-colors duration-300">
-              Access to our network of industry leaders.
+              MSME development focus.
             </h2>
             <p className="text-slate-600 text-lg">
-              We offer our companies complete access to our network, which has been built over decades. Long Ridge&apos;s
-              portfolio companies regularly tap into the network to receive commercial introductions, recruit executive
-              talent, and solicit expert advice.
+              By focusing on micro, small, and medium-sized enterprises (MSMEs) across Namibia and Southern Africa, we
+              aim to catalyze job creation, climate resilience, and economic transformation in underserved markets. Our
+              portfolio companies receive complete access to our network of industry leaders, strategic partners, and
+              financial institutions.
             </p>
           </div>
         </div>
@@ -122,16 +119,16 @@ export default function WhatWeDo() {
             }`}
           >
             <div className="mb-4 text-slate-600">
-              <span className="font-medium">00.</span> What We Do
+              <span className="font-medium">04.</span> What We Do
             </div>
             <h2 className="text-4xl md:text-5xl font-bold text-slate-800 mb-6 hover:text-[#e9844c] transition-colors duration-300">
-              Strategic support.
+              Strategic partnerships.
             </h2>
             <p className="text-slate-600 text-lg">
-              Our companies solicit strategic support from Long Ridge across a wide range of initiatives. We are happy
-              to roll up our sleeves and offer our assistance. Key areas of involvement tend to be around organic growth
-              (e.g., sales & marketing, pricing), inorganic growth (i.e., M&A), and augmenting the executive team and
-              board.
+              Our investment approach combines financial expertise, strategic partnerships, and responsible capital
+              allocation to drive long-term value and sustainable impact. Horizon Impact Fund Managers is committed to
+              reshaping Africa's investment landscape—one transformative investment at a time. We provide hands-on
+              support across growth strategies, operational improvements, and market expansion.
             </p>
           </div>
           <div
@@ -140,8 +137,8 @@ export default function WhatWeDo() {
             }`}
           >
             <Image
-                src="/assets/banner-1.png"
-              alt="Strategic support"
+              src="/assets/banner-1.png"
+              alt="Strategic partnerships"
               width={600}
               height={400}
               className="w-full h-auto"
@@ -152,3 +149,4 @@ export default function WhatWeDo() {
     </section>
   )
 }
+

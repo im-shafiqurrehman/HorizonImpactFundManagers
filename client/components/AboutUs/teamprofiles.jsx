@@ -95,9 +95,9 @@ const TeamProfiles = () => {
             <Card className="overflow-hidden border-0 shadow-md hover:shadow-lg transition-shadow duration-300">
               <CardContent className="p-0">
                 <div className="flex flex-col md:flex-row">
-                  {/* Image Section - Increased width */}
+                  {/* Image Section - Increased height for mobile */}
                   <div className="md:w-1/3 lg:w-1/4 md:order-2">
-                    <div className="relative w-full h-full min-h-[250px] md:min-h-[300px]">
+                    <div className="relative w-full h-full min-h-[450px] md:min-h-[300px]">
                       <Image
                         src={member.image || "/placeholder.svg"}
                         alt={member.name}
