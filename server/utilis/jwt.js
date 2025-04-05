@@ -31,7 +31,7 @@ export const sendToken = async (user, statusCode, res) => {
     await redisClient.set(user._id.toString(), JSON.stringify(user), {
         EX: 7 * 24 * 60 * 60 // 7 days in seconds
     });
-    console.log('User stored in Redis');
+    // console.log('User stored in Redis');
 
 
     // Create access and refresh tokens using the instance methods

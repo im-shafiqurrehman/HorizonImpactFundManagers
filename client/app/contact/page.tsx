@@ -159,6 +159,11 @@ export default function ContactUs() {
           ))}
         </div>
 
+
+
+
+        
+
         {/* Contact Form */}
         <Fade direction="up" triggerOnce delay={0.2}>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
@@ -239,6 +244,11 @@ export default function ContactUs() {
                 </Formik>
               </CardContent>
             </Card>
+
+
+
+
+
 
             {/* Contact Information */}
             <Card className="shadow-md rounded-lg border border-gray-200 bg-white">
