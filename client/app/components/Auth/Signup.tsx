@@ -52,7 +52,7 @@ const Signup: FC<Props> = ({ setRoute }) => {
   return (
     <div className="w-full flex justify-center items-center bg-transparent mt-4">
       <div className="w-[65%] sm:w-[95%] max-w-[420px] mx-auto px-2 py-2 rounded-xl border border-gray-200 shadow-[0_2px_10px_rgba(0,0,0,0.07)] bg-white">
-        <h1 className="text-center text-lg font-bold text-[#e9844c] mb-4">Join Login with Horizon Impact Fund Mansgers</h1>
+        <h1 className="text-center text-lg font-bold text-[#e9844c] mb-4 py-3">Join Horizon Impact Fund Managers</h1>
         <form onSubmit={handleSubmit} className="space-y-4">
           <div className="space-y-2">
             <label className="text-[#545454] sm:text-[16px] text-xs font-medium" htmlFor="name">
