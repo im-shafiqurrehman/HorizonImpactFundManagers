@@ -1,4 +1,5 @@
 "use client";
+import logo1 from "../../public/assets/logo1.png"
 
 import Image from "next/image";
 import {
@@ -27,10 +28,10 @@ export default function ContactSection() {
           <div className="space-y-4">
             <Link href={"/"}>
               <Image
-                src="/assets/logo1.png"
+                src = {logo1}
                 alt="Horizon Impact Logo"
-                width={80}
-                height={160}
+                width={75} 
+                height={140}
                 className="mb-6"
               />
             </Link>
@@ -44,22 +45,26 @@ export default function ContactSection() {
               <TooltipProvider>
                 {[
                   {
-                    href: "https://www.facebook.com",
+                    // href: "https://www.facebook.com",
+                    href: "#",
                     label: "Facebook",
                     icon: FaFacebook,
                   },
                   {
-                    href: "https://www.instagram.com",
+                    // href: "https://www.instagram.com",
+                    href: "#",
                     label: "Instagram",
                     icon: FaInstagram,
                   },
                   {
-                    href: "https://www.linkedin.com",
+                    // href: "https://www.linkedin.com",
+                    href: "#",
                     label: "LinkedIn",
                     icon: FaLinkedin,
                   },
                   {
-                    href: "https://www.twitter.com",
+                    // href: "https://www.twitter.com",
+                    href: "#",
                     label: "Twitter",
                     icon: FaTwitter,
                   },
@@ -109,7 +114,7 @@ export default function ContactSection() {
                 <span className="text-lg text-gray-400">
                   <p>
                     Horizon Impact Fund Managers <br />
-                    Nambabia
+                    Namibia
                   </p>
                 </span>
               </div>
@@ -129,7 +134,7 @@ export default function ContactSection() {
               </div>
               <div className="flex items-center gap-4">
                 <div className="flex items-center justify-center w-12 h-12 flex-shrink-0 bg-gray-200 rounded-full text-main">
-                  <MessageCircle className="text-xl" />
+                  < FaWhatsapp className="text-xl" />
                 </div>
                 <span className="text-lg text-gray-400">
                   Whatsapp Us:
@@ -145,7 +150,7 @@ export default function ContactSection() {
               </div>
               <div className="flex items-center gap-4">
                 <div className="flex items-center justify-center w-12 h-12 flex-shrink-0 bg-gray-200 rounded-full text-main">
-                  <FaWhatsapp className="text-xl" />
+                  < MessageCircle className="text-xl" />
                 </div>
                 <span className="text-lg text-gray-400">
                   Email Us:
@@ -155,6 +160,7 @@ export default function ContactSection() {
                   >
                     info@HIFM.com.na
                   </a>
+                  <br/>
                   <a
                     href="mailto:arinze@HIFM.com.na"
                     className="text-[12px] md:text-lg pl-2 hover:text-main hover:underline"

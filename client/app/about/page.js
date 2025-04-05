@@ -20,21 +20,28 @@ const AboutPage = () => {
 
       <section className="py-8 md:py-16 bg-gray-50 relative overflow-hidden">
         <Fade triggerOnce direction="up" duration={800} cascade damping={0.2}>
-          <header className="text-center mb-8 md:mb-12 w-full max-w-[90%] md:max-w-[90%] lg:max-w-3xl mx-auto">
-            <h1 className="text-3xl md:text-4xl font-extrabold mb-4 md:mb-6 text-main">
-              About Us
-            </h1>
-            <div className="w-full text-gray-600 leading-relaxed space-y-4">
+          <header className="mb-8 md:mb-12 w-full max-w-[90%] md:max-w-[90%] lg:max-w-3xl mx-auto">
+            <h1 className="text-3xl md:text-4xl font-extrabold mb-4 md:mb-6 text-main text-center">About Us</h1>
+            <div className="w-full text-gray-600 leading-relaxed space-y-4 text-left">
               <p className="text-base md:text-lg">
-                Horizon Impact Fund Managers is a Southern Africa-focused impact investment firm dedicated to driving sustainable development and inclusive economic growth. We bridge the financing gap in high-impact industries, unlocking capital for sustainable agriculture, hydrocarbons, the green economy, basic needs (housing, water, sanitation, healthcare, and education), sports & the creative industry, and fintech & digital infrastructure.
+                Horizon Impact Fund Managers is a Southern Africa-focused impact investment firm dedicated to driving
+                sustainable development and inclusive economic growth. We bridge the financing gap in high-impact industries,
+                unlocking capital for sustainable agriculture, hydrocarbons, the green economy, basic needs (housing, water,
+                sanitation, healthcare, and education), sports & the creative industry, and fintech & digital infrastructure.
               </p>
 
               <p className="text-base md:text-lg">
-                With a target fund size of USD 10–50 million and an investment horizon of 7–10 years, we provide innovative financing solutions that generate measurable social and environmental impact while delivering competitive financial returns. By focusing on micro, small, and medium-sized enterprises (MSMEs) across Namibia and Southern Africa, we aim to catalyze job creation, climate resilience, and economic transformation in underserved markets.
+                With a target fund size of USD 10–50 million and an investment horizon of 7–10 years, we provide innovative
+                financing solutions that generate measurable social and environmental impact while delivering competitive
+                financial returns. By focusing on micro, small, and medium-sized enterprises (MSMEs) across Namibia and
+                Southern Africa, we aim to catalyze job creation, climate resilience, and economic transformation in
+                underserved markets.
               </p>
 
               <p className="text-base md:text-lg">
-                Our investment approach combines financial expertise, strategic partnerships, and responsible capital allocation to drive long-term value and sustainable impact. Horizon Impact Fund Managers is committed to reshaping Africa's investment landscape—one transformative investment at a time.
+                Our investment approach combines financial expertise, strategic partnerships, and responsible capital
+                allocation to drive long-term value and sustainable impact. Horizon Impact Fund Managers is committed to
+                reshaping Africa's investment landscape—one transformative investment at a time.
               </p>
             </div>
           </header>
@@ -44,6 +51,8 @@ const AboutPage = () => {
           style={{ backgroundImage: "url('/assets/mission-bg.jpg')" }}
         ></div>
       </section>
+
+
 
       <section className="py-16 bg-main">
         <div className="container mx-auto px-4 md:px-8 lg:px-16">

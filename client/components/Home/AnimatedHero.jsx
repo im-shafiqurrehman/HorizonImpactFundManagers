@@ -16,7 +16,7 @@ const Slider = () => {
   ]
 
   const textContents = [
-    "Empowering Investments with Vision and Growth",
+    "Invest with Vision",
     "Tailored Solutions for Every Industry",
     "Sustainability and Safety Compliance",
   ]

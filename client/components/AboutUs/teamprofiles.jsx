@@ -1,14 +1,14 @@
-"use client";
+"use client"
 
-import { useState } from "react";
-import Image from "next/image";
-import { motion } from "framer-motion";
-import { Card, CardContent } from "@/components/ui/card";
-import Arinze from "../../public/assets/Arinze.jpeg"; // Remove curly braces
-import Sean from "../../public/assets/Sean.png";
-import Justin from "../../public/assets/Justin.png";
-import Utaara from "../../public/assets/Utaara.png";
-import Veneranda from "../../public/assets/Veneranda.png";
+import { useState } from "react"
+import Image from "next/image"
+import { motion } from "framer-motion"
+import { Card, CardContent } from "@/components/ui/card"
+import Arinze from "../../public/assets/Arinze.jpeg"
+import Sean from "../../public/assets/Sean.png"
+import Justin from "../../public/assets/Justin.png"
+import Utaara from "../../public/assets/Utaara.png"
+import Veneranda from "../../public/assets/Veneranda.png"
 
 // Team member data
 const teamMembers = [
@@ -22,7 +22,7 @@ const teamMembers = [
       "As the Chief Executive Officer (CEO) of Horizon Impact Fund, Arinze Okafor, CFA, CAIA, will provide strategic leadership and vision to the fund. His primary responsibilities include aligning the fund with its mission, ensuring adherence to its investment principles, and maintaining a balanced focus on both financial performance and social impact. Arinze will engage with key stakeholders—such as investors, development agencies, and policymakers—to foster strategic partnerships and leverage opportunities for collaboration.",
     trackRecord:
       "Arinze Okafor brings an extensive background in asset management and impact investing, with a proven track record of establishing and managing successful funds across multiple asset classes.",
-    image: Arinze, // Direct reference to imported image
+    image: Arinze,
   },
   {
     id: 2,
@@ -72,14 +72,14 @@ const teamMembers = [
       "Sean brings valuable expertise in financial analysis and impact measurement, ensuring investments meet both financial and social impact objectives.",
     image: Sean,
   },
-];
+]
 
 const TeamProfiles = () => {
-  const [expandedId, setExpandedId] = useState(null);
+  const [expandedId, setExpandedId] = useState(null)
 
   const toggleExpand = (id) => {
-    setExpandedId(expandedId === id ? null : id);
-  };
+    setExpandedId(expandedId === id ? null : id)
+  }
 
   return (
     <div className="container mx-auto py-12 px-4">
@@ -95,20 +95,22 @@ const TeamProfiles = () => {
             <Card className="overflow-hidden border-0 shadow-md hover:shadow-lg transition-shadow duration-300">
               <CardContent className="p-0">
                 <div className="flex flex-col md:flex-row">
-                  {/* Image Section */}
-                  <div className="md:w-1/4 lg:w-1/5 md:order-2">
-                    <div className="relative aspect-square md:h-full overflow-hidden">
+                  {/* Image Section - Increased width */}
+                  <div className="md:w-1/3 lg:w-1/4 md:order-2">
+                    <div className="relative w-full h-full min-h-[250px] md:min-h-[300px]">
                       <Image
-                        src={member.image} // Use direct image reference
+                        src={member.image || "/placeholder.svg"}
                         alt={member.name}
                         fill
-                        className="object-cover"
+                        sizes="(max-width: 768px) 100vw, 33vw"
+                        className="object-cover object-center"
+                        priority={member.id === 1}
                       />
                     </div>
                   </div>
 
-                  {/* Content Section */}
-                  <div className="md:w-3/4 lg:w-4/5 p-6 md:order-1">
+                  {/* Content Section - Adjusted width */}
+                  <div className="md:w-2/3 lg:w-3/4 p-6 md:order-1">
                     <h3 className="text-xl md:text-2xl font-semibold text-blue-600 mb-1">{member.name}</h3>
                     <p className="text-gray-700 font-medium mb-4">{member.role}</p>
 
@@ -142,7 +144,8 @@ const TeamProfiles = () => {
         ))}
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default TeamProfiles;
+export default TeamProfiles
+

@@ -12,7 +12,7 @@ export const specializations = [
     icon: ChartLineIcon,
     title: "Private Equity Investments",
     description:
-      "We invest in high-growth private companies, unlocking their potential and delivering superior returns through strategic partnerships and operational expertise.",
+      "We invest in high-growth private companies to unlock potential and drive superior returns through strategic partnerships.",
   },
   {
     icon: HandshakeIcon,

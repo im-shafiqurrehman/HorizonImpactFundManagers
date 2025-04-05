@@ -97,7 +97,7 @@ export default function ContactUs() {
               icon: MapPin,
               title: "Our Location",
               content: (
-                <span className="text-main">Southern Africa</span>
+                <span className="text-main">Namibia</span>
               ),
             },
             {

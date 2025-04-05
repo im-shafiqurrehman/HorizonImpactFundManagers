@@ -110,8 +110,7 @@ export default function FAQSection() {
             Frequently Asked <span className="text-[#248bac]">Questions</span>
           </h2>
           <p className="mx-auto max-w-2xl text-lg text-[#545454]/80">
-            Find answers to common questions about investing with Horizon Impact Fund Managers. 
-            Can&apso;t find what you&apos;re looking for? Contact our support team.
+            Find answers to common questions about investing with Horizon Impact Fund Managers.
           </p>
         </motion.div>
 

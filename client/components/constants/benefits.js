@@ -5,7 +5,7 @@ export const features = [
     icon: <Shield className="w-8 h-8 text-main group-hover:text-white" />,
     title: "Robust Risk Management",
     description:
-      "Our investment strategies are built on a foundation of robust risk management, ensuring the safety and security of your portfolio.",
+      "Our investment strategies are built on robust risk management, ensuring the safety and security of your portfolio.",
     benefits: [
       "Diversified investments",
       "Risk assessment tools",

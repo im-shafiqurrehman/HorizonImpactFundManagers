@@ -14,7 +14,9 @@ export default function Services() {
         <div className="text-center mb-16">
           <Badge
             variant="outline"
-            className="mb-4 text-sm font-medium rounded-full text-gray-600 border-gray-300"
+            className="mb-4 text-sm font-medium rounded-full text-white border-gray-300 px-4 py-1.5 
+             bg-[#e66f3d] hover:text-white 
+             cursor-pointer t"
           >
             Our Expertise
           </Badge>
@@ -28,10 +30,6 @@ export default function Services() {
             </p>
           </div>
         </div>
-
-
-
-
         <Fade triggerOnce>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {specializations.map((spec, index) => (

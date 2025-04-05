@@ -15,7 +15,7 @@ import ForgetPassword from "../components/Auth/ForgetPassword";
 import Forgetpasswordotp from "../components/Auth/Forgetpasswordotp";
 import Verification from "../components/Auth/Verification";
 import CustomModal from "../utlis/CustomModal";
-import logo from "../../public/assets/logo1.png";
+import logo from "../../public/assets/logo.png";
 import { Twirl as Hamburger } from "hamburger-react";
 import { usePathname } from "next/navigation";
 import { Sheet, SheetContent, SheetClose } from "../../components/ui/sheet";
