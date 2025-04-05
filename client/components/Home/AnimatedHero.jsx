@@ -3,7 +3,6 @@
 
 import React, { useEffect, useRef, useState, useCallback } from "react";
 import gsap from "gsap";
-import "./Slider.css";
 
 const Slider = () => {
   const sliderRef = useRef(null);

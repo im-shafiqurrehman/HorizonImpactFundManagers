@@ -6,7 +6,6 @@ import React from "react";
 import { Fade } from "react-awesome-reveal";
 import Image from "next/image";
 import { FaLightbulb, FaUsers, FaCogs } from "react-icons/fa";
-import { Sponser } from "@/components/Home/Sponsers";
 import DotPattern from "@/components/ui/dot-pattern";
 import TeamProfiles from "../../components/AboutUs/teamprofiles.jsx"
 
