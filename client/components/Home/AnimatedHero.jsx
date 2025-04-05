@@ -11,21 +11,18 @@ const Slider = () => {
 
   const images = [
     "url('/assets/banner-1.jpeg')",
-    "url('/assets/banner-2.jpg')",
     "url('/assets/banner-3.png')",
     "url('/assets/banner-4.jpg')",
   ]
 
   const textContents = [
     "Empowering Investments with Vision and Growth",
-    "Cutting-Edge Technology",
     "Tailored Solutions for Every Industry",
     "Sustainability and Safety Compliance",
   ]
 
   const descriptionContents = [
     "Illuminating Opportunities for a Brighter Future",
-    "Stay ahead with advanced technology that prioritizes safety and functionality.",
     "Solutions specifically crafted to cater to the unique requirements of various industries.",
     "We prioritize sustainable solutions that align with industry safety standards.",
   ]
