@@ -211,7 +211,7 @@ const Slider = () => {
   }
 
   const getSlideStyle = (index) => {
-    const baseStyle = {
+    return {
       width: "100%",
       height: "100%",
       position: "absolute",
@@ -223,13 +223,8 @@ const Slider = () => {
       alignItems: "center",
       clipPath:
         index === 0 ? "polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)" : "polygon(100% 0%, 100% 0%, 100% 100%, 100% 100%)",
-      backgroundSize: "cover",
-      backgroundPosition: "center",
-      backgroundRepeat: "no-repeat",
-      position: "relative",
+      // Remove background properties as they're set by GSAP
     }
-
-    return baseStyle
   }
 
   const slideOverlayStyle = {
@@ -279,7 +274,17 @@ const Slider = () => {
         {textContents.map((text, i) => (
           <div key={i} className="slide" ref={(el) => (slidesRef.current[i] = el)} style={getSlideStyle(i)}>
             {/* Pseudo-element replacement for ::before */}
-            <div style={slideOverlayStyle}></div>
+            <div
+              style={{
+                position: "absolute",
+                top: 0,
+                left: 0,
+                width: "100%",
+                height: "100%",
+                background: "linear-gradient(180deg, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.8))",
+                zIndex: 1,
+              }}
+            ></div>
 
             <div className="slide-text" ref={(el) => (textRefs.current[i] = el)} style={slideTextStyle}>
               {text}
