@@ -151,7 +151,7 @@ const Slider = () => {
   }, [gotoNextSlide, isInitialized]);
 
   return (
-    <div className="wrapper">
+    <div className="wrapper mt-12">
       <div className="slider" ref={sliderRef}>
         {textContents.map((text, i) => (
           <div
