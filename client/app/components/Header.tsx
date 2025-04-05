@@ -272,7 +272,6 @@
 
 
 
-
 "use client";
 
 import { useLoadUserQuery } from "@/redux/features/api/apiSlice";
@@ -301,11 +300,9 @@ interface User {
   user?: { avatar?: { url: string } };
 }
 
-type Props = {
-  activeItem: number;
-};
+type Props = {};
 
-const Header: FC<Props> = ({ activeItem }) => {
+const Header: FC<Props> = () => {
   const [active, setActive] = useState(false);
   const [openSidebar, setOpenSidebar] = useState(false);
   const [open, setOpen] = useState(false);
@@ -317,15 +314,19 @@ const Header: FC<Props> = ({ activeItem }) => {
   const {} = useLogoutQuery(undefined, { skip: !logout });
   const pathname = usePathname();
 
-  const isActiveLink = (href: string) => pathname === href;
-
+  // Compute activeItem based on pathname
   const navLinks = [
     { href: "/", label: "Home" },
     { href: "/our-approach", label: "Our Approach" },
     { href: "/services", label: "Services" },
     { href: "/about", label: "About Us" },
     { href: "/contact", label: "Contact Us" },
+    { href: "/profile", label: "Profile" }, // Added for profile border logic
   ];
+
+  const activeItem = navLinks.findIndex((link) => link.href === pathname);
+
+  const isActiveLink = (href: string) => pathname === href;
 
   useEffect(() => {
     if (!isLoading && !userData && data) {
@@ -369,7 +370,7 @@ const Header: FC<Props> = ({ activeItem }) => {
       <div
         className={`h-[80px] border-b transition duration-500 ${
           active ? "shadow-md py-2 bg-white" : "shadow-sm py-2 bg-white"
-        } px-4 lg:px-12`} // Consistent padding
+        } px-4 lg:px-12`}
       >
         <div className="w-full mx-auto h-full flex items-center justify-between max-w-[1920px]">
           <Link href={"/"} className="text-[25px] font-Poppins font-[500] text-black">
