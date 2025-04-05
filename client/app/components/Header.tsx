@@ -22,14 +22,8 @@ import { Sheet, SheetContent, SheetClose } from "../../components/ui/sheet";
 import { X } from "lucide-react";
 
 interface User {
-  avatar?: {
-    url: string;
-  };
-  user?: {
-    avatar?: {
-      url: string;
-    };
-  };
+  avatar?: { url: string };
+  user?: { avatar?: { url: string } };
 }
 
 type Props = {
@@ -47,9 +41,7 @@ const Header: FC<Props> = ({ activeItem, open, setOpen, route, setRoute }) => {
   const { data } = useSession();
   const [socialAuth, { isSuccess }] = useSocialAuthMutation();
   const [logout, setLogout] = useState(false);
-  const {} = useLogoutQuery(undefined, {
-    skip: !logout ? true : false,
-  });
+  const {} = useLogoutQuery(undefined, { skip: !logout });
   const pathname = usePathname();
 
   const isActiveLink = (href: string) => pathname === href;
@@ -63,46 +55,29 @@ const Header: FC<Props> = ({ activeItem, open, setOpen, route, setRoute }) => {
   ];
 
   useEffect(() => {
-    // console.log("User Data: ", userData); 
-    if (!isLoading) {
-      if (!userData) {
-        if(data) {
-          socialAuth({
-            email: data?.user?.email,
-            name: data?.user?.name,
-            avatar: data?.user?.image,
-          });
-          refetch();
-        }
-      }
+    if (!isLoading && !userData && data) {
+      socialAuth({
+        email: data?.user?.email,
+        name: data?.user?.name,
+        avatar: data?.user?.image,
+      });
+      refetch();
     }
-    if (data === null) {
-      if (isSuccess) {
-        toast.success("Welcome back to ELearning!");
-        setOpen(false);
-      }
+    if (data === null && isSuccess) {
+      toast.success("Welcome back to ELearning!");
+      setOpen(false);
     }
     if (data === null && !isLoading && !userData) {
       setLogout(true);
     }
   }, [data, isLoading, isSuccess, refetch, setOpen, socialAuth, userData]);
 
-  
-
   useEffect(() => {
     const handleScroll = () => {
-      if (window.scrollY > 80) {
-        setActive(true);
-      } else {
-        setActive(false);
-      }
+      setActive(window.scrollY > 80);
     };
-
     window.addEventListener("scroll", handleScroll);
-
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   const handleProfileClick = () => {
@@ -111,13 +86,13 @@ const Header: FC<Props> = ({ activeItem, open, setOpen, route, setRoute }) => {
   };
 
   return (
-    <header className="fixed top-0 left-0 w-full z-[80] overflow-hidden" style={{ maxWidth: "100vw" }}>
+    <header className="fixed top-0 left-0 w-full z-[80]">
       <div
-        className={`h-[80px] border-b transition duration-500 overflow-hidden ${
+        className={`h-[80px] border-b transition duration-500 ${
           active ? "shadow-md py-2 px-4 lg:px-8 bg-white" : "shadow-sm py-2 px-4 lg:px-12 bg-white"
         }`}
       >
-        <div className="w-full max-w-[1200px] h-full flex items-center justify-between overflow-hidden">
+        <div className="w-full mx-auto h-full flex items-center justify-between max-w-[1920px]">
           <Link href={"/"} className="text-[25px] font-Poppins font-[500] text-black">
             <Image src={logo || "/placeholder.svg"} alt="Logo" width={75} height={140} priority />
           </Link>
@@ -171,22 +146,13 @@ const Header: FC<Props> = ({ activeItem, open, setOpen, route, setRoute }) => {
       <Sheet open={openSidebar} onOpenChange={setOpenSidebar}>
         <SheetContent
           side="right"
-          className="w-[280px] sm:w-[350px] h-full bg-white pt-16 mt-10 overflow-hidden text-gray-800"
-          style={{ maxWidth: "100vw" }}
+          className="w-[280px] sm:w-[350px] h-full bg-white pt-16 mt-10 text-gray-800"
         >
           <SheetClose className="absolute top-4 right-4 rounded-sm opacity-70 ring-offset-background transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:pointer-events-none data-[state=open]:bg-secondary">
             <X className="h-6 w-6" />
             <span className="sr-only">Close</span>
           </SheetClose>
-          <nav
-            className="flex flex-col gap-6 px-2 h-full overflow-y-auto overflow-x-hidden"
-            style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
-          >
-            <style jsx>{`
-              nav::-webkit-scrollbar {
-                display: none;
-              }
-            `}</style>
+          <nav className="flex flex-col gap-6 px-2 h-full overflow-y-auto">
             {navLinks.map((link) => (
               <Link
                 key={link.href}
@@ -199,15 +165,11 @@ const Header: FC<Props> = ({ activeItem, open, setOpen, route, setRoute }) => {
             ))}
 
             {/* User profile in mobile menu */}
-            <div className="mt-8 pt-2 border-t border-gray-200 overflow-hidden">
-              <div className="flex items-center gap-3 w-full overflow-hidden">
+            <div className="mt-8 pt-2 border-t border-gray-200">
+              <div className="flex items-center gap-3">
                 {userData ? (
-                  <Link
-                    href="/profile"
-                    className="flex items-center gap-3 w-full"
-                    onClick={() => setOpenSidebar(false)}
-                  >
-                    <div className="min-w-10 h-10 rounded-full overflow-hidden border-2 border-gray-200 flex-shrink-0">
+                  <Link href="/profile" className="flex items-center gap-3" onClick={() => setOpenSidebar(false)}>
+                    <div className="min-w-10 h-10 rounded-full overflow-hidden border-2 border-gray-200">
                       <Image
                         src={userData?.user?.avatar?.url || avatarDefault}
                         alt="Profile"
@@ -216,25 +178,21 @@ const Header: FC<Props> = ({ activeItem, open, setOpen, route, setRoute }) => {
                         className="w-full h-full object-cover"
                       />
                     </div>
-                    <div className="w-full overflow-hidden mr-6">
-                      <p className="text-sm text-gray-500 truncate">Access your account</p>
-                    </div>
+                    <p className="text-sm text-gray-500">Access your account</p>
                   </Link>
                 ) : (
                   <button
-                    className="flex items-center gap-3 w-full"
+                    className="flex items-center gap-3"
                     onClick={() => {
                       setRoute("Login");
                       setOpen(true);
                       setOpenSidebar(false);
                     }}
                   >
-                    <div className="min-w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center flex-shrink-0">
+                    <div className="min-w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center">
                       <HiOutlineUserCircle className="w-6 h-6 text-gray-600" />
                     </div>
-                    <div className="w-full overflow-hidden mr-6">
-                      <p className="text-sm text-gray-500 truncate">Access your account</p>
-                    </div>
+                    <p className="text-sm text-gray-500">Access your account</p>
                   </button>
                 )}
               </div>

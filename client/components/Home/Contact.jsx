@@ -29,8 +29,8 @@ export default function ContactSection() {
               <Image
                 src="/assets/logo1.png"
                 alt="Horizon Impact Logo"
-                width={80} 
-                height={160} 
+                width={80}
+                height={160}
                 className="mb-6"
               />
             </Link>
@@ -109,7 +109,7 @@ export default function ContactSection() {
                 <span className="text-lg text-gray-400">
                   <p>
                     Horizon Impact Fund Managers <br />
-                    Nambabia, Pakistan
+                    Nambabia
                   </p>
                 </span>
               </div>
@@ -120,10 +120,10 @@ export default function ContactSection() {
                 <span className="text-lg text-gray-400">
                   Call Us:
                   <a
-                    href="tel:+923264139439"
+                    href="tel:+264814174301"
                     className="text-lg pl-2 hover:text-main hover:underline"
                   >
-                    +32 4532 33423
+                    +264814174301
                   </a>
                 </span>
               </div>
@@ -134,12 +134,12 @@ export default function ContactSection() {
                 <span className="text-lg text-gray-400">
                   Whatsapp Us:
                   <a
-                    href="https://wa.me/923264139439"
+                    href="https://wa.me/+264814174301"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-lg pl-2 hover:text-main hover:underline"
                   >
-                    +32 4532 31323
+                    +264814174301
                   </a>
                 </span>
               </div>
@@ -150,10 +150,16 @@ export default function ContactSection() {
                 <span className="text-lg text-gray-400">
                   Email Us:
                   <a
-                    href="mailto:horizonimpactfundmanagers@gmail.com"
-                    className="text-[12px] md:text-lg pl:2 hover:text-main hover:underline"
+                    href="mailto:info@HIFM.com.na"
+                    className="text-[12px] md:text-lg pl-2 hover:text-main hover:underline"
                   >
-                     horizonimpactfundmanagers@gmail.com
+                    info@HIFM.com.na
+                  </a>
+                  <a
+                    href="mailto:arinze@HIFM.com.na"
+                    className="text-[12px] md:text-lg pl-2 hover:text-main hover:underline"
+                  >
+                    arinze@HIFM.com.na
                   </a>
                 </span>
               </div>

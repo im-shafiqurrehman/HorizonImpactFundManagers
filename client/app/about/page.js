@@ -19,19 +19,25 @@ const AboutPage = () => {
         backgroundImage="/assets/about-banner.jpg"
       />
 
-      <section className="py-16 bg-gray-50 relative overflow-hidden">
+      <section className="py-8 md:py-16 bg-gray-50 relative overflow-hidden">
         <Fade triggerOnce direction="up" duration={800} cascade damping={0.2}>
-          <header className="text-center mb-12 px-4">
-            <h1 className="text-4xl font-extrabold mb-6 text-main">
+          <header className="text-center mb-8 md:mb-12 w-full max-w-[90%] md:max-w-[90%] lg:max-w-3xl mx-auto">
+            <h1 className="text-3xl md:text-4xl font-extrabold mb-4 md:mb-6 text-main">
               About Us
             </h1>
-            <p className="max-w-3xl mx-auto text-lg text-gray-600 leading-relaxed">
-              Horizon Impact Fund Managers is a Southern Africa-focused impact investment firm dedicated to driving sustainable development and inclusive economic growth. We bridge the financing gap in high-impact industries, unlocking capital for sustainable agriculture, hydrocarbons, the green economy, basic needs (housing, water, sanitation, healthcare, and education), sports & the creative industry, and fintech & digital infrastructure.
-
-              With a target fund size of USD 10–50 million and an investment horizon of 7–10 years, we provide innovative financing solutions that generate measurable social and environmental impact while delivering competitive financial returns. By focusing on micro, small, and medium-sized enterprises (MSMEs) across Namibia and Southern Africa, we aim to catalyze job creation, climate resilience, and economic transformation in underserved markets.
-
-              Our investment approach combines financial expertise, strategic partnerships, and responsible capital allocation to drive long-term value and sustainable impact. Horizon Impact Fund Managers is committed to reshaping Africa&apos;s investment landscape—one transformative investment at a time.
+            <div className="w-full text-gray-600 leading-relaxed space-y-4">
+              <p className="text-base md:text-lg">
+                Horizon Impact Fund Managers is a Southern Africa-focused impact investment firm dedicated to driving sustainable development and inclusive economic growth. We bridge the financing gap in high-impact industries, unlocking capital for sustainable agriculture, hydrocarbons, the green economy, basic needs (housing, water, sanitation, healthcare, and education), sports & the creative industry, and fintech & digital infrastructure.
               </p>
+
+              <p className="text-base md:text-lg">
+                With a target fund size of USD 10–50 million and an investment horizon of 7–10 years, we provide innovative financing solutions that generate measurable social and environmental impact while delivering competitive financial returns. By focusing on micro, small, and medium-sized enterprises (MSMEs) across Namibia and Southern Africa, we aim to catalyze job creation, climate resilience, and economic transformation in underserved markets.
+              </p>
+
+              <p className="text-base md:text-lg">
+                Our investment approach combines financial expertise, strategic partnerships, and responsible capital allocation to drive long-term value and sustainable impact. Horizon Impact Fund Managers is committed to reshaping Africa's investment landscape—one transformative investment at a time.
+              </p>
+            </div>
           </header>
         </Fade>
         <div
@@ -98,7 +104,7 @@ const AboutPage = () => {
                   Our Vision
                 </h2>
                 <p className="text-lg text-gray-600 leading-relaxed">
-                To be Southern Africa&apos;s leading impact investment firm, pioneering financial solutions that unlock capital for transformative industries, foster entrepreneurship, and create sustainable livelihoods. By bridging social impact and economic progress, we aim to reshape the region&apos;s investment landscape, ensuring equitable growth and lasting change.
+                  To be Southern Africa&apos;s leading impact investment firm, pioneering financial solutions that unlock capital for transformative industries, foster entrepreneurship, and create sustainable livelihoods. By bridging social impact and economic progress, we aim to reshape the region&apos;s investment landscape, ensuring equitable growth and lasting change.
                 </p>
               </div>
             </div>
@@ -163,7 +169,7 @@ const AboutPage = () => {
           </div>
         </Fade>
       </section>
-   
+
       <div className="bg-gray-50">
         <Sponser />
       </div>

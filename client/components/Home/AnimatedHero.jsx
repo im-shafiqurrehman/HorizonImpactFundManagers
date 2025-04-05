@@ -1,16 +1,17 @@
+
 "use client";
+
 import React, { useEffect, useRef, useState, useCallback } from "react";
 import gsap from "gsap";
+import "./Slider.css";
+
 const Slider = () => {
   const sliderRef = useRef(null);
   const slidesRef = useRef([]);
   const textRefs = useRef([]);
   const descRefs = useRef([]);
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const [isTweening, setIsTweening] = useState(false);
-  const [isInitialized, setIsInitialized] = useState(false);
-  const [imagesLoaded, setImagesLoaded] = useState(false);
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   const images = [
     "url('/assets/banner-1.jpeg')",
     "url('/assets/banner-2.jpg')",
@@ -32,26 +33,15 @@ const Slider = () => {
     "We prioritize sustainable solutions that align with industry safety standards.",
   ];
 
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [isTweening, setIsTweening] = useState(false);
+  const [isInitialized, setIsInitialized] = useState(false);
+
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   const slideDirections = ["left", "right", "top", "bottom"];
 
-  useEffect(() => {
-    const preloadImages = async () => {
-      const imagePromises = images.map((src) => {
-        return new Promise((resolve) => {
-          const img = new Image();
-          img.src = src.replace("url('", "").replace("')", "");
-          img.onload = resolve;
-          img.onerror = resolve;
-        });
-      });
-      await Promise.all(imagePromises);
-      setImagesLoaded(true);
-    };
-    preloadImages();
-  }, []);
-
   const gotoNextSlide = useCallback(() => {
-    if (isTweening || !imagesLoaded) return;
+    if (isTweening) return;
 
     const currentSlide = slidesRef.current[currentIndex];
     const currentText = textRefs.current[currentIndex];
@@ -67,7 +57,7 @@ const Slider = () => {
     setIsTweening(true);
 
     gsap.to([currentText, currentDesc], {
-      duration: 1.5,
+      duration: 1,
       y: "100%",
       opacity: 0,
       ease: "power2.in",
@@ -75,10 +65,22 @@ const Slider = () => {
 
     const direction = slideDirections[currentIndex % slideDirections.length];
     const directionStyles = {
-      left: { clipOut: "polygon(100% 0%, 0% 0%, 0% 100%, 100% 100%)", x: "-100%" },
-      right: { clipOut: "polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)", x: "100%" },
-      top: { clipOut: "polygon(0% 100%, 100% 100%, 100% 0%, 0% 0%)", y: "-100%" },
-      bottom: { clipOut: "polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)", y: "100%" },
+      left: {
+        clipOut: "polygon(100% 0%, 0% 0%, 0% 100%, 100% 100%)",
+        x: "-100%",
+      },
+      right: {
+        clipOut: "polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)",
+        x: "100%",
+      },
+      top: {
+        clipOut: "polygon(0% 100%, 100% 100%, 100% 0%, 0% 0%)",
+        y: "-100%",
+      },
+      bottom: {
+        clipOut: "polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)",
+        y: "100%",
+      },
     };
 
     const { clipOut, x, y } = directionStyles[direction];
@@ -105,24 +107,23 @@ const Slider = () => {
     });
 
     gsap.to([nextText, nextDesc], {
-      duration: 2,
+      duration: 1.5,
       y: "0%",
       opacity: 1,
       ease: "power2.out",
-      stagger: 0.4,
-      delay: 0.6,
+      stagger: 0.3,
+      delay: 0.4,
     });
-  }, [currentIndex, isTweening, imagesLoaded]);
+  }, [currentIndex, isTweening, slideDirections]);
 
   useEffect(() => {
-    if (!imagesLoaded) return;
-
     slidesRef.current.forEach((slide, i) => {
       gsap.set(slide, {
         backgroundImage: images[i],
         backgroundSize: "cover",
         backgroundPosition: "center",
       });
+
       gsap.set([textRefs.current[i], descRefs.current[i]], {
         y: "100%",
         opacity: 0,
@@ -140,139 +141,39 @@ const Slider = () => {
         onComplete: () => setIsInitialized(true),
       });
     }
-  }, [imagesLoaded, isInitialized]);
+  }, [images, isInitialized]);
 
   useEffect(() => {
-    if (isInitialized && imagesLoaded) {
-      const timer = setInterval(gotoNextSlide, 5000);
+    if (isInitialized) {
+      const timer = setInterval(gotoNextSlide, 4000);
       return () => clearInterval(timer);
     }
-  }, [gotoNextSlide, isInitialized, imagesLoaded]);
+  }, [gotoNextSlide, isInitialized]);
 
   return (
-    <div 
-      style={{
-        boxSizing: "border-box",
-        width: "100%",
-        height: "95vh",
-        backgroundColor: "#111",
-        display: "flex",
-        flexDirection: "column",
-        justifyContent: "center",
-        alignItems: "center",
-        position: "relative",
-        overflow: "hidden",
-        maxWidth: "100%",
-        marginTop: "3rem"
-      }}
-    >
-      {!imagesLoaded ? (
-        <div
-          style={{
-            boxSizing: "border-box",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            width: "100%",
-            height: "100%",
-            color: "#ffffff",
-            fontSize: "1.5rem",
-            backgroundColor: "#111",
-            position: "absolute",
-            zIndex: 3
-          }}
-        >
-          Loading...
-        </div>
-      ) : (
-        <div
-          ref={sliderRef}
-          style={{
-            boxSizing: "border-box",
-            width: "100%",
-            height: "100%",
-            position: "relative",
-            overflow: "hidden"
-          }}
-        >
-          {textContents.map((text, i) => (
+    <div className="wrapper">
+      <div className="slider" ref={sliderRef}>
+        {textContents.map((text, i) => (
+          <div
+            key={i}
+            className="slide"
+            ref={(el) => (slidesRef.current[i] = el)}
+          >
             <div
-              key={i}
-              ref={(el) => (slidesRef.current[i] = el)}
-              style={{
-                boxSizing: "border-box",
-                width: "100%",
-                height: "100%",
-                position: "absolute",
-                top: 0,
-                left: 0,
-                display: "flex",
-                flexDirection: "column",
-                justifyContent: "center",
-                alignItems: "center",
-                clipPath: i === 0 
-                  ? "polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)" 
-                  : "polygon(100% 0%, 100% 0%, 100% 100%, 100% 100%)",
-                backgroundSize: "cover",
-                backgroundPosition: "center",
-                backgroundRepeat: "no-repeat",
-                backgroundImage: images[i],
-                "::before": {
-                  content: '""',
-                  position: "absolute",
-                  top: 0,
-                  left: 0,
-                  width: "100%",
-                  height: "100%",
-                  background: "linear-gradient(180deg, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.8))",
-                  zIndex: 1
-                }
-              }}
+              className="slide-text"
+              ref={(el) => (textRefs.current[i] = el)}
             >
-              <div
-                ref={(el) => (textRefs.current[i] = el)}
-                style={{
-                  boxSizing: "border-box",
-                  color: "#ffffff",
-                  fontSize: "2rem",
-                  textAlign: "center",
-                  transform: "translateY(100%)",
-                  opacity: 0,
-                  position: "relative",
-                  zIndex: 2,
-                  maxWidth: "80%",
-                  padding: "1rem",
-                  fontWeight: 600,
-                  textShadow: "1px 1px 8px rgba(0, 0, 0, 0.6)",
-                  wordWrap: "break-word",
-                  overflowWrap: "break-word"
-                }}
-              >
-                {text}
-              </div>
-              <div
-                ref={(el) => (descRefs.current[i] = el)}
-                style={{
-                  boxSizing: "border-box",
-                  color: "#d1d1d1",
-                  fontSize: "1.2rem",
-                  textAlign: "center",
-                  transform: "translateY(100%)",
-                  opacity: 0,
-                  position: "relative",
-                  zIndex: 2,
-                  maxWidth: "80%",
-                  textShadow: "1px 1px 5px rgba(0, 0, 0, 0.5)",
-                  wordWrap: "break-word",
-                  overflowWrap: "break-word"
-                }}
-              >
-                {descriptionContents[i]}
-              </div>
+              {text}
             </div>
-          ))}
-        </div>
-      )}
+            <div
+              className="slide-description"
+              ref={(el) => (descRefs.current[i] = el)}
+            >
+              {descriptionContents[i]}
+            </div>
+          </div>
+        ))}
+      </div>
     </div>
   );
 };

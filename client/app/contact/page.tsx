@@ -50,12 +50,12 @@ export default function ContactUs() {
     try {
       // Send the form data to the backend API
       const response = await axios.post(
-        `${process.env.NEXT_PUBLIC_SERVER_URI}/send-email`, // Use the base URL from .env
+        `${process.env.NEXT_PUBLIC_SERVER_URI}/send-email`, 
         {
           email: "horizonimpactfundmanagers@gmail.com", // Recipient email
           subject: "New Contact Form Submission", // Email subject
           template: "contact-template.ejs", // EJS template file
-          data: { // Data to pass to the template
+          data: { 
             name: values.name,
             email: values.email,
             message: values.message,
@@ -106,10 +106,10 @@ export default function ContactUs() {
               content: (
                 <div className="flex justify-center">
                   <a
-                    href="mailto:horizonimpactfundmanagers@gmail.com"
+                    href="mailto:info@HIFM.com.na "
                     className="text-main hover:underline text-[13px] text-center"
                   >
-                    horizonimpactfundmanagers@gmail.com
+                    info@HIFM.com.na 
                   </a>
                 </div>
               ),
@@ -119,10 +119,10 @@ export default function ContactUs() {
               title: "Call Us",
               content: (
                 <a
-                  href="tel:+923264139439"
+                  href="tel:+264814174301"
                   className="text-main hover:underline"
                 >
-                  +967 97757687
+                  +264814174301
                 </a>
               ),
             },
@@ -131,12 +131,12 @@ export default function ContactUs() {
               title: "WhatsApp Us",
               content: (
                 <a
-                  href="https://wa.me/03264139439"
+                  href="https://wa.me/+264814174301"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-main hover:underline"
                 >
-                 +967 87879870980
+                 +264814174301
                 </a>
               ),
             },
@@ -255,15 +255,15 @@ export default function ContactUs() {
                   </div>
                   <div className="flex items-center space-x-2 text-gray-600">
                     <Phone className="h-5 w-5 text-main" />
-                    <span>+967 977876876</span>
+                    <span>+264814174301</span>
                   </div>
                   <div className="flex items-center space-x-2 text-gray-600">
                     <Mail className="h-5 w-5 text-main" />
-                    <span> horizonimpactfundmanagers@gmail.com</span>
+                    <span>info@HIFM.com.na</span>
                   </div>
                   <div className="flex items-center space-x-2 text-gray-600">
                     <MessageCircle className="h-5 w-5 text-main" />
-                    <span>WhatsApp:  +967 97787879</span>
+                    <span>WhatsApp:  +264814174301</span>
                   </div>
 
                   <div className="mt-6">
