@@ -108,7 +108,7 @@ export default function ContactUs() {
                 <div className="flex justify-center">
                   <a
                     href="mailto:info@HIFM.com.na "
-                    className="text-main hover:underline text-[13px] text-center"
+                    className="text-main hover:underline text-center"
                   >
                     info@HIFM.com.na 
                   </a>

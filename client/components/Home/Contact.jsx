@@ -1,45 +1,24 @@
-"use client";
+"use client"
 import logo1 from "../../public/assets/logo1.png"
 
-import Image from "next/image";
-import {
-  FaFacebook,
-  FaInstagram,
-  FaLinkedin,
-  FaTwitter,
-  FaWhatsapp,
-  FaMapMarkerAlt,
-  FaPhoneAlt,
-} from "react-icons/fa";
-import {
-  Tooltip,
-  TooltipProvider,
-  TooltipTrigger,
-  TooltipContent,
-} from "../ui/tooltip";
-import Link from "next/link";
-import { MessageCircle } from "lucide-react";
+import Image from "next/image"
+import { FaFacebook, FaInstagram, FaLinkedin, FaTwitter, FaWhatsapp, FaMapMarkerAlt, FaPhoneAlt } from "react-icons/fa"
+import { Tooltip, TooltipProvider, TooltipTrigger, TooltipContent } from "../ui/tooltip"
+import Link from "next/link"
+import { MessageCircle } from "lucide-react"
 
 export default function ContactSection() {
   return (
     <section className="py-6 bg-gray-800">
       <div className="max-w-7xl mx-auto px-6 lg:px-8 xl:px-16">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-20">
           <div className="space-y-4">
             <Link href={"/"}>
-              <Image
-                src = {logo1}
-                alt="Horizon Impact Logo"
-                width={75} 
-                height={140}
-                className="mb-6"
-              />
+              <Image src={logo1} alt="Horizon Impact Logo" width={75} height={140} className="mb-6" />
             </Link>
             <p className="text-gray-400 text-lg leading-relaxed">
-              Horizon Impact Fund Managers is a leading financial services
-              company specializing in impact investments. We are committed to
-              creating sustainable and impactful financial solutions for our
-              clients.
+              Horizon Impact Fund Managers is a leading financial services company specializing in impact investments.
+              We are committed to creating sustainable and impactful financial solutions for our clients.
             </p>
             <div className="flex space-x-4">
               <TooltipProvider>
@@ -81,9 +60,7 @@ export default function ContactSection() {
                         <Icon className="text-2xl" />
                       </a>
                     </TooltipTrigger>
-                    <TooltipContent className="bg-gray-700 text-white p-2 rounded-md">
-                      {label}
-                    </TooltipContent>
+                    <TooltipContent className="bg-gray-700 text-white p-2 rounded-md">{label}</TooltipContent>
                   </Tooltip>
                 ))}
               </TooltipProvider>
@@ -102,10 +79,8 @@ export default function ContactSection() {
             </div>
           </div>
 
-          <div className="space-y-8">
-            <h2 className="text-2xl font-semibold text-main mb-4">
-              Contact Information
-            </h2>
+          <div className="space-y-8 md:pl-8">
+            <h2 className="text-2xl font-semibold text-main mb-4">Contact Information</h2>
             <div className="space-y-6 text-gray-700">
               <div className="flex gap-4">
                 <div className="flex mt-0.5 items-center justify-center w-12 h-12 flex-shrink-0 bg-gray-200 rounded-full text-main">
@@ -124,17 +99,14 @@ export default function ContactSection() {
                 </div>
                 <span className="text-lg text-gray-400">
                   Call Us:
-                  <a
-                    href="tel:+264814174301"
-                    className="text-lg pl-2 hover:text-main hover:underline"
-                  >
+                  <a href="tel:+264814174301" className="text-lg pl-2 hover:text-main hover:underline">
                     +264814174301
                   </a>
                 </span>
               </div>
               <div className="flex items-center gap-4">
                 <div className="flex items-center justify-center w-12 h-12 flex-shrink-0 bg-gray-200 rounded-full text-main">
-                  < FaWhatsapp className="text-xl" />
+                  <FaWhatsapp className="text-xl" />
                 </div>
                 <span className="text-lg text-gray-400">
                   Whatsapp Us:
@@ -150,21 +122,15 @@ export default function ContactSection() {
               </div>
               <div className="flex items-center gap-4">
                 <div className="flex items-center justify-center w-12 h-12 flex-shrink-0 bg-gray-200 rounded-full text-main">
-                  < MessageCircle className="text-xl" />
+                  <MessageCircle className="text-xl" />
                 </div>
                 <span className="text-lg text-gray-400">
                   Email Us:
-                  <a
-                    href="mailto:info@HIFM.com.na"
-                    className="text-[12px] md:text-lg pl-2 hover:text-main hover:underline"
-                  >
+                  <a href="mailto:info@HIFM.com.na" className="text-lg pl-2 hover:text-main hover:underline">
                     info@HIFM.com.na
                   </a>
-                  <br/>
-                  <a
-                    href="mailto:arinze@HIFM.com.na"
-                    className="text-[12px] md:text-lg pl-2 hover:text-main hover:underline"
-                  >
+                  <br />
+                  <a href="mailto:arinze@HIFM.com.na" className="text-lg pl-2 hover:text-main hover:underline">
                     arinze@HIFM.com.na
                   </a>
                 </span>
@@ -174,5 +140,6 @@ export default function ContactSection() {
         </div>
       </div>
     </section>
-  );
+  )
 }
+

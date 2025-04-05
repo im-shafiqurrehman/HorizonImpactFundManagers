@@ -2,6 +2,10 @@
 
 import Image from "next/image"
 import { useScrollAnimation } from "../our-approach/use-scroll-animation"
+import appach1 from "../../public/assets/approach1.png"
+import appach2 from "../../public/assets/approach2.png"
+import appach3 from "../../public/assets/approach3.png"
+import appach4 from "../../public/assets/approach4.png"
 
 export default function WhatWeDo() {
   const [section1Visible, section1Ref] = useScrollAnimation()
@@ -18,17 +22,19 @@ export default function WhatWeDo() {
 
         <div ref={section1Ref} className="grid md:grid-cols-2 gap-12 mb-16">
           <div
-            className={`relative transform transition-all duration-1000 ease-in-out ${
+            className={`relative transform transition-all duration-1000 ease-in-out flex justify-center items-center ${
               section1Visible ? "translate-x-0 opacity-100" : "translate-x-full opacity-0"
             }`}
           >
-            <Image
-              src="/assets/banner-1.png"
-              alt="Impact Investment"
-              width={600}
-              height={400}
-              className="w-full h-auto"
-            />
+            <div className="max-w-md mx-auto">
+              <Image
+                src={appach1 || "/placeholder.svg"}
+                alt="Impact Investment"
+                width={500}
+                height={350}
+                className="h-auto"
+              />
+            </div>
           </div>
           <div
             className={`flex flex-col justify-center transform transition-all duration-1000 ease-in-out ${
@@ -70,27 +76,31 @@ export default function WhatWeDo() {
             </p>
           </div>
           <div
-            className={`relative order-1 md:order-2 transform transition-all duration-1000 ease-in-out ${
+            className={`relative order-1 md:order-2 transform transition-all duration-1000 ease-in-out flex justify-center items-center ${
               section2Visible ? "translate-x-0 opacity-100" : "translate-x-full opacity-0"
             }`}
           >
-            <Image
-              src="/assets/banner-1.png"
-              alt="Innovative financing"
-              width={600}
-              height={400}
-              className="w-full h-auto"
-            />
+            <div className="max-w-md mx-auto">
+              <Image
+                src={appach2 || "/placeholder.svg"}
+                alt="Innovative financing"
+                width={500}
+                height={350}
+                className="h-auto"
+              />
+            </div>
           </div>
         </div>
 
         <div ref={section3Ref} className="grid md:grid-cols-2 gap-12 mb-16">
           <div
-            className={`relative transform transition-all duration-1000 ease-in-out ${
+            className={`relative transform transition-all duration-1000 ease-in-out flex justify-center items-center ${
               section3Visible ? "translate-x-0 opacity-100" : "translate-x-full opacity-0"
             }`}
           >
-            <Image src="/assets/banner-1.png" alt="MSME focus" width={600} height={400} className="w-full h-auto" />
+            <div className="max-w-md mx-auto">
+              <Image src={appach3 || "/placeholder.svg"} alt="MSME focus" width={500} height={350} className="h-auto" />
+            </div>
           </div>
           <div
             className={`flex flex-col justify-center transform transition-all duration-1000 ease-in-out ${
@@ -132,17 +142,19 @@ export default function WhatWeDo() {
             </p>
           </div>
           <div
-            className={`relative order-1 md:order-2 transform transition-all duration-1000 ease-in-out ${
+            className={`relative order-1 md:order-2 transform transition-all duration-1000 ease-in-out flex justify-center items-center ${
               section4Visible ? "translate-x-0 opacity-100" : "translate-x-full opacity-0"
             }`}
           >
-            <Image
-              src="/assets/banner-1.png"
-              alt="Strategic partnerships"
-              width={600}
-              height={400}
-              className="w-full h-auto"
-            />
+            <div className="max-w-md mx-auto">
+              <Image
+                src={appach4 || "/placeholder.svg"}
+                alt="Strategic partnerships"
+                width={500}
+                height={350}
+                className="h-auto"
+              />
+            </div>
           </div>
         </div>
       </div>
