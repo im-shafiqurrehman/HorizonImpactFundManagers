@@ -5,7 +5,7 @@ import { useLogoutQuery, useSocialAuthMutation } from "@/redux/features/auth/aut
 import { useSession } from "next-auth/react";
 import Image from "next/image";
 import Link from "next/link";
-import { type FC, useEffect, useState } from "react";
+import { type FC, useEffect, useState, Dispatch, SetStateAction } from "react";
 import toast from "react-hot-toast";
 import { HiOutlineUserCircle } from "react-icons/hi";
 import avatarDefault from "../../public/assets/avatardefault.jpeg";
@@ -28,13 +28,25 @@ interface User {
 
 type Props = {
   activeItem: number;
+  open?: boolean; // Optional, since Header manages its own state
+  setOpen?: Dispatch<SetStateAction<boolean>>; // Optional
+  route?: string; // Optional
+  setRoute?: Dispatch<SetStateAction<string>>; // Optional
 };
 
-const Header: FC<Props> = ({ activeItem }) => {
+const Header: FC<Props> = ({ activeItem, open: propOpen, setOpen: propSetOpen, route: propRoute, setRoute: propSetRoute }) => {
+  // Use internal state if props are not provided
+  const [internalOpen, setInternalOpen] = useState(false);
+  const [internalRoute, setInternalRoute] = useState("");
+
+  // Use provided props if available, otherwise fall back to internal state
+  const open = propOpen !== undefined ? propOpen : internalOpen;
+  const setOpen = propSetOpen || setInternalOpen;
+  const route = propRoute !== undefined ? propRoute : internalRoute;
+  const setRoute = propSetRoute || setInternalRoute;
+
   const [active, setActive] = useState(false);
   const [openSidebar, setOpenSidebar] = useState(false);
-  const [open, setOpen] = useState(false);
-  const [route, setRoute] = useState("");
   const { data: userData, isLoading, refetch } = useLoadUserQuery(undefined, {});
   const { data } = useSession();
   const [socialAuth, { isSuccess }] = useSocialAuthMutation();
@@ -68,7 +80,7 @@ const Header: FC<Props> = ({ activeItem }) => {
     if (data === null && !isLoading && !userData) {
       setLogout(true);
     }
-  }, [data, isLoading, isSuccess, refetch, socialAuth, userData]);
+  }, [data, isLoading, isSuccess, refetch, socialAuth, userData, setOpen]);
 
   useEffect(() => {
     const handleScroll = () => {

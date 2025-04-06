@@ -16,18 +16,26 @@ import MainLayout from "@/components/Layout/MainLayout";
 interface Props {}
 
 const Page: FC<Props> = (props) => {
+  const [open, setOpen] = useState(false);
   const [activeItem, setActiveItem] = useState(0);
+  const [route, setRoute] = useState("Login");
 
   return (
     <div>
-      <MainLayout>
-        <Headings
-          title="Horizon"
-          description="Our Investment Company provides strategic financial solutions and expert guidance to help you grow your wealth."
-          keywords=""
-        />
-        <Header activeItem={activeItem} />
-        <Slider />
+       <MainLayout>
+      <Headings
+        title="Horizon"
+        description="Our Investment Company provides strategic financial solutions and expert guidance to help you grow your wealth."
+        keywords=""
+      />
+      <Header
+        open={open}
+        setOpen={setOpen}
+        activeItem={activeItem}
+        setRoute={setRoute}
+        route={route}
+      />
+     <Slider />
         <AboutUs />
         <TargetedMarkets />
         {/* <ProductShowcase slice={true} /> */}
@@ -36,8 +44,8 @@ const Page: FC<Props> = (props) => {
         <KeyFeaturesAndBenefits />
         {/* <Sponser /> */}
         {/* <Testimonial/> */}
-        <FAQSection />
-      </MainLayout>
+       <FAQSection/>
+     </MainLayout>
     </div>
   );
 };
