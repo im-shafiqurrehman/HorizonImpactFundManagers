@@ -1,6 +1,6 @@
 "use client";
 
-import { FC } from "react";
+import { FC, useState } from "react";
 import Header from "./components/Header";
 import Headings from "./utlis/Heading";
 import AboutUs from "@/components/Home/About";
@@ -16,6 +16,8 @@ import MainLayout from "@/components/Layout/MainLayout";
 interface Props {}
 
 const Page: FC<Props> = (props) => {
+  const [activeItem, setActiveItem] = useState(0);
+
   return (
     <div>
       <MainLayout>
@@ -24,7 +26,7 @@ const Page: FC<Props> = (props) => {
           description="Our Investment Company provides strategic financial solutions and expert guidance to help you grow your wealth."
           keywords=""
         />
-        <Header />
+        <Header activeItem={activeItem} />
         <Slider />
         <AboutUs />
         <TargetedMarkets />
