@@ -5,7 +5,7 @@ import Image from "next/image"
 import { FaFacebook, FaInstagram, FaLinkedin, FaTwitter, FaWhatsapp, FaMapMarkerAlt, FaPhoneAlt } from "react-icons/fa"
 import { Tooltip, TooltipProvider, TooltipTrigger, TooltipContent } from "../ui/tooltip"
 import Link from "next/link"
-import { MessageCircle } from "lucide-react"
+import { Mail, MessageCircle } from "lucide-react"
 
 export default function ContactSection() {
   return (
@@ -89,7 +89,7 @@ export default function ContactSection() {
                 <span className="text-lg text-gray-400">
                   <p>
                     Horizon Impact Fund Managers <br />
-                    Namibia
+                    Windhoek Namibia
                   </p>
                 </span>
               </div>
@@ -120,20 +120,22 @@ export default function ContactSection() {
                   </a>
                 </span>
               </div>
+
               <div className="flex items-center gap-4">
                 <div className="flex items-center justify-center w-12 h-12 flex-shrink-0 bg-gray-200 rounded-full text-main">
-                  <MessageCircle className="text-xl" />
+                  <Mail className="text-xl" />
                 </div>
-                <span className="text-lg text-gray-400">
-                  Email Us:
-                  <a href="mailto:info@HIFM.com.na" className="text-lg pl-2 hover:text-main hover:underline">
-                    info@HIFM.com.na
-                  </a>
-                  <br />
-                  <a href="mailto:arinze@HIFM.com.na" className="text-lg pl-2 hover:text-main hover:underline">
-                    arinze@HIFM.com.na
-                  </a>
-                </span>
+                <div>
+                  <span className="text-lg text-gray-400">Email Us:</span>
+                  <div className="mt-1">
+                    <a href="mailto:info@HIFM.com.na" className="block text-lg text-gray-400 hover:text-main hover:underline">
+                      info@HIFM.com.na
+                    </a>
+                    <a href="mailto:arinze@HIFM.com.na" className="block text-lg text-gray-400 hover:text-main hover:underline">
+                      arinze@HIFM.com.na
+                    </a>
+                  </div>
+                </div>
               </div>
             </div>
           </div>

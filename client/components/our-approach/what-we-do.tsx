@@ -2,10 +2,10 @@
 
 import Image from "next/image"
 import { useScrollAnimation } from "../our-approach/use-scroll-animation"
-import appach1 from "../../public/assets/approach1.png"
+import appach1 from "../../public/assets/impact-driven.png"
 import appach2 from "../../public/assets/approach2.png"
 import appach3 from "../../public/assets/approach3.png"
-import appach4 from "../../public/assets/approach4.png"
+import appach4 from "../../public/assets/strategic-partnership.png"
 
 export default function WhatWeDo() {
   const [section1Visible, section1Ref] = useScrollAnimation()

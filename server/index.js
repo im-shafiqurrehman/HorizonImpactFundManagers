@@ -22,6 +22,7 @@ app.use(cookieParser());
 const allowedOrigins = [
   'http://localhost:3000',
   "https://horizon-frontend-app.vercel.app",
+  'https://www.horizonimpactfundmanagers.com',
 ];
 
 const corsOptions = {
