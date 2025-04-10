@@ -1,5 +1,4 @@
 "use client"
-
 import { useEffect, useRef, useState, useCallback } from "react"
 import gsap from "gsap"
 
@@ -113,7 +112,7 @@ const Slider = () => {
     gsap.set(currentSlide, { zIndex: 1 })
 
     gsap.to(nextSlide, {
-      duration: 1.5,
+      duration: 1.5,  // 1.5
       ease: "power2.inOut",
       clipPath: "polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)",
       x: "0%",
@@ -125,7 +124,7 @@ const Slider = () => {
     })
 
     gsap.to([nextText, nextDesc], {
-      duration: 1.5,
+      duration: 1.3, //1.5
       y: "0%",
       opacity: 1,
       ease: "power2.out",
@@ -150,7 +149,7 @@ const Slider = () => {
 
     if (!isInitialized) {
       gsap.to([textRefs.current[0], descRefs.current[0]], {
-        duration: 1.2,
+        duration: 1.0,  // 1.2
         y: "0%",
         opacity: 1,
         ease: "power2.out",
@@ -163,7 +162,7 @@ const Slider = () => {
 
   useEffect(() => {
     if (isInitialized) {
-      const timer = setInterval(gotoNextSlide, 4000)
+      const timer = setInterval(gotoNextSlide, 1000)   // 4000
       return () => clearInterval(timer)
     }
   }, [gotoNextSlide, isInitialized])
