@@ -16,7 +16,7 @@ const page = () => {
         backgroundImage={approachBanner}
       />
     <WhatWeDo />
-      <SectorExpertise />
+      {/* <SectorExpertise /> */}
       <InvestmentFocus />
     </MainLayout>
   );

@@ -10,21 +10,21 @@ import {
 export const specializations = [
   {
     icon: ChartLineIcon,
-    title: "Private Equity Investments",
+    title: "Youth and women led investments",
     description:
-      "We invest in high-growth private companies to unlock potential and drive superior returns through strategic partnerships.",
+      "We back ambitious youth and women-led business, helping them grow fast through smart capital and strategic partnerships that unlock real impact and strong returns",
   },
   {
     icon: HandshakeIcon,
     title: "Venture Capital",
     description:
-      "We support innovative startups with capital, mentorship, and industry connections to drive disruptive growth and market leadership.",
+      "We support innovative early-stage startups with smart financial capital and strategic business guidance, helping them grow, scale, and create lasting impact.",
   },
   {
     icon: BuildingIcon,
     title: "Real Estate Investments",
     description:
-      "We build and manage a diversified portfolio of high-yield real estate assets, focusing on prime locations and sustainable development.",
+      "We build and actively manage a diversified portfolio of high-yield real estate assets, focusing on prime urban locations and sustainable property development.",
   },
   {
     icon: LeafIcon,

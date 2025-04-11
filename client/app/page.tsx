@@ -44,7 +44,7 @@ const Page: FC<Props> = (props) => {
         <KeyFeaturesAndBenefits />
         {/* <Sponser /> */}
         {/* <Testimonial/> */}
-       <FAQSection/>
+        { /* <FAQSection/> */ } 
      </MainLayout>
     </div>
   );

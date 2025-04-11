@@ -18,7 +18,7 @@ export const features = [
     description:
       "We focus on high-growth opportunities across diverse sectors, delivering superior returns for our clients.",
     benefits: [
-      "Private equity investments",
+      "Youth and women led investments",
       "Venture capital opportunities",
       "Real estate growth",
     ],
