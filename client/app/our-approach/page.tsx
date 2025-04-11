@@ -16,8 +16,8 @@ const page = () => {
         backgroundImage={approachBanner}
       />
     <WhatWeDo />
-      {/* <SectorExpertise /> */}
-      {/* <InvestmentFocus /> */}
+      <SectorExpertise />
+       <InvestmentFocus />
     </MainLayout>
   );
 };

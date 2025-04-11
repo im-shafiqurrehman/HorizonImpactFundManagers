@@ -42,9 +42,9 @@ const Page: FC<Props> = (props) => {
         <Services />
         {/* <Projects /> */}
         <KeyFeaturesAndBenefits />
-        {/* <Sponser /> */}
-        {/* <Testimonial/> */}
-        { /* <FAQSection/> */ } 
+        <Sponser />
+        <Testimonial/>
+       <FAQSection/>
      </MainLayout>
     </div>
   );
