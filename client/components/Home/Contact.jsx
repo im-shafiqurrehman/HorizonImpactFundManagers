@@ -89,7 +89,7 @@ export default function ContactSection() {
                 <span className="text-lg text-gray-400">
                   <p>
                     Horizon Impact Fund Managers <br />
-                    Windhoek Namibia
+                    Windhoek, Namibia
                   </p>
                 </span>
               </div>

@@ -79,7 +79,7 @@ export default function ContactUs() {
             {
               icon: MapPin,
               title: "Our Location",
-              content: <span className="text-main">Windhoek Namibia</span>,
+              content: <span className="text-main">Windhoek, Namibia</span>
             },
             {
               icon: Mail,
@@ -229,7 +229,7 @@ export default function ContactUs() {
                 <div className="space-y-4">
                   <div className="flex items-center space-x-2 text-gray-600">
                     <MapPin className="h-5 w-5 text-main" />
-                    <span>Windhoek Namibia</span>
+                    <span>Windhoek, Namibia</span>
                   </div>
                   <div className="flex items-center space-x-2 text-gray-600">
                     <Phone className="h-5 w-5 text-main" />
