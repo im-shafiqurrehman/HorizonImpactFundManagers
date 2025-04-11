@@ -18,7 +18,7 @@ export const specializations = [
     icon: HandshakeIcon,
     title: "Venture Capital",
     description:
-      "We support innovative early-stage startups with smart financial capital and strategic business guidance, helping them grow, scale, and create lasting impact.",
+      "We support innovative early-stage startups with smart financial capital, strategic business guidance, and growth-focused resources, helping them grow, scale, and create lasting impact.",
   },
   {
     icon: BuildingIcon,

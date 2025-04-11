@@ -17,7 +17,7 @@ const page = () => {
       />
     <WhatWeDo />
       {/* <SectorExpertise /> */}
-      <InvestmentFocus />
+      {/* <InvestmentFocus /> */}
     </MainLayout>
   );
 };
