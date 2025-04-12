@@ -13,7 +13,7 @@ userRouter.post("/login", LoginUser);
 userRouter.get("/logout",isAuthenticated, LogoutUser);
 userRouter.get("/refresh", updateAccessToken);
 userRouter.get("/me",isAuthenticated, getUserInfo);
-userRouter.post("/social-auth", updateAccessToken,socialAuth);
+userRouter.post("/social-auth",socialAuth);
 userRouter.put("/update-user-info",updateAccessToken, isAuthenticated, updateUserInfo);
 userRouter.put("/update-user-password",updateAccessToken, isAuthenticated, updateUserPassword);
 userRouter.put("/update-user-avatar",updateAccessToken, isAuthenticated, updateUserAvatar);
